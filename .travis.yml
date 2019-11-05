@@ -1,0 +1,14 @@
+language: cpp
+
+sudo: required
+
+branches:
+  only:
+    - master
+
+script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - cmake --build .
+  - ctest
