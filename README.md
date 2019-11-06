@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/luist18/feup-aeda-proj1.svg?branch=master)](https://travis-ci.org/luist18/feup-aeda-proj1)
 [![codecov](https://codecov.io/gh/luist18/feup-aeda-proj1/branch/master/graph/badge.svg)](https://codecov.io/gh/luist18/feup-aeda-proj1)
+[![CodeFactor](https://www.codefactor.io/repository/github/luist18/feup-aeda-proj1/badge)](https://www.codefactor.io/repository/github/luist18/feup-aeda-proj1)
 [![Documentation Status](https://readthedocs.org/projects/feup-aeda-proj1/badge/?version=latest)](https://feup-aeda-proj1.readthedocs.io/en/latest/?badge=latest)
 ![GitHub](https://img.shields.io/github/license/luist18/feup-aeda-proj1?color=blue)
 ![GitHub language count](https://img.shields.io/github/languages/count/luist18/feup-aeda-proj1)
