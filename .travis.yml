@@ -10,7 +10,9 @@ cache:
 
 addons:
   apt:
-    packages: lcov
+    packages:
+    - lcov
+    - doxygen
 
 branches:
   only:
