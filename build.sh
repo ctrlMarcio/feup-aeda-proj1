@@ -1,6 +1,6 @@
 #!/bin/bash
 
-doxygen doc/Doxyfile
+cd doc && doxygen Doxyfile && cd ..
 
 set -euo pipefail
 
