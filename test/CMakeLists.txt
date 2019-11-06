@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.12.4)
 
 SET(CMAKE_CXX_STANDARD 14)
 
