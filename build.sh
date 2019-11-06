@@ -1,5 +1,7 @@
 #!/bin/bash
 
+doxygen doc/Doxyfile
+
 set -euo pipefail
 
 mkdir -p build && cd build

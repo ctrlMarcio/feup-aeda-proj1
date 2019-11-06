@@ -1,4 +1,12 @@
 # Algorithms and Data Structures project
+
+[![Build Status](https://travis-ci.org/luist18/feup-aeda-proj1.svg?branch=master)](https://travis-ci.org/luist18/feup-aeda-proj1)
+[![codecov](https://codecov.io/gh/luist18/feup-aeda-proj1/branch/master/graph/badge.svg)](https://codecov.io/gh/luist18/feup-aeda-proj1)
+[![Documentation Status](https://readthedocs.org/projects/feup-aeda-proj1/badge/?version=latest)](https://feup-aeda-proj1.readthedocs.io/en/latest/?badge=latest)
+![GitHub](https://img.shields.io/github/license/luist18/feup-aeda-proj1?color=blue)
+![GitHub language count](https://img.shields.io/github/languages/count/luist18/feup-aeda-proj1)
+![GitHub last commit](https://img.shields.io/github/last-commit/luist18/feup-aeda-proj1)
+
 This repository comprises the first part of the [Algorithms and Data Structures]((https://sigarra.up.pt/feup/en/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=436433)) course unit project. The goal was to create a solution for a specific problem applying the object-oriented paradigm in C++.
 
 ## Project description
@@ -19,7 +27,7 @@ A standard project doxygen configuration file is located in the 'docs' directory
 Here is an example of how to export the documentation with the standard project doxygen configuration file:
 ```bash
 cd docs
-doxygen doxyfile
+doxygen Doxyfile
 ```
 
 ### Unit testing
@@ -30,9 +38,9 @@ Packaging and building done with [CMake](https://cmake.org/).
 
 Here is an example of how to make a build of the project:
 ```bash
-mkdir feup-aeda-proj1_build
-cd feup-aeda-proj1_build
-cmake ../feup-aeda-proj1
+mkdir build
+cd build
+cmake ..
 cmake --build .
 ```
 
