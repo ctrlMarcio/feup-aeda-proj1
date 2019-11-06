@@ -1,4 +1,4 @@
-add_library(feup-aeda-proj1  model/company/company.cpp model/user/i_user.h model/user/user_manager.cpp auth/current_session.cpp)
+add_library(feup-aeda-proj1 model/company/company.cpp model/user/i_user.h model/user/user_manager.cpp auth/current_session.cpp model/rental/rental_manager.cpp model/rental/rental_manager.h model/rental/rental.cpp model/rental/rental.h)
 
 add_executable(application main.cpp)
 
