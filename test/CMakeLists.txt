@@ -38,5 +38,6 @@ include_directories(../src/)
 
 # Link against gtest or gtest_main as needed
 add_executable(tests model/company/company.cpp)
-target_link_libraries(tests gtest_main)
+target_link_libraries(tests PRIVATE gtest_main feup-aeda-proj1)
 
+add_test(NAME tests COMMAND tests)
