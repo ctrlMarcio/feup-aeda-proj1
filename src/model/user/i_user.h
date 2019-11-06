@@ -10,7 +10,7 @@ using namespace std;
 class IUser {
 public:
 
-    virtual string getFirstName() const = 0;
+    virtual string getName() const = 0;
 
     virtual string getIdentificationNumber() const = 0;
 

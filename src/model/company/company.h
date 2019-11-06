@@ -7,11 +7,12 @@
 class Company {
 private:
 
-    UserManager &user_manager;
+    UserManager user_manager;
 
 public:
+    Company();
 
-    UserManager &getUserManager() const;
+    UserManager &getUserManager();
 
 };
 

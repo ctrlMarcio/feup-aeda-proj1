@@ -7,13 +7,13 @@ void UserManager::add(IUser *user) {
 
 void UserManager::remove(IUser *user) {
     if (!has(user)) return;
+    auto it = find(users.begin(), users.end(), user);
+    users.erase(it);
 }
 
 bool UserManager::has(IUser *user) const {
     const string &identification_number = user->getIdentificationNumber();
-    return find_if(users.begin(), users.end(), [&identification_number](IUser *user) {
-        return user->getIdentificationNumber() == identification_number;
-    }) != users.end();
+    return find(users.begin(), users.end(), user) != users.end();
 }
 
 bool UserManager::has(const string &identification_number) const {

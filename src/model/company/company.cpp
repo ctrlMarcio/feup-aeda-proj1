@@ -1,5 +1,7 @@
 #include "company.h"
 
-UserManager &Company::getUserManager() const {
+Company::Company() = default;
+
+UserManager &Company::getUserManager() {
     return user_manager;
 }
