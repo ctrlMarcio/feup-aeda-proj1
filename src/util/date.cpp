@@ -1,9 +1,18 @@
 #include <exception/invalid_date_exception.h>
+#include <ctime>
 #include "date.h"
 
 
 Date::Date() {
-	// TODO: current time
+	time_t now = time(nullptr);
+	tm *ltm = localtime(&now);
+
+	setYear(1900 + ltm->tm_year);
+	setMonth(1 + ltm->tm_mon);
+	setDay(ltm->tm_mday);
+	setHour(ltm->tm_hour);
+	setMinute(ltm->tm_min);
+	setSecond(ltm->tm_sec);
 }
 
 Date::Date(int day, int month, int year, int hour, int minute, int second) {
@@ -25,14 +34,12 @@ void Date::setDay(int day) {
 
 	int tmp_month = (month >= 8) ? month + 1 : month;
 
-	if (tmp_month % 2 == 1 && day > 31) {
-		throw InvalidDateException(std::to_string(day) + " is an incorrect day for the " + std::to_string(month) + ".");
-	}
-
-	if (tmp_month == 2) {
-		if ((isLeapYear() && day > 29) || (!isLeapYear() && day > 28)) {
+	if (tmp_month % 2 == 1) {
+		if (day > 31)
 			throw InvalidDateException(std::to_string(day) + " is an incorrect day for the " + std::to_string(month) + ".");
-		}
+	} else if (tmp_month == 2) {
+		if ((isLeapYear() && day > 29) || (!isLeapYear() && day > 28))
+			throw InvalidDateException(std::to_string(day) + " is an incorrect day for the " + std::to_string(month) + ".");
 	} else if (day > 30) {
 		throw InvalidDateException(std::to_string(day) + " is an incorrect day for the " + std::to_string(month) + ".");
 	}
