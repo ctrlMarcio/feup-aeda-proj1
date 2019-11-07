@@ -2,8 +2,23 @@
 #define FEUP_AEDA_PROJ1_RENTAL_H
 
 
+#include <model/offer/offer.h>
+#include <model/schedule/schedule.h>
+
 class Rental {
-// TODO
+public:
+
+	Rental(Offer &offer, Schedule schedule);
+
+	float calculatePrice() const;
+
+	const Offer &getOffer() const;
+
+private:
+
+	const Offer &offer;
+
+	const Schedule schedule;
 };
 
 

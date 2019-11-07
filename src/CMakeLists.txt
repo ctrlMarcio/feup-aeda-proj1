@@ -1,4 +1,4 @@
-add_library(feup-aeda-proj1 model/company/company.cpp model/user/i_user.h model/user/user_manager.cpp auth/current_session.cpp model/rental/rental_manager.cpp model/rental/rental_manager.h model/rental/rental.cpp model/rental/rental.h)
+add_library(feup-aeda-proj1 model/company/company.cpp model/user/i_user.h model/user/user_manager.cpp auth/current_session.cpp model/rental/rental_manager.cpp model/rental/rental_manager.h model/rental/rental.cpp model/rental/rental.h model/vehicle/vehicle.cpp model/vehicle/vehicle.h model/offer/offer.cpp model/offer/offer.h model/schedule/schedule.cpp model/schedule/schedule.h util/date.cpp util/date.h exception/invalid_date_exception.cpp exception/invalid_date_exception.h)
 
 add_executable(application main.cpp)
 

@@ -3,10 +3,18 @@
 
 
 #include <list>
+#include <model/offer/offer.h>
+#include <model/schedule/schedule.h>
 #include "rental.h"
 
 class RentalManager {
 public:
+
+	static Rental createRental(Offer &offer, const Schedule &schedule);
+
+	static bool isValid(Rental rental);
+
+	bool add(Rental rental);
 
 	const std::list<Rental> &getAllRentals() const;
 
