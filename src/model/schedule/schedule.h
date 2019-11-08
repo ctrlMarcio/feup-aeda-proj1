@@ -8,10 +8,24 @@ class Schedule {
 public:
 	Schedule(const Date &begin, const Date &end);
 
-private:
-	const Date begin;
+	bool isInside(const Schedule &schedule) const;
 
-	const Date end;
+	bool isInvalid() const;
+
+	const Date &getBegin() const;
+
+	const Date &getEnd() const;
+
+	Schedule &operator=(const Schedule &schedule);
+
+private:
+	Date begin;
+
+	Date end;
+
+	void setBegin(const Date &begin);
+
+	void setEnd(const Date &end);
 };
 
 

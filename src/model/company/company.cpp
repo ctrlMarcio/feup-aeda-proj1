@@ -9,3 +9,7 @@ UserManager &Company::getUserManager() {
 RentalManager &Company::getRentalManager() {
 	return rental_manager;
 }
+
+OfferManager &Company::getOfferManager() {
+	return offer_manager;
+}

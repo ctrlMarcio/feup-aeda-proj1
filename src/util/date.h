@@ -10,6 +10,15 @@ public:
 
 	bool isLeapYear() const;
 
+	Date &operator=(const Date &date);
+
+	bool operator>(const Date &date) const;
+
+	bool operator<(const Date &date) const;
+
+	bool operator>=(const Date &date) const;
+
+	bool operator<=(const Date &date) const;
 private:
 	int day;
 
@@ -22,6 +31,8 @@ private:
 	int minute;
 
 	int second;
+
+	bool afterThan(const Date &date, bool equal_to) const;
 
 	void setDay(int day);
 

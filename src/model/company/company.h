@@ -4,6 +4,7 @@
 
 #include "../user/user_manager.h"
 #include "../rental/rental_manager.h"
+#include "../offer/offer_manager.h"
 
 class Company {
 private:
@@ -11,12 +12,16 @@ private:
 
 	RentalManager rental_manager;
 
+	OfferManager offer_manager;
+
 public:
     Company();
 
     UserManager &getUserManager();
 
 	RentalManager &getRentalManager();
+
+	OfferManager &getOfferManager();
 };
 
 
