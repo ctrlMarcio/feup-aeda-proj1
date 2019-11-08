@@ -37,7 +37,7 @@ endif()
 include_directories(../src/)
 
 # Link against gtest or gtest_main as needed
-add_executable(tests model/company/user_manager_test.cpp util/date_test.cpp model/offer/offer_test.cpp)
+add_executable(tests util/date_test.cpp model/offer/offer_test.cpp)
 target_link_libraries(tests PRIVATE gtest_main feup-aeda-proj1)
 
 add_test(NAME tests COMMAND tests)

@@ -5,6 +5,7 @@
 #include "../model/user/i_user.h"
 #include "../model/company/company.h"
 
+
 class CurrentSession {
 private:
     IUser *current_user = nullptr;

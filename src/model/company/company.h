@@ -6,6 +6,7 @@
 #include "../rental/rental_manager.h"
 #include "../offer/offer_manager.h"
 
+
 class Company {
 private:
     string name;
