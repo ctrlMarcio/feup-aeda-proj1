@@ -10,8 +10,6 @@ public:
 
 	bool isLeapYear() const;
 
-	Date &operator=(const Date &date);
-
 	bool operator>(const Date &date) const;
 
 	bool operator<(const Date &date) const;

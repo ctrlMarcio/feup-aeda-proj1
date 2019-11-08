@@ -5,7 +5,7 @@
 
 Date::Date() {
 	time_t now = time(nullptr);
-	tm *ltm = localtime(&now);
+	tm *ltm = gmtime(&now);
 
 	setYear(1900 + ltm->tm_year);
 	setMonth(1 + ltm->tm_mon);
@@ -26,21 +26,6 @@ Date::Date(int day, int month, int year, int hour, int minute, int second) {
 	} catch (InvalidDateException &e) {
 		throw e;
 	}
-}
-
-Date &Date::operator=(const Date &date) {
-	try {
-		setYear(year);
-		setMonth(month);
-		setDay(day);
-		setHour(hour);
-		setMinute(minute);
-		setSecond(second);
-	} catch (InvalidDateException &e) {
-		throw e;
-	}
-
-	return *this;
 }
 
 inline bool Date::isLeapYear() const {
