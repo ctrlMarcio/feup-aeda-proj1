@@ -6,12 +6,17 @@
 #include "offer.h"
 #include "../preference/preference.h"
 
+
+using namespace std;
+
 class OfferManager {
 public:
-	std::vector<Offer *> getRecommendedOffers(const std::list<Preference> &preferences) const;
+	vector<Offer *> getRecommendedOffers(const std::list<Preference> &preferences) const;
+
+    vector<Offer> &getOffers();
 
 private:
-	std::vector<Offer> offers;
+	vector<Offer> offers;
 };
 
 

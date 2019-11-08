@@ -4,3 +4,7 @@ std::vector<Offer *> OfferManager::getRecommendedOffers(const std::list<Preferen
 	// TODO
 	return std::vector<Offer *>();
 }
+
+vector<Offer> &OfferManager::getOffers() {
+    return offers;
+}

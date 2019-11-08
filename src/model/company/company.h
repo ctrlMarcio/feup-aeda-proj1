@@ -8,6 +8,8 @@
 
 class Company {
 private:
+    string name;
+
     UserManager user_manager;
 
 	RentalManager rental_manager;
@@ -15,13 +17,15 @@ private:
 	OfferManager offer_manager;
 
 public:
-    Company();
+    explicit Company(string name);
 
     UserManager &getUserManager();
 
 	RentalManager &getRentalManager();
 
 	OfferManager &getOfferManager();
+
+	string getName() const;
 };
 
 

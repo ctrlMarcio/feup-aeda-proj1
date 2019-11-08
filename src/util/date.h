@@ -2,6 +2,9 @@
 #define FEUP_AEDA_PROJ1_DATE_H
 
 
+#include <string>
+
+
 class Date {
 public:
 	Date();
@@ -17,7 +20,26 @@ public:
 	bool operator>=(const Date &date) const;
 
 	bool operator<=(const Date &date) const;
+
+    int getDay() const;
+
+    int getMonth() const;
+
+    int getYear() const;
+
+    int getHour() const;
+
+    int getMinute() const;
+
+    int getSecond() const;
+
+    std::string getMonthName() const;
+
+    std::string toString() const;
+
 private:
+    static std::string MONTH_NAMES[];
+
 	int day;
 
 	int month;

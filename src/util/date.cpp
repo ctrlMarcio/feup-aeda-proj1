@@ -1,7 +1,20 @@
 #include "../exception/invalid_date_exception.h"
 #include <ctime>
+#include <sstream>
 #include "date.h"
 
+std::string Date::MONTH_NAMES[] = {"January",
+                                   "February",
+                                   "March",
+                                   "April",
+                                   "May",
+                                   "June",
+                                   "July",
+                                   "August",
+                                   "September",
+                                   "October",
+                                   "November",
+                                   "December"};
 
 Date::Date() {
 	time_t now = time(nullptr);
@@ -122,4 +135,38 @@ void Date::setSecond(int second) {
 	if (second < 0 || second > 59)
 		throw InvalidDateException(std::to_string(minute) + " is an incorrect minute.");
 	this->second = second;
+}
+
+int Date::getDay() const {
+    return day;
+}
+
+int Date::getMonth() const {
+    return month;
+}
+
+int Date::getYear() const {
+    return year;
+}
+
+int Date::getHour() const {
+    return hour;
+}
+
+int Date::getMinute() const {
+    return minute;
+}
+
+int Date::getSecond() const {
+    return second;
+}
+
+std::string Date::getMonthName() const {
+    return MONTH_NAMES[month - 1];
+}
+
+std::string Date::toString() const {
+    std::stringstream string_stream;
+    string_stream << hour << ":" << minute << ", " << day << " " << getMonthName() << " " << year;
+    return string_stream.str();
 }

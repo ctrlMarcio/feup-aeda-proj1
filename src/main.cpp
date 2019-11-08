@@ -1,10 +1,12 @@
-#include <iostream>
 #include "util/date.h"
+#include "model/company/company.h"
+#include "ui/ui/ui_manager.h"
+#include "ui/ui/initial_page/initial_page_ui.h"
 
 int main(int argc, char *argv[]) {
-	// TEST CODE: remove it
-	Date date;
-	std::cout << date.isLeapYear() << std::endl;
-	Date date1(21, 12, 2020, 10, 10, 10);
-	std::cout << date1.isLeapYear() << std::endl;
+    Company company("Google Ride+");
+
+    UIManager ui_manager(company);
+
+    ui_manager.setCurrent(new InitialPageUI(ui_manager));
 }
