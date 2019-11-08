@@ -4,7 +4,6 @@
 
 class Date {
 public:
-
 	Date();
 
 	Date(int day, int month, int year, int hour = 0, int minute = 0, int second = 0);
@@ -12,7 +11,6 @@ public:
 	bool isLeapYear() const;
 
 private:
-
 	int day;
 
 	int month;

@@ -6,7 +6,6 @@
 
 class Vehicle {
 public:
-
 	friend std::ostream &operator<<(std::ostream &ostream, const Vehicle &vehicle);
 };
 

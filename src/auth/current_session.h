@@ -2,8 +2,8 @@
 #define FEUP_AEDA_PROJ1_CURRENT_SESSION_H
 
 
-#include <model/user/i_user.h>
-#include <model/company/company.h>
+#include "../model/user/i_user.h"
+#include "../model/company/company.h"
 
 class CurrentSession {
 private:

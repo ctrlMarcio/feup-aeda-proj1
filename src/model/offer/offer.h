@@ -3,15 +3,13 @@
 
 
 #include <ostream>
-#include <model/vehicle/vehicle.h>
+#include "../vehicle/vehicle.h"
 
 class Offer {
 public:
-
 	friend std::ostream &operator<<(std::ostream &ostream, const Offer &offer);
 
 private:
-
 	const Vehicle *vehicle;
 };
 

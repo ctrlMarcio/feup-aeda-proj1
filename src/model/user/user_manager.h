@@ -3,18 +3,16 @@
 
 
 #include <vector>
-#include <model/user/i_user.h>
+#include "i_user.h"
 
 
 using namespace std;
 
 class UserManager {
 private:
-
     vector<IUser *> users;
 
 public:
-
     void add(IUser *user);
 
     void remove(IUser *user);
