@@ -11,7 +11,7 @@ class RentalManager {
 public:
 	static Rental createRental(Offer &offer, const Schedule &schedule);
 
-	static bool isValid(Rental rental);
+	static bool isValid(const Rental &rental);
 
 	bool add(Rental rental);
 

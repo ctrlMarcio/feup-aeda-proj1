@@ -13,8 +13,9 @@ public:
 
 	void removeScheduleAvailability(const Schedule &to_remove);
 
-	friend std::ostream &operator<<(std::ostream &ostream, const Offer &offer);
+	IVehicle &getVehicle() const;
 
+	friend std::ostream &operator<<(std::ostream &ostream, const Offer &offer);
 
 private:
 	IVehicle &vehicle;

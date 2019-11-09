@@ -4,7 +4,7 @@ Rental RentalManager::createRental(Offer &offer, const Schedule &schedule) {
 	return Rental{offer, schedule};
 }
 
-bool RentalManager::isValid(Rental rental) {
+bool RentalManager::isValid(const Rental &rental) {
 	// TODO
 	return true;
 }

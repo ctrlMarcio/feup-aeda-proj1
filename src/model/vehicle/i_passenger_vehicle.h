@@ -17,6 +17,15 @@ public:
      * @return the seat number
      */
     virtual unsigned getSeatNumber() const = 0;
+
+private:
+	/*!
+	 * Compares to another passenger vehicle.
+	 *
+	 * @param vehicle the other vehicle
+	 * @return true if they are equal, false otherwise
+	 */
+	virtual bool isEqual(const IVehicle &vehicle) const = 0;
 };
 
 

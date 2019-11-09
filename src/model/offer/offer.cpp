@@ -22,6 +22,10 @@ void Offer::removeScheduleAvailability(const Schedule &to_remove) {
 	}
 }
 
+IVehicle &Offer::getVehicle() const {
+	return vehicle;
+}
+
 std::ostream &operator<<(std::ostream &ostream, const Offer &offer) {
 	// TODO
 	return ostream;

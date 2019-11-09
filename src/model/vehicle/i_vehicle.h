@@ -14,6 +14,11 @@ using namespace std;
  */
 class IVehicle {
 public:
+	/*!
+	 * The destructor.
+	 */
+	virtual ~IVehicle() = 0;
+
     /*!
      * Gets the number plate of this vehicle.
      *
@@ -41,6 +46,23 @@ public:
      * @return the year
      */
     virtual unsigned getYear() const = 0;
+
+	/*!
+	 * Compares to another vehicles, first verifying if they are from the same type, and them comparing them.
+	 *
+	 * @param vehicle the other vehicle
+	 * @return true if they are equal, false otherwise
+	 */
+	bool operator==(const IVehicle &vehicle) const;
+
+private:
+	/*!
+	 * Compares to another vehicle of the same type.
+	 *
+	 * @param vehicle the other vehicle
+	 * @return true if they are equal, false otherwise
+	 */
+	virtual bool isEqual(const IVehicle &vehicle) const = 0;
 };
 
 
