@@ -8,7 +8,7 @@
 
 class IRenter : public IUser {
 public:
-	virtual std::list<Preference> getPreferences() const = 0;
+	virtual std::list<Preference> &getPreferences() = 0;
 };
 
 

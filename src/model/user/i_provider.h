@@ -6,7 +6,7 @@
 
 class IProvider {
 public:
-	virtual VehicleList getVehicleList() const = 0;
+    virtual VehicleList &getVehicleList() = 0;
 };
 
 
