@@ -20,13 +20,13 @@ private:
 public:
     explicit Company(string name);
 
+    string getName() const;
+
     UserManager &getUserManager();
 
 	RentalManager &getRentalManager();
 
 	OfferManager &getOfferManager();
-
-	string getName() const;
 };
 
 
