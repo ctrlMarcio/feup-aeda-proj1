@@ -14,11 +14,6 @@ using namespace std;
  */
 class IVehicle {
 public:
-	/*!
-	 * The destructor.
-	 */
-	virtual ~IVehicle() = 0;
-
     /*!
      * Gets the number plate of this vehicle.
      *
