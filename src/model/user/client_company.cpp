@@ -2,16 +2,13 @@
 
 #include <utility>
 
-ClientCompany::ClientCompany(string name, string identification_number, string address, string password) : name(
+ClientCompany::ClientCompany(string name, string identification_number, string address) : name(
         std::move(name)),
-                                                                                                           identification_number(
-                                                                                                                   std::move(
-                                                                                                                           identification_number)),
-                                                                                                           address(std::move(
-                                                                                                                   address)),
-                                                                                                           password(
-                                                                                                                   std::move(
-                                                                                                                           password)) {}
+                                                                                          identification_number(
+                                                                                                  std::move(
+                                                                                                          identification_number)),
+                                                                                          address(std::move(
+                                                                                                  address)) {}
 
 string ClientCompany::getName() const {
     return name;
@@ -25,10 +22,6 @@ string ClientCompany::getAddress() const {
     return address;
 }
 
-string ClientCompany::getPassword() const {
-    return password;
-}
-
 PreferenceList &ClientCompany::getPreferenceList() {
-	return preference_list;
+    return preference_list;
 }

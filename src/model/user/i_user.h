@@ -37,13 +37,6 @@ public:
      * @return the address
      */
     virtual string getAddress() const = 0;
-
-    /*!
-     * Gets the password of this user. The password is a simple string without encryption.
-     *
-     * @return the password
-     */
-    virtual string getPassword() const = 0;
 };
 
 

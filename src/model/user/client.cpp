@@ -2,21 +2,19 @@
 
 #include <utility>
 
-Client::Client(string name, string identification_number, string address, string password) : name(std::move(name)),
-                                                                                             identification_number(
-                                                                                                     std::move(
-                                                                                                             identification_number)),
-                                                                                             address(std::move(
-                                                                                                     address)),
-                                                                                             password(std::move(
-                                                                                                     password)) {}
+Client::Client(string name, string identification_number, string address) : name(std::move(name)),
+                                                                            identification_number(
+                                                                                    std::move(
+                                                                                            identification_number)),
+                                                                            address(std::move(
+                                                                                    address)) {}
 
 VehicleList &Client::getVehicleList() {
     return vehicle_list;
 }
 
 PreferenceList &Client::getPreferenceList() {
-	return preference_list;
+    return preference_list;
 }
 
 string Client::getName() const {
@@ -29,8 +27,4 @@ string Client::getIdentificationNumber() const {
 
 string Client::getAddress() const {
     return address;
-}
-
-string Client::getPassword() const {
-    return password;
 }

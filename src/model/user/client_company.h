@@ -7,15 +7,13 @@
 
 class ClientCompany : public IRenter {
 public:
-    ClientCompany(string name, string identification_number, string address, string password);
+    ClientCompany(string name, string identification_number, string address);
 
     string getName() const override;
 
     string getIdentificationNumber() const override;
 
     string getAddress() const override;
-
-    string getPassword() const override;
 
 	PreferenceList &getPreferenceList() override;
 
@@ -26,9 +24,7 @@ private:
 
     string address;
 
-    string password;
-
-	PreferenceList preference_list;
+	PreferenceList preference_list{};
 };
 
 

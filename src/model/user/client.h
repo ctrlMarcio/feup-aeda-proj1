@@ -8,15 +8,13 @@
 
 class Client : public IRenter, public IProvider {
 public:
-    Client(string name, string identification_number, string address, string password);
+    Client(string name, string identification_number, string address);
 
     string getName() const override;
 
     string getIdentificationNumber() const override;
 
     string getAddress() const override;
-
-    string getPassword() const override;
 
     VehicleList &getVehicleList() override;
 
@@ -28,8 +26,6 @@ private:
     string identification_number;
 
     string address;
-
-    string password;
 
     VehicleList vehicle_list;
 

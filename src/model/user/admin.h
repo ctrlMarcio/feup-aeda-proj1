@@ -6,7 +6,7 @@
 
 class Admin : public IUser {
 public:
-    Admin(string name, string identification_number, string address, string password);
+    Admin(string name, string identification_number, string address);
 
     string getName() const override;
 
@@ -14,16 +14,12 @@ public:
 
     string getAddress() const override;
 
-    string getPassword() const override;
-
 private:
     string name;
 
     string identification_number;
 
     string address;
-
-    string password;
 };
 
 
