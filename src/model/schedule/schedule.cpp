@@ -1,8 +1,12 @@
+#include "../../exception/invalid_schedule_exception.h"
 #include "schedule.h"
 
 Schedule::Schedule(const Date &begin, const Date &end) {
 	setBegin(begin);
 	setEnd(end);
+
+	if (this->isInvalid())
+		throw InvalidScheduleException();
 }
 
 Schedule &Schedule::operator=(const Schedule &schedule) {
@@ -20,6 +24,11 @@ bool Schedule::isInvalid() const {
 	return begin >= end;
 }
 
+bool Schedule::interfersWith(const Schedule &schedule) const {
+	// TODO
+	return false;
+}
+
 const Date &Schedule::getBegin() const {
 	return begin;
 }
@@ -34,4 +43,9 @@ void Schedule::setBegin(const Date &begin) {
 
 void Schedule::setEnd(const Date &end) {
 	this->end = end;
+}
+
+bool Schedule::operator==(const Schedule &rhs) const {
+	return begin == rhs.begin &&
+		   end == rhs.end;
 }

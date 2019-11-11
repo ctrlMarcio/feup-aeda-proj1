@@ -17,28 +17,28 @@ public:
 	/*!
 	 * The destructor.
 	 */
-	virtual ~IVehicle() = 0;
+	virtual ~IVehicle() = default;;
 
     /*!
      * Gets the number plate of this vehicle.
      *
      * @return the number plate
      */
-    virtual string getNumberPlate() const = 0;
+	virtual const string &getNumberPlate() const = 0;
 
     /*!
      * Gets the brand of this vehicle.
      *
      * @return the brand
      */
-    virtual string getBrand() const = 0;
+	virtual const string &getBrand() const = 0;
 
     /*!
      * Gets the model of this vehicle.
      *
      * @return the model
      */
-    virtual string getModel() const = 0;
+	virtual const string &getModel() const = 0;
 
     /*!
      * Gets the manufacturing year of this vehicle.

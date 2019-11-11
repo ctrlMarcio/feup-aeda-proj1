@@ -4,7 +4,7 @@
 
 #include "../../model/vehicle/vehicle_list.h"
 
-class IProvider {
+class IProvider : public IUser {
 public:
     virtual VehicleList &getVehicleList() = 0;
 };

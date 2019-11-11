@@ -1,4 +1,6 @@
 #include "vehicle_list.h"
+#include "passenger_vehicle.h"
+#include "commercial_vehicle.h"
 
 VehicleList::~VehicleList() {
 	for (IVehicle *v : vehicles)
@@ -6,13 +8,17 @@ VehicleList::~VehicleList() {
 	vehicles.clear();
 }
 
-/* TODO create passenger vehicle using new to return the reference
-IVehicle &VehicleList::createVehicle(unsigned seat_number) const {
-}*/
+IVehicle &VehicleList::createVehicle(const std::string &number_plate, const std::string &brand, const std::string &model,
+									 unsigned year, unsigned seat_number) const {
+	IVehicle *vehicle = new PassengerVehicle(number_plate, brand, model, year, seat_number);
+	return *vehicle;
+}
 
-/* TODO create commercial vehicle using new to return the reference
-IVehicle &VehicleList::createVehicle(double cargo_volume, double max_weight, bool is_refrigerated) const {
-}*/
+IVehicle &VehicleList::createVehicle(const std::string &number_plate, const std::string &brand, const std::string &model,
+									 unsigned year, double cargo_volume, double max_weight, bool is_refrigerated) const {
+	IVehicle *vehicle = new CommercialVehicle(number_plate, brand, model, year, cargo_volume, max_weight, is_refrigerated);
+	return *vehicle;
+}
 
 bool VehicleList::add(IVehicle *vehicle) {
 	if (isValid(*vehicle)) {

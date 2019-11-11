@@ -37,6 +37,14 @@ public:
 
     std::string toString() const;
 
+	/*!
+	 * Verifies if another date is equal to this one.
+	 *
+	 * @param rhs the other date
+	 * @return true if they are equal, false otherwise
+	 */
+	bool operator==(const Date &rhs) const;
+
 private:
     static std::string MONTH_NAMES[];
 

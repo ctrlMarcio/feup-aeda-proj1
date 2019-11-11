@@ -11,7 +11,7 @@ class RentalManager {
 public:
 	static Rental createRental(Offer &offer, const Schedule &schedule);
 
-	static bool isValid(const Rental &rental);
+	static Rental createRental(Offer &offer, const Date &begin, const Date &end);
 
 	bool add(Rental rental);
 
@@ -19,6 +19,8 @@ public:
 
 private:
 	std::list<Rental> rentals;
+
+	static bool isValid(const Rental &rental);
 };
 
 

@@ -9,14 +9,20 @@ class Rental {
 public:
 	Rental(Offer &offer, Schedule schedule);
 
-	float calculatePrice() const;
+	Rental(Offer &offer, const Date &begin, const Date &end);
 
 	const Offer &getOffer() const;
+
+	const Schedule &getSchedule() const;
 
 private:
 	const Offer &offer;
 
 	const Schedule schedule;
+
+	float price;
+
+	float calculatePrice() const;
 };
 
 

@@ -170,3 +170,12 @@ std::string Date::toString() const {
     string_stream << hour << ":" << minute << ", " << day << " " << getMonthName() << " " << year;
     return string_stream.str();
 }
+
+bool Date::operator==(const Date &rhs) const {
+	return day == rhs.day &&
+		   month == rhs.month &&
+		   year == rhs.year &&
+		   hour == rhs.hour &&
+		   minute == rhs.minute &&
+		   second == rhs.second;
+}

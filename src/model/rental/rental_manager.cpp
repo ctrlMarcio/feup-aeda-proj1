@@ -4,9 +4,12 @@ Rental RentalManager::createRental(Offer &offer, const Schedule &schedule) {
 	return Rental{offer, schedule};
 }
 
+Rental RentalManager::createRental(Offer &offer, const Date &begin, const Date &end) {
+	return Rental{offer, begin, end};
+}
+
 bool RentalManager::isValid(const Rental &rental) {
-	// TODO
-	return true;
+	return (rental.getOffer().hasSchedule(rental.getSchedule()));
 }
 
 bool RentalManager::add(Rental rental) {

@@ -10,6 +10,8 @@ public:
 
 	bool isInside(const Schedule &schedule) const;
 
+	bool interfersWith(const Schedule &schedule) const;
+
 	bool isInvalid() const;
 
 	const Date &getBegin() const;
@@ -17,6 +19,14 @@ public:
 	const Date &getEnd() const;
 
 	Schedule &operator=(const Schedule &schedule);
+
+	/*!
+	 * Verifies if another schedule is equal to this one.
+	 *
+	 * @param rhs the other schedule
+	 * @return true if they are equal, false otherwise
+	 */
+	bool operator==(const Schedule &rhs) const;
 
 private:
 	Date begin;
