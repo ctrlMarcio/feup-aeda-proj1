@@ -21,11 +21,6 @@ public:
 	PassengerVehicle(string number_plate, string brand, string model, unsigned int year, unsigned int seat_number);
 
 	/*!
-	 * The destructor of PassengerVehicle;
-	 */
-	~PassengerVehicle() override = default;
-
-	/*!
  	 * Gets the number plate of this vehicle.
 	 *
 	 * @return the number plate
