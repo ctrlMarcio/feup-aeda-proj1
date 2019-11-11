@@ -2,6 +2,7 @@
 #define FEUP_AEDA_PROJ1_CLIENT_COMPANY_H
 
 
+#include "../../model/preference/preference_list.h"
 #include "i_renter.h"
 
 class ClientCompany : public IRenter {
@@ -16,7 +17,7 @@ public:
 
     string getPassword() const override;
 
-    list<Preference> &getPreferences() override;
+	PreferenceList &getPreferenceList() override;
 
 private:
     string name;
@@ -27,7 +28,7 @@ private:
 
     string password;
 
-    list<Preference> preferences;
+	PreferenceList preference_list;
 };
 
 

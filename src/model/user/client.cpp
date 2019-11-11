@@ -15,8 +15,8 @@ VehicleList &Client::getVehicleList() {
     return vehicle_list;
 }
 
-list<Preference> &Client::getPreferences() {
-    return preferences;
+PreferenceList &Client::getPreferenceList() {
+	return preference_list;
 }
 
 string Client::getName() const {

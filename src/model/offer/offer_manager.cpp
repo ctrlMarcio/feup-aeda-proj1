@@ -6,7 +6,7 @@ Offer OfferManager::createOffer(IVehicle &vehicle, const std::list<Schedule> &av
 	return Offer(vehicle, available_schedules);
 }
 
-std::vector<Offer *> OfferManager::getRecommendedOffers(const std::list<Preference> &preferences) const {
+std::vector<Offer *> OfferManager::getRecommendedOffers(const PreferenceList &preference_list) const {
 	// TODO
 	return std::vector<Offer *>();
 }

@@ -29,6 +29,6 @@ string ClientCompany::getPassword() const {
     return password;
 }
 
-list<Preference> &ClientCompany::getPreferences() {
-    return preferences;
+PreferenceList &ClientCompany::getPreferenceList() {
+	return preference_list;
 }

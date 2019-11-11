@@ -3,8 +3,8 @@
 
 
 #include <vector>
+#include "../../model/preference/preference_list.h"
 #include "offer.h"
-#include "../preference/preference.h"
 
 
 using namespace std;
@@ -23,10 +23,10 @@ public:
 	/*!
 	 * Gets a container of recommended offers given a container of preferences.
 	 *
-	 * @param preferences the container of preferences
+	 * @param preference_list the list of preferences
 	 * @return the container of recommended offers
 	 */
-	vector<Offer *> getRecommendedOffers(const std::list<Preference> &preferences) const;
+	vector<Offer *> getRecommendedOffers(const PreferenceList &preference_list) const;
 
 	/*!
 	 * Verifies if already exists offers for a given vehicle.

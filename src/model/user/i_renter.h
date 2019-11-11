@@ -4,11 +4,10 @@
 
 #include <list>
 #include "i_user.h"
-#include "../preference/preference.h"
 
 class IRenter : public IUser {
 public:
-	virtual std::list<Preference> &getPreferences() = 0;
+	virtual PreferenceList &getPreferenceList() = 0;
 };
 
 

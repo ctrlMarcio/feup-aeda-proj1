@@ -2,6 +2,7 @@
 #define FEUP_AEDA_PROJ1_CLIENT_H
 
 
+#include "../../model/preference/preference_list.h"
 #include "i_renter.h"
 #include "i_provider.h"
 
@@ -19,7 +20,7 @@ public:
 
     VehicleList &getVehicleList() override;
 
-    list<Preference> &getPreferences() override;
+	PreferenceList &getPreferenceList() override;
 
 private:
     string name;
@@ -32,7 +33,7 @@ private:
 
     VehicleList vehicle_list;
 
-    list<Preference> preferences;
+	PreferenceList preference_list;
 };
 
 
