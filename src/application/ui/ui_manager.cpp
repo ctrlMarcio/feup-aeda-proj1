@@ -10,3 +10,15 @@ void UIManager::setCurrent(UI *ui) {
 void UIManager::run() const {
     current_ui->run();
 }
+
+Company &UIManager::getCompany() const {
+    return company;
+}
+
+CurrentSession &UIManager::getCurrentSession() const {
+    return current_session;
+}
+
+UI *UIManager::getCurrentUi() const {
+    return current_ui;
+}

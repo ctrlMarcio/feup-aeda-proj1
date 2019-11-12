@@ -3,6 +3,7 @@
 #include "auth/auth_user/auth_user_manager.h"
 #include "auth/current_session/current_session.h"
 #include "application/ui/ui_manager.h"
+#include "application/ui/initial_page/initial_page_ui.h"
 
 int main(int argc, char *argv[]) {
 	AuthUserManager auth_user_manager;
@@ -10,6 +11,6 @@ int main(int argc, char *argv[]) {
     Company company("Google Ride+");
 
     UIManager ui_manager(current_session, company);
-    // TODO: Set the initial UI page
+    ui_manager.setCurrent(new InitialPageUI(ui_manager));
     ui_manager.run();
 }

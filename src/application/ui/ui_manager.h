@@ -10,6 +10,12 @@ class UIManager {
 public:
     UIManager(CurrentSession &current_session, Company &company);
 
+    Company &getCompany() const;
+
+    CurrentSession &getCurrentSession() const;
+
+    UI *getCurrentUi() const;
+
     void setCurrent(UI *ui);
 
     void run() const;
