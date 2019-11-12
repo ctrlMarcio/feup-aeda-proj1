@@ -6,8 +6,8 @@
 #include <algorithm>
 #include <fstream>
 
-Offer OfferManager::createOffer(IVehicle &vehicle, const std::list<Schedule> &available_schedules) {
-	return Offer(vehicle, available_schedules);
+Offer OfferManager::build(IVehicle &vehicle, const std::list<Schedule> &available_schedules, IProvider &provider) {
+	return Offer(vehicle, available_schedules, provider);
 }
 
 std::vector<Offer *> OfferManager::getRecommendedOffers(const PreferenceList &preference_list) const {
@@ -74,15 +74,17 @@ void OfferManager::read(const std::string &directory) {
 	while (getline(ifstream, line)) {
 		std::vector<std::string> params = string_util::split(line, file_handling::delimiter);
 
-		std::string vehicle_plate = params[0];
+		std::string provider_id = params[0];
+		std::string vehicle_plate = params[1];
 
-		//TODO
-		//IVehicle &vehicle = get vehicle from somewhere
+		// TODO
+		//IProvider &provider = get provider from somewhere(provider_id);
+		//IVehicle &vehicle = provider.getVehicleList();
 
-		float price = stof(params[1]);
+		float price = stof(params[2]);
 
 		auto *schedules = new std::list<Schedule>;
-		for (size_t i = 2; i < params.size(); ++i) {
+		for (size_t i = 3; i < params.size(); ++i) {
 			Date *begin = getDate(params[i]);
 			Date *end = getDate(params[++i]);
 
@@ -91,7 +93,7 @@ void OfferManager::read(const std::string &directory) {
 		}
 
 		// TODO
-		//Offer *offer = new Offer(vehicle, schedules, price);
+		//Offer *offer = new Offer(vehicle, schedules, provider, price);
 		//this->add(*offer);
 	}
 
@@ -108,7 +110,7 @@ void OfferManager::write(const std::string &directory) const {
 		throw InvalidFileException(file_path);
 
 	for (const Offer &offer : offers) {
-		ofstream << offer.getVehicle().getNumberPlate() << file_handling::delimiter << file_handling::delimiter <<
+		ofstream << offer.getProvider().getIdentificationNumber() << file_handling::delimiter << offer.getVehicle().getNumberPlate() << file_handling::delimiter <<
 				 to_string(offer.getPrice());
 
 		for (const Schedule &schedule : offer.getAvailableSchedules()) {

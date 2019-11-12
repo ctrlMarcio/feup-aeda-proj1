@@ -4,8 +4,10 @@
 
 #include <vector>
 #include "../../model/preference/preference_list.h"
+#include "../user/client.h"
 #include "offer.h"
 
+class IProvider;
 
 using namespace std;
 
@@ -16,9 +18,10 @@ public:
 	 *
 	 * @param vehicle the vehicle
 	 * @param available_schedules the available schedules
+	 * @param provider the provider that created the offer
 	 * @return the created offer
 	 */
-	static Offer createOffer(IVehicle &vehicle, const std::list<Schedule> &available_schedules);
+	static Offer build(IVehicle &vehicle, const std::list<Schedule> &available_schedules, IProvider &provider);
 
 	/*!
 	 * Gets a container of recommended offers given a container of preferences.

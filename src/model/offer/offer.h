@@ -7,9 +7,11 @@
 #include "../vehicle/i_vehicle.h"
 #include "../schedule/schedule.h"
 
+class IProvider;
+
 class Offer {
 public:
-	Offer(IVehicle &vehicle, std::list<Schedule> available_schedules, float price = 0);
+	Offer(IVehicle &vehicle, std::list<Schedule> available_schedules, IProvider &provider, float price = 0);
 
 	void removeScheduleAvailability(const Schedule &to_remove);
 
@@ -52,6 +54,8 @@ public:
 
 	const list<Schedule> &getAvailableSchedules() const;
 
+	IProvider &getProvider() const;
+
 	/*!
 	 * Verifies if another offer is equal to this one.
 	 *
@@ -68,6 +72,8 @@ private:
 	IVehicle &vehicle;
 
 	std::list<Schedule> available_schedules;
+
+	IProvider &provider;
 
 	/*!
 	 * The price of the offer.

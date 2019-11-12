@@ -3,8 +3,8 @@
 #include <utility>
 #include "../../exception/invalid_schedule_exception.h"
 
-Offer::Offer(IVehicle &vehicle, std::list<Schedule> available_schedules, float price) :
-		vehicle(vehicle), available_schedules(std::move(available_schedules)), price(price) {}
+Offer::Offer(IVehicle &vehicle, std::list<Schedule> available_schedules, IProvider &provider, float price) :
+		vehicle(vehicle), available_schedules(std::move(available_schedules)), provider(provider), price(price) {}
 
 void Offer::removeScheduleAvailability(const Schedule &to_remove) {
 	for (auto it = available_schedules.begin(); it != available_schedules.end(); ++it) {
@@ -91,4 +91,8 @@ float Offer::getPrice() const {
 
 const list<Schedule> &Offer::getAvailableSchedules() const {
 	return available_schedules;
+}
+
+IProvider &Offer::getProvider() const {
+	return provider;
 }
