@@ -43,12 +43,28 @@ public:
     virtual unsigned getYear() const = 0;
 
 	/*!
+	 * Prints the vehicle information in an ostream
+	 *
+	 * @param ostream the ostream
+	 */
+	virtual void print(std::ostream &ostream) const = 0;
+
+	/*!
 	 * Compares to another vehicles, first verifying if they are from the same type, and them comparing them.
 	 *
 	 * @param vehicle the other vehicle
 	 * @return true if they are equal, false otherwise
 	 */
 	bool operator==(const IVehicle &vehicle) const;
+
+	/*!
+	 * Prints a vehicle in an ostream.
+	 *
+	 * @param ostream the ostream
+	 * @param vehicle the vehicle
+	 * @return the changed ostream
+	 */
+	friend ostream &operator<<(ostream &ostream, const IVehicle &vehicle);
 
 private:
 	/*!

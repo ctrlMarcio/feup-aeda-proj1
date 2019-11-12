@@ -28,6 +28,15 @@ public:
 	 */
 	bool operator==(const Schedule &rhs) const;
 
+	/*!
+	 * Prints a schedule in an ostream.
+	 *
+	 * @param ostream the ostream
+	 * @param schedule the schedule
+	 * @return the changed ostream
+	 */
+	friend std::ostream &operator<<(std::ostream &ostream, const Schedule &schedule);
+
 private:
 	Date begin;
 

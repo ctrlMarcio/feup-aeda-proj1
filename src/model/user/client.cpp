@@ -37,6 +37,10 @@ bool Client::operator==(const Client &rhs) const {
            preference_list == rhs.preference_list;
 }
 
+void Client::print(std::ostream &ostream) const {
+	ostream << name << "; ID: " << identification_number << "; Address: " << address << std::endl;
+}
+
 bool Client::operator!=(const Client &rhs) const {
     return !(rhs == *this);
 }

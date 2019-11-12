@@ -25,6 +25,13 @@ public:
 					  double max_weight, bool refrigerated);
 
 	/*!
+	 * Prints the vehicle in an ostream.
+	 *
+	 * @param ostream the ostream
+	 */
+	void print(std::ostream &ostream) const override;
+
+	/*!
 	* Gets the cargo volume of this commercial vehicle. By convention the cargo volume should be in cubic meters.
 	*
 	* @return the cargo volume

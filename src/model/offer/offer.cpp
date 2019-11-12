@@ -1,6 +1,7 @@
 #include "offer.h"
 
 #include <utility>
+#include <iostream>
 #include "../../exception/invalid_schedule_exception.h"
 
 Offer::Offer(IVehicle &vehicle, std::list<Schedule> available_schedules, IProvider &provider, float price) :
@@ -56,7 +57,15 @@ IVehicle &Offer::getVehicle() const {
 }
 
 std::ostream &operator<<(std::ostream &ostream, const Offer &offer) {
-	// TODO
+	ostream << "Vehicle: " << offer.vehicle << std::endl
+			<< "Available schedules: " << std::endl;
+
+	for (const Schedule &schedule : offer.available_schedules)
+		ostream << schedule << std::endl;
+
+	ostream << offer.provider << std::endl;
+	ostream << "Price: " << offer.price;
+
 	return ostream;
 }
 

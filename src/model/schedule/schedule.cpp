@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "../../exception/invalid_schedule_exception.h"
 #include "schedule.h"
 
@@ -48,4 +50,9 @@ void Schedule::setEnd(const Date &end) {
 bool Schedule::operator==(const Schedule &rhs) const {
 	return begin == rhs.begin &&
 		   end == rhs.end;
+}
+
+std::ostream &operator<<(std::ostream &ostream, const Schedule &schedule) {
+	ostream << schedule.begin << " to " << schedule.end << std::endl;
+	return ostream;
 }

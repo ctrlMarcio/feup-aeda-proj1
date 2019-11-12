@@ -20,6 +20,8 @@ public:
 
 	PreferenceList &getPreferenceList() override;
 
+	void print(std::ostream &ostream) const override;
+
     bool operator==(const Client &rhs) const;
 
     bool operator!=(const Client &rhs) const;

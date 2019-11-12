@@ -4,17 +4,17 @@
 #include "date.h"
 
 std::string Date::MONTH_NAMES[] = {"January",
-                                   "February",
-                                   "March",
-                                   "April",
-                                   "May",
-                                   "June",
-                                   "July",
-                                   "August",
-                                   "September",
-                                   "October",
-                                   "November",
-                                   "December"};
+								   "February",
+								   "March",
+								   "April",
+								   "May",
+								   "June",
+								   "July",
+								   "August",
+								   "September",
+								   "October",
+								   "November",
+								   "December"};
 
 Date::Date() {
 	time_t now = time(nullptr);
@@ -138,37 +138,37 @@ void Date::setSecond(int second) {
 }
 
 int Date::getDay() const {
-    return day;
+	return day;
 }
 
 int Date::getMonth() const {
-    return month;
+	return month;
 }
 
 int Date::getYear() const {
-    return year;
+	return year;
 }
 
 int Date::getHour() const {
-    return hour;
+	return hour;
 }
 
 int Date::getMinute() const {
-    return minute;
+	return minute;
 }
 
 int Date::getSecond() const {
-    return second;
+	return second;
 }
 
 std::string Date::getMonthName() const {
-    return MONTH_NAMES[month - 1];
+	return MONTH_NAMES[month - 1];
 }
 
 std::string Date::toString() const {
-    std::stringstream string_stream;
-    string_stream << hour << ":" << minute << ", " << day << " " << getMonthName() << " " << year;
-    return string_stream.str();
+	std::stringstream string_stream;
+	string_stream << hour << ":" << minute << ", " << day << " " << getMonthName() << " " << year;
+	return string_stream.str();
 }
 
 bool Date::operator==(const Date &rhs) const {
@@ -178,4 +178,10 @@ bool Date::operator==(const Date &rhs) const {
 		   hour == rhs.hour &&
 		   minute == rhs.minute &&
 		   second == rhs.second;
+}
+
+std::ostream &operator<<(std::ostream &ostream, const Date &date) {
+	ostream << date.day << "/" << date.month << "/" << date.year << " "
+			<< date.hour << ":" << date.minute << "." << date.second << std::endl;
+	return ostream;
 }

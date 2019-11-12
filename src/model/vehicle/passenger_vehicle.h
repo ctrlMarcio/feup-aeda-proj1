@@ -21,6 +21,13 @@ public:
 	PassengerVehicle(string number_plate, string brand, string model, unsigned int year, unsigned int seat_number);
 
 	/*!
+	 * Prints the vehicle in an ostream.
+	 *
+	 * @param ostream the ostream
+	 */
+	void print(std::ostream &ostream) const override;
+
+	/*!
  	 * Gets the number plate of this vehicle.
 	 *
 	 * @return the number plate

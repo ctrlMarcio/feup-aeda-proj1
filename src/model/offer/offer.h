@@ -6,6 +6,7 @@
 #include <list>
 #include "../vehicle/i_vehicle.h"
 #include "../schedule/schedule.h"
+#include "../user/client.h"
 
 class IProvider;
 

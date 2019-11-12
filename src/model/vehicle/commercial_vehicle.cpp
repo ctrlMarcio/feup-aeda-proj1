@@ -7,6 +7,19 @@ CommercialVehicle::CommercialVehicle(string number_plate, string brand, string m
 		number_plate(std::move(number_plate)), brand(std::move(brand)), model(std::move(model)), year(year), cargo_volume(cargo_volume),
 		max_weight(max_weight), refrigerated(refrigerated) {}
 
+void CommercialVehicle::print(std::ostream &ostream) const {
+	ostream << "Number plate: " << number_plate << std::endl
+			<< "Brand: " << brand << std::endl
+			<< "Model: " << model << std::endl
+			<< "Year: " << year << std::endl
+			<< "Cargo Volume: " << cargo_volume << std::endl
+			<< "Max Weight: " << max_weight << std::endl;
+
+	if (!refrigerated)
+		ostream << "Not ";
+	ostream << "Refrigerated" << std::endl;
+}
+
 const string &CommercialVehicle::getNumberPlate() const {
 	return number_plate;
 }

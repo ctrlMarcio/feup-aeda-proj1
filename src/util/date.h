@@ -45,6 +45,15 @@ public:
 	 */
 	bool operator==(const Date &rhs) const;
 
+	/*!
+	 * Prints a date in an ostream.
+	 *
+	 * @param ostream the ostream
+	 * @param date the date
+	 * @return the changed ostream
+	 */
+	friend std::ostream &operator<<(std::ostream &ostream, const Date &date);
+
 private:
     static std::string MONTH_NAMES[];
 
