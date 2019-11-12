@@ -15,7 +15,7 @@ public:
 	 * Creates an offer.
 	 *
 	 * @param vehicle the vehicle
-	 * @param available_schedules the available schedules:
+	 * @param available_schedules the available schedules
 	 * @return the created offer
 	 */
 	static Offer createOffer(IVehicle &vehicle, const std::list<Schedule> &available_schedules);
@@ -67,6 +67,21 @@ public:
 	 */
 	vector<Offer> &getOffers();
 
+	/*!
+	 * Reads offers from a file.
+	 * Should only be implemented after all the IProvider's read.
+	 *
+	 * @param directory the directory of the file. Should be a relative directory starting in the / (root) of the project. The file name is stored in the file_handling namespace.
+	 */
+	void read(const std::string &directory);
+
+	/*!
+	 * Writes the users to a file.
+	 *
+	 * @param directory the directory of the file. Should be a relative directory starting in the / (root) of the project. The directory should exist. The file name is stored in the file_handling namespace.
+	 */
+	void write(const std::string &directory) const;
+
 private:
 	/*!
 	 * The container of offers.
@@ -80,6 +95,17 @@ private:
 	 * @return true if the offer is valid, false otherwise
 	 */
 	bool isValid(const Offer &offer) const;
+
+	/*!
+	 * Reads a date from a string.
+	 * Used to read the files.
+	 *
+	 * @param date_vector the string of the date
+	 * @return the pointer of the date
+	 */
+	Date *getDate(const std::string &date_vector) const;
+
+	void printDate(ofstream &ofstream, const Date &date) const;
 };
 
 

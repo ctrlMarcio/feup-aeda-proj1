@@ -48,6 +48,10 @@ public:
 	 */
 	void setPrice(float price);
 
+	float getPrice() const;
+
+	const list<Schedule> &getAvailableSchedules() const;
+
 	/*!
 	 * Verifies if another offer is equal to this one.
 	 *

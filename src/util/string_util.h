@@ -19,21 +19,7 @@ namespace string_util {
 	 * @param delimiter the delimiter that separates tokens
 	 * @return a vector with all the tokens
 	 */
-	std::vector<std::string> split(const std::string string, const std::string delimiter) {
-		std::string aux = string;
-		std::string token;
-		size_t pos = 0;
-		std::vector<std::string> res;
-
-		while ((pos = aux.find(delimiter)) != std::string::npos) {
-			token = aux.substr(0, pos);
-			res.push_back(token);
-			aux.erase(0, pos + delimiter.length());
-		}
-		res.push_back(aux);
-
-		return res;
-	}
+	std::vector<std::string> split(const std::string string, const std::string delimiter);
 
 }
 

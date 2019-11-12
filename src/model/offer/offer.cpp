@@ -84,3 +84,11 @@ Offer &Offer::operator=(const Offer &offer) {
 
 	return *this;
 }
+
+float Offer::getPrice() const {
+	return price;
+}
+
+const list<Schedule> &Offer::getAvailableSchedules() const {
+	return available_schedules;
+}
