@@ -5,7 +5,7 @@
 #include "application/ui/ui_manager.h"
 
 int main(int argc, char *argv[]) {
-    AuthUserManager auth_user_manager;
+	AuthUserManager auth_user_manager;
     CurrentSession current_session(auth_user_manager);
     Company company("Google Ride+");
 

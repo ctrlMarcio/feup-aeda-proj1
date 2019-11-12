@@ -60,6 +60,20 @@ public:
      */
     AuthUser &getUser(const string &identification_number) const;
 
+	/*!
+	 * Reads the users from a file.
+	 *
+	 * @param directory the directory of the file. Should be a relative directory starting in the / (root) of the project. The file name is stored in the file_handling namespace.
+	 */
+	void read(const std::string &directory);
+
+	/*!
+	 * Writes the users to a file.
+	 *
+	 * @param directory the directory of the file. Should be a relative directory starting in the / (root) of the project. The directory should exist. The file name is stored in the file_handling namespace.
+	 */
+	void write(const std::string &directory) const;
+
 private:
     list<AuthUser> users;
 };
