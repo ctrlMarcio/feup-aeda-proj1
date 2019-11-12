@@ -8,10 +8,6 @@ string Company::getName() const {
     return name;
 }
 
-UserManager &Company::getUserManager() {
-    return user_manager;
-}
-
 RentalManager &Company::getRentalManager() {
 	return rental_manager;
 }

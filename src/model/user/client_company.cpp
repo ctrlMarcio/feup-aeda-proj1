@@ -25,3 +25,14 @@ string ClientCompany::getAddress() const {
 PreferenceList &ClientCompany::getPreferenceList() {
     return preference_list;
 }
+
+bool ClientCompany::operator==(const ClientCompany &rhs) const {
+    return name == rhs.name &&
+           identification_number == rhs.identification_number &&
+           address == rhs.address &&
+           preference_list == rhs.preference_list;
+}
+
+bool ClientCompany::operator!=(const ClientCompany &rhs) const {
+    return !(rhs == *this);
+}

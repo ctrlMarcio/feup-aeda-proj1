@@ -19,3 +19,13 @@ string Admin::getIdentificationNumber() const {
 string Admin::getAddress() const {
     return address;
 }
+
+bool Admin::operator==(const Admin &rhs) const {
+    return name == rhs.name &&
+           identification_number == rhs.identification_number &&
+           address == rhs.address;
+}
+
+bool Admin::operator!=(const Admin &rhs) const {
+    return !(rhs == *this);
+}

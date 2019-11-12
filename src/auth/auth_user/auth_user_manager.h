@@ -21,16 +21,18 @@ public:
     AuthUser build(string identification_number, string password);
 
     /*!
-   * Adds a user to the list.
-   *
-   * @param user reference to a user
-   */
+     * Adds a user to the list.
+     *
+     * @param user reference to a user
+     * @return true, if the user is successfully added. false, otherwise
+     */
     bool add(AuthUser &user);
 
     /*!
      * Removes a user from the list.
      *
      * @param user reference to a user
+     * @return true, if the user is successfully removed. false, otherwise
      */
     bool remove(AuthUser &user);
 

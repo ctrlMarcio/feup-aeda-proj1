@@ -14,6 +14,10 @@ public:
 
     string getAddress() const override;
 
+    bool operator==(const Admin &rhs) const;
+
+    bool operator!=(const Admin &rhs) const;
+
 private:
     string name;
 

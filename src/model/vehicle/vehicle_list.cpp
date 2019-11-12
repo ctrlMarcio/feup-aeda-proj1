@@ -57,3 +57,11 @@ bool VehicleList::has(const IVehicle &vehicle) const {
 			return true;
 	return false;
 }
+
+bool VehicleList::operator==(const VehicleList &rhs) const {
+    return vehicles == rhs.vehicles;
+}
+
+bool VehicleList::operator!=(const VehicleList &rhs) const {
+    return !(rhs == *this);
+}

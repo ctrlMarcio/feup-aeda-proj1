@@ -11,6 +11,10 @@ public:
 
 	bool addPreference(unsigned min_year, float cargo_volume, float min_max_weight, bool refrigerated);
 
+    bool operator==(const PreferenceList &rhs) const;
+
+    bool operator!=(const PreferenceList &rhs) const;
+
 private:
 	PassengerPreference *passenger_preference;
 

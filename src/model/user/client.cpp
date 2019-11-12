@@ -28,3 +28,15 @@ string Client::getIdentificationNumber() const {
 string Client::getAddress() const {
     return address;
 }
+
+bool Client::operator==(const Client &rhs) const {
+    return name == rhs.name &&
+           identification_number == rhs.identification_number &&
+           address == rhs.address &&
+           vehicle_list == rhs.vehicle_list &&
+           preference_list == rhs.preference_list;
+}
+
+bool Client::operator!=(const Client &rhs) const {
+    return !(rhs == *this);
+}

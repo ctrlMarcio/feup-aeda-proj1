@@ -30,3 +30,12 @@ bool PreferenceList::isValid(CommercialPreference preference) const {
 	// TODO
 	return true;
 }
+
+bool PreferenceList::operator==(const PreferenceList &rhs) const {
+    return passenger_preference == rhs.passenger_preference &&
+           commercial_preference == rhs.commercial_preference;
+}
+
+bool PreferenceList::operator!=(const PreferenceList &rhs) const {
+    return !(rhs == *this);
+}

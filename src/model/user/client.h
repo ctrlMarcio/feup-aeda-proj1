@@ -20,6 +20,10 @@ public:
 
 	PreferenceList &getPreferenceList() override;
 
+    bool operator==(const Client &rhs) const;
+
+    bool operator!=(const Client &rhs) const;
+
 private:
     string name;
 

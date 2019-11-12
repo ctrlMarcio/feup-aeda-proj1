@@ -67,6 +67,10 @@ public:
 	 */
 	const vector<IVehicle *> &getVehicles() const;
 
+    bool operator==(const VehicleList &rhs) const;
+
+    bool operator!=(const VehicleList &rhs) const;
+
 private:
 	/*!
 	 * The container that stores the vehicles
