@@ -48,7 +48,7 @@ AuthUser &AuthUserManager::getUser(const string &identification_number) const {
 }
 
 void AuthUserManager::read(const std::string &directory) {
-	std::string file_path = "../../" + directory + "/" + file_handling::auth_user;
+	std::string file_path = directory + "/" + file_handling::auth_user;
 
 	ifstream ifstream;
 	ifstream.open(file_path);
@@ -70,7 +70,7 @@ void AuthUserManager::read(const std::string &directory) {
 }
 
 void AuthUserManager::write(const std::string &directory) const {
-	std::string file_path = "../../" + directory + "/" + file_handling::auth_user;
+	std::string file_path = directory + "/" + file_handling::auth_user;
 
 	ofstream ofstream;
 	ofstream.open(file_path);
@@ -79,7 +79,7 @@ void AuthUserManager::write(const std::string &directory) const {
 		throw InvalidFileException(file_path);
 
 	for (const AuthUser &user : users)
-		ofstream << user.getIdentificationNumber() << "," << user.getPassword() << std::endl;
+		ofstream << user.getIdentificationNumber() << file_handling::delimiter << user.getPassword() << std::endl;
 
 	ofstream.close();
 }

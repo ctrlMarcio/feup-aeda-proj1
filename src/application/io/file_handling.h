@@ -30,6 +30,11 @@ namespace file_handling {
 	 */
 	extern std::string offer;
 
+	/*!
+	 * The name of the file that stores rentals.
+	 */
+	extern std::string rental;
+
 }
 
 

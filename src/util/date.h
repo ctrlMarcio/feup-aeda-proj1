@@ -11,6 +11,22 @@ public:
 
 	Date(int day, int month, int year, int hour = 0, int minute = 0, int second = 0);
 
+	/*!
+	 * Reads a date from a string.
+	 * Used to read the files.
+	 *
+	 * @param date_vector the string of the date
+	 * @return the pointer of the date
+	 */
+	static Date *getDate(const std::string &date_vector);
+
+	/*!
+	 * Prints a date to
+	 * @param ofstream
+	 * @param date
+	 */
+	static void printDate(std::ofstream &ofstream, const Date &date);
+
 	bool isLeapYear() const;
 
 	bool operator>(const Date &date) const;

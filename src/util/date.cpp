@@ -1,7 +1,13 @@
 #include "../exception/invalid_date_exception.h"
 #include <ctime>
 #include <sstream>
+#include <vector>
+#include <fstream>
 #include "date.h"
+#include "string_util.h"
+#include "../application/io/file_handling.h"
+
+using namespace std;
 
 std::string Date::MONTH_NAMES[] = {"January",
 								   "February",
@@ -39,6 +45,27 @@ Date::Date(int day, int month, int year, int hour, int minute, int second) {
 	} catch (InvalidDateException &e) {
 		throw e;
 	}
+}
+
+Date *Date::getDate(const std::string &date_string) {
+	vector<string> date_vector = string_util::split(date_string, file_handling::time_delimiter);
+	int day = stoi(date_vector[0]);
+	int month = stoi(date_vector[1]);
+	int year = stoi(date_vector[2]);
+	int hour = stoi(date_vector[3]);
+	int minute = stoi(date_vector[4]);
+	int second = stoi(date_vector[5]);
+
+	return new Date(day, month, year, hour, minute, second);
+}
+
+void Date::printDate(std::ofstream &ofstream, const Date &date) {
+	ofstream << date.getDay() << file_handling::time_delimiter <<
+			 date.getMonth() << file_handling::time_delimiter <<
+			 date.getYear() << file_handling::time_delimiter <<
+			 date.getHour() << file_handling::time_delimiter <<
+			 date.getMinute() << file_handling::time_delimiter <<
+			 date.getSecond();
 }
 
 inline bool Date::isLeapYear() const {

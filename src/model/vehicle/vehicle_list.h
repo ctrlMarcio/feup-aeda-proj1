@@ -67,6 +67,14 @@ public:
 	 */
 	const vector<IVehicle *> &getVehicles() const;
 
+	/*!
+	 * Gets a vehicle given a number plate.
+	 *
+	 * @param number_plate the number plate
+	 * @return the vehicle
+	 */
+	IVehicle &get(const std::string &number_plate);
+
     bool operator==(const VehicleList &rhs) const;
 
     bool operator!=(const VehicleList &rhs) const;

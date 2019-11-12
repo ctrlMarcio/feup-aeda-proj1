@@ -2,7 +2,7 @@
 #include <string>
 #include "string_util.h"
 
-std::vector<std::string> string_util::split(const std::string string, const std::string delimiter) {
+std::vector<std::string> string_util::split(const std::string &string, const std::string &delimiter) {
 	std::string aux = string;
 	std::string token;
 	size_t pos = 0;

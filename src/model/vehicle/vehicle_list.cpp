@@ -1,6 +1,7 @@
 #include "vehicle_list.h"
 #include "passenger_vehicle.h"
 #include "commercial_vehicle.h"
+#include "../../exception/non_existent_vehicle_exception.h"
 
 VehicleList::~VehicleList() {
 	for (IVehicle *v : vehicles)
@@ -56,6 +57,14 @@ bool VehicleList::has(const IVehicle &vehicle) const {
 		if (*listed_vehicle == vehicle)
 			return true;
 	return false;
+}
+
+IVehicle &VehicleList::get(const std::string &number_plate) {
+	for (IVehicle *vehicle : vehicles)
+		if (vehicle->getNumberPlate() == number_plate)
+			return *vehicle;
+
+	throw NonExistentVehicleException(number_plate);
 }
 
 bool VehicleList::operator==(const VehicleList &rhs) const {

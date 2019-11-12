@@ -59,7 +59,7 @@ public:
 	 * Removes an offer from the container.
 	 *
 	 * @param offer the offer to remove
-	 * @return true if the offer was successfully removed, false otherwise
+	 * @return true if the offer was successfully removed, false otherwiseShould be a relative directory starting in the / (root) of the project.
 	 */
 	bool remove(const Offer &offer);
 
@@ -74,7 +74,7 @@ public:
 	 * Reads offers from a file.
 	 * Should only be implemented after all the IProvider's read.
 	 *
-	 * @param directory the directory of the file. Should be a relative directory starting in the / (root) of the project. The file name is stored in the file_handling namespace.
+	 * @param directory the directory of the file. The file name is stored in the file_handling namespace.
 	 */
 	void read(const std::string &directory);
 
@@ -98,17 +98,6 @@ private:
 	 * @return true if the offer is valid, false otherwise
 	 */
 	bool isValid(const Offer &offer) const;
-
-	/*!
-	 * Reads a date from a string.
-	 * Used to read the files.
-	 *
-	 * @param date_vector the string of the date
-	 * @return the pointer of the date
-	 */
-	Date *getDate(const std::string &date_vector) const;
-
-	void printDate(ofstream &ofstream, const Date &date) const;
 };
 
 
