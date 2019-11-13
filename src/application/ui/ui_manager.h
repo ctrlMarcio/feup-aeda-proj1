@@ -8,13 +8,15 @@
 
 class UIManager {
 public:
-    UIManager(CurrentSession &current_session, Company &company);
+    UIManager(CurrentSession &current_session, AuthUserManager &auth_user_manager, Company &company);
 
     Company &getCompany() const;
 
     CurrentSession &getCurrentSession() const;
 
-    UI *getCurrentUi() const;
+    AuthUserManager &getAuthUserManager() const;
+
+    UI *getCurrentUI() const;
 
     void setCurrent(UI *ui);
 
@@ -24,6 +26,8 @@ private:
     Company &company;
 
     CurrentSession &current_session;
+
+    AuthUserManager &auth_user_manager;
 
     UI *current_ui;
 };
