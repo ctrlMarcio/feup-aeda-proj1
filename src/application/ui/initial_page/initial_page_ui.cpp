@@ -1,5 +1,6 @@
 #include "initial_page_ui.h"
 #include "../register_page/register_page_ui.h"
+#include "../login_page/login_page_ui.h"
 
 InitialPageUI::InitialPageUI(UIManager &ui_manager) : ui_manager(ui_manager) {}
 
@@ -23,7 +24,8 @@ void InitialPageUI::run() {
                 // TODO: View more
                 break;
             case '8':
-                // TODO: Login
+                ui_manager.setCurrent(new LoginPageUI(ui_manager));
+                ui_manager.run();
                 break;
             case '9':
                 ui_manager.setCurrent(new RegisterPageUI(ui_manager));

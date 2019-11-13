@@ -8,16 +8,6 @@ RegisterPageUI::RegisterPageUI(UIManager &ui_manager) : ui_manager(ui_manager), 
         RegisterPageController(ui_manager.getAuthUserManager(), ui_manager.getCompany())) {
 }
 
-string getHeader();
-
-string getUserType();
-
-string getName();
-
-string getIdentificationNumber(RegisterPageController &controller);
-
-string getAddress();
-
 void RegisterPageUI::run() {
     cout << getHeader();
 
@@ -29,7 +19,7 @@ void RegisterPageUI::run() {
 
     if (name.empty()) return;
 
-    string identification_number = getIdentificationNumber(controller);
+    string identification_number = getIdentificationNumber();
 
     if (identification_number.empty()) return;
 
@@ -45,7 +35,7 @@ void RegisterPageUI::run() {
     }
 }
 
-string getHeader() {
+string RegisterPageUI::getHeader() {
     stringstream header_stream;
 
     header_stream << endl << "Register page" << "                   " << Date().toString() << endl;
@@ -53,7 +43,7 @@ string getHeader() {
     return header_stream.str();
 }
 
-string getUserType() {
+string RegisterPageUI::getUserType() {
     stringstream user_types;
 
     user_types << endl << "Which user do you wish to become? [0 to exit]" << endl;
@@ -93,7 +83,7 @@ string getUserType() {
     return user_type;
 }
 
-string getName() {
+string RegisterPageUI::getName() {
     string name;
 
     do {
@@ -112,7 +102,7 @@ string getName() {
     else return name;
 }
 
-string getIdentificationNumber(RegisterPageController &controller) {
+string RegisterPageUI::getIdentificationNumber() {
     string id;
 
     bool has_user;
@@ -141,7 +131,7 @@ string getIdentificationNumber(RegisterPageController &controller) {
     else return id;
 }
 
-string getAddress() {
+string RegisterPageUI::getAddress() {
     string address;
 
     do {

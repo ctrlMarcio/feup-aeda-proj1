@@ -18,6 +18,16 @@ private:
     UIManager &ui_manager;
 
     RegisterPageController controller;
+
+    string getHeader();
+
+    string getUserType();
+
+    string getName();
+
+    string getIdentificationNumber();
+
+    string getAddress();
 };
 
 
