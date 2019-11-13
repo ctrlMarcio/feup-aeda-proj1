@@ -12,6 +12,8 @@ public:
 
     bool hasUser(const string &identification_number);
 
+    bool login(const string &identification_number, const string &password);
+
 private:
     CurrentSession &current_session;
 

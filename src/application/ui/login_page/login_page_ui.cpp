@@ -1,5 +1,6 @@
 #include "login_page_ui.h"
 #include "../../controller/login_page/login_page_controller.h"
+#include "../../../exception/invalid_login_exception.h"
 #include <sstream>
 
 LoginPageUI::LoginPageUI(UIManager &ui_manager) : ui_manager(ui_manager), controller(ui_manager.getCurrentSession(),
@@ -15,6 +16,19 @@ void LoginPageUI::run() {
     string password = getPassword();
 
     if (password.empty()) return;
+
+    try {
+        bool login = controller.login(identification_number, password);
+
+        if (login) {
+            cout << endl << "Successfully logged in." << endl;
+            // SET DIFFERENT PAGE
+        } else {
+            cout << endl << "An unexpected error occurred..." << endl;
+        }
+    } catch (InvalidLoginException &e) {
+        cout << endl << e.getMessage() << endl;
+    }
 }
 
 string LoginPageUI::getHeader() {
@@ -37,25 +51,36 @@ string LoginPageUI::getIdentificationNumber() {
 
         id = trim(id);
 
+        has_user = controller.hasUser(id);
+
         if (id.empty()) {
             cout << endl << "Your identification number cannot be empty, try again..." << endl;
         } else if (!is_number(id)) {
             cout << endl << "Your identification number can only contain numbers, try again..." << endl;
-        }
-
-        has_user = controller.hasUser(id);
-
-        if (!has_user) {
+        } else if (!has_user && id != "0") {
             cout << endl << "There is no user with that identification number, try again..." << endl;
         }
-    } while (id.empty() || !has_user || !is_number(id));
+    } while (id.empty() || (!has_user && id != "0") || !is_number(id));
 
     if (id == "0") return "";
     else return id;
 }
 
 string LoginPageUI::getPassword() {
-	// TODO
-	// Temporary code
-	return "Who reading this = gay";
+    string password;
+
+    do {
+        cout << endl << "Type your password: ";
+
+        getline(cin, password);
+
+        password = trim(password);
+
+        if (password.empty()) {
+            cout << endl << "Your password cannot be empty, try again..." << endl;
+        }
+    } while (password.empty());
+
+    if (password == "0") return "";
+    else return password;
 }

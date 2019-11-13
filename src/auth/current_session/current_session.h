@@ -5,9 +5,10 @@
 #include "../auth_user/auth_user.h"
 #include "../auth_user/auth_user_manager.h"
 
+
 class CurrentSession {
 private:
-    AuthUser &current_user = *(new AuthUser("", ""));
+    AuthUser &current_user = *(new AuthUser("", "", ""));
 
     AuthUserManager &auth_user_manager;
 

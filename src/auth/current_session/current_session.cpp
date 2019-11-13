@@ -4,7 +4,7 @@
 CurrentSession::CurrentSession(AuthUserManager &auth_user_manager) : auth_user_manager(auth_user_manager) {}
 
 AuthUser &CurrentSession::getUser() const {
-    if (!logged) return *(new AuthUser("", ""));
+    if (!logged) return *(new AuthUser("", "", ""));
     return current_user;
 }
 

@@ -17,18 +17,20 @@ public:
      * Establishes a new instance of an AuthUser with a random password.
      *
      * @param identification_number the identification number
+     * @param user_role the role
      * @return an AuthUser instance
      */
-    AuthUser build(string identification_number);
+    AuthUser build(string identification_number, string user_role);
 
     /*!
      * Establishes a new instance of an AuthUser.
      *
      * @param identification_number the identification number
      * @param password the password
+     * @param user_role the role
      * @return an AuthUser instance
      */
-    AuthUser build(string identification_number, string password);
+    AuthUser build(string identification_number, string password, string user_role);
 
     /*!
      * Adds a user to the list.

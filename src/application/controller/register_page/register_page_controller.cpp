@@ -7,14 +7,14 @@ bool RegisterPageController::hasUser(const string &identification_number) {
     return auth_user_manager.has(identification_number);
 }
 
-bool RegisterPageController::createUser(const string &type, const string &name, const string &identification_number,
+bool RegisterPageController::createUser(const string &role, const string &name, const string &identification_number,
                                         const string &address) {
-    AuthUser user = auth_user_manager.build(identification_number);
-    if (type == "client") {
+    AuthUser user = auth_user_manager.build(identification_number, role);
+    if (role == AuthUser::CLIENT_ROLE) {
         Client client = company.getUserManager().getClientManager().build(name, identification_number, address);
 
         return auth_user_manager.add(user) && company.getUserManager().getClientManager().add(client);
-    } else if (type == "company_client") {
+    } else if (role == AuthUser::CLIENT_COMPANY_ROLE) {
         ClientCompany client_company = company.getUserManager().getClientCompanyManager().build(name, identification_number, address);
 
         return auth_user_manager.add(user) && company.getUserManager().getClientCompanyManager().add(client_company);

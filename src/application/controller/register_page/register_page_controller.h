@@ -16,7 +16,7 @@ public:
 
     bool hasUser(const string &identification_number);
 
-    bool createUser(const string &type, const string &name, const string &identification_number, const string &address);
+    bool createUser(const string &role, const string &name, const string &identification_number, const string &address);
 
     string getPassword(const string &identification_number);
 

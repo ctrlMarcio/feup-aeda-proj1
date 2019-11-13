@@ -11,6 +11,11 @@ using namespace std;
 class InvalidLoginException : public invalid_argument {
 public:
     explicit InvalidLoginException(const string &arg);
+
+    string &getMessage();
+
+private:
+    string message;
 };
 
 

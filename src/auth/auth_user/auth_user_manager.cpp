@@ -8,12 +8,12 @@
 #include <fstream>
 #include <vector>
 
-AuthUser AuthUserManager::build(string identification_number) {
-    return AuthUser(std::move(identification_number), random_password(8));
+AuthUser AuthUserManager::build(string identification_number, string user_role) {
+    return AuthUser(std::move(identification_number), random_password(8), std::move(user_role));
 }
 
-AuthUser AuthUserManager::build(string identification_number, string password) {
-    return AuthUser(std::move(identification_number), std::move(password));
+AuthUser AuthUserManager::build(string identification_number, string password, string user_role) {
+    return AuthUser(std::move(identification_number), std::move(password), std::move(user_role));
 }
 
 bool AuthUserManager::add(AuthUser &user) {
@@ -41,8 +41,8 @@ bool AuthUserManager::has(const string &identification_number) const {
 AuthUser &AuthUserManager::getUser(const string &identification_number) const {
     auto it = users.begin();
 
-    while (it != users.end()){
-        if ((*it).getIdentificationNumber() == identification_number){
+    while (it != users.end()) {
+        if ((*it).getIdentificationNumber() == identification_number) {
             return const_cast<AuthUser &>(*it);
         }
         it++;
@@ -52,38 +52,40 @@ AuthUser &AuthUserManager::getUser(const string &identification_number) const {
 }
 
 void AuthUserManager::read(const std::string &directory) {
-	std::string file_path = directory + "/" + file_handling::auth_user;
+    std::string file_path = directory + "/" + file_handling::auth_user;
 
-	ifstream ifstream;
-	ifstream.open(file_path);
+    ifstream ifstream;
+    ifstream.open(file_path);
 
-	if (!ifstream.is_open())
-		throw InvalidFileException(file_path);
+    if (!ifstream.is_open())
+        throw InvalidFileException(file_path);
 
-	std::string line;
-	while (getline(ifstream, line)) {
-		std::vector<std::string> params = string_util::split(line, file_handling::delimiter);
-		std::string identification_number = params[0];
-		std::string password = params[1];
+    std::string line;
+    while (getline(ifstream, line)) {
+        std::vector<std::string> params = string_util::split(line, file_handling::delimiter);
+        std::string identification_number = params[0];
+        std::string password = params[1];
+        std::string role = params[2];
 
-		AuthUser *user = new AuthUser(identification_number, password);
-		this->add(*user);
-	}
+        AuthUser *user = new AuthUser(identification_number, password, role);
+        this->add(*user);
+    }
 
-	ifstream.close();
+    ifstream.close();
 }
 
 void AuthUserManager::write(const std::string &directory) const {
-	std::string file_path = directory + "/" + file_handling::auth_user;
+    std::string file_path = directory + "/" + file_handling::auth_user;
 
-	ofstream ofstream;
-	ofstream.open(file_path);
+    ofstream ofstream;
+    ofstream.open(file_path);
 
-	if (!ofstream.is_open())
-		throw InvalidFileException(file_path);
+    if (!ofstream.is_open())
+        throw InvalidFileException(file_path);
 
-	for (const AuthUser &user : users)
-		ofstream << user.getIdentificationNumber() << file_handling::delimiter << user.getPassword() << std::endl;
+    for (const AuthUser &user : users)
+        ofstream << user.getIdentificationNumber() << file_handling::delimiter << user.getPassword()
+                 << file_handling::delimiter << user.getRole() << std::endl;
 
-	ofstream.close();
+    ofstream.close();
 }
