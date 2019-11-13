@@ -24,7 +24,7 @@ bool RentalManager::add(Rental rental) {
 	return true;
 }
 
-void RentalManager::read(const std::string &directory, const OfferManager &offer_manager) {
+void RentalManager::read(const std::string &directory, OfferManager &offer_manager, const UserManager &user_manager) {
 	std::string file_path = directory + "/" + file_handling::rental;
 
 	ifstream ifstream;
@@ -39,18 +39,17 @@ void RentalManager::read(const std::string &directory, const OfferManager &offer
 
 		std::string provider_id = params[0];
 		std::string number_plate = params[1];
-		// TODO
-		// IProvider &provider = get provider from somewhere(provider_id);
-		//IVehicle &vehicle = provider.getVehicleList().get(number_plate);
-		//Offer &offer = offer_manager.getOfferOf(vehicle);
+
+		IProvider &provider = user_manager.getProvider(provider_id);
+		IVehicle &vehicle = provider.getVehicleList().get(number_plate);
+		Offer &offer = offer_manager.getOfferOf(vehicle);
 
 		Date *begin = Date::getDate(params[2]);
 		Date *end = Date::getDate(params[3]);
 		auto *schedule = new Schedule(*begin, *end);
 
-		// TODO
-		//Rental *rental = new Rental(offer, *schedule);
-		//this->add(*rental);
+		auto *rental = new Rental(offer, *schedule);
+		this->add(*rental);
 	}
 
 	ifstream.close();

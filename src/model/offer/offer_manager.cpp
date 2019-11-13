@@ -61,7 +61,7 @@ bool OfferManager::isValid(const Offer &offer) const {
 	return std::find(offers.begin(), offers.end(), offer) == offers.end();
 }
 
-void OfferManager::read(const std::string &directory) {
+void OfferManager::read(const std::string &directory, const UserManager &user_manager) {
 	std::string file_path = directory + "/" + file_handling::offer;
 
 	ifstream ifstream;
@@ -75,11 +75,10 @@ void OfferManager::read(const std::string &directory) {
 		std::vector<std::string> params = string_util::split(line, file_handling::delimiter);
 
 		std::string provider_id = params[0];
-		std::string vehicle_plate = params[1];
+		IProvider &provider = user_manager.getProvider(provider_id);
 
-		// TODO
-		//IProvider &provider = get provider from somewhere(provider_id);
-		//IVehicle &vehicle = provider.getVehicleList();
+		std::string vehicle_plate = params[1];
+		IVehicle &vehicle = provider.getVehicleList().get(vehicle_plate);
 
 		float price = stof(params[2]);
 
@@ -92,9 +91,8 @@ void OfferManager::read(const std::string &directory) {
 			schedules->push_back(*schedule);
 		}
 
-		// TODO
-		//Offer *offer = new Offer(vehicle, schedules, provider, price);
-		//this->add(*offer);
+		auto *offer = new Offer(vehicle, *schedules, provider, price);
+		this->add(*offer);
 	}
 
 	ifstream.close();

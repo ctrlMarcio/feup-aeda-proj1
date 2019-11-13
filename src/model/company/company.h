@@ -4,20 +4,25 @@
 
 #include "../rental/rental_manager.h"
 #include "../offer/offer_manager.h"
+#include "../user/user_manager.h"
 
 
 class Company {
 private:
     string name;
 
-	RentalManager rental_manager;
+	UserManager user_manager;
 
 	OfferManager offer_manager;
+
+	RentalManager rental_manager;
 
 public:
     explicit Company(string name);
 
     string getName() const;
+
+	UserManager &getUserManager();
 
 	RentalManager &getRentalManager();
 

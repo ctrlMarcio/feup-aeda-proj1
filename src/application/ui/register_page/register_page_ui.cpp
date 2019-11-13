@@ -129,3 +129,8 @@ string getIdentificationNumber(RegisterPageController &controller){
     if (id == "0") return "";
     else return id;
 }
+
+string getAddress() {
+	//TODO
+	return "221 B Baker St, London, England";
+}
