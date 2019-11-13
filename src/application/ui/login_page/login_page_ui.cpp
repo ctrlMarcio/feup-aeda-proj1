@@ -4,7 +4,7 @@
 #include <sstream>
 
 LoginPageUI::LoginPageUI(UIManager &ui_manager) : ui_manager(ui_manager), controller(ui_manager.getCurrentSession(),
-                                                                                     ui_manager.getAuthUserManager()) {}
+                                                                                     ui_manager.getAuthUserManager(), ui_manager) {}
 
 void LoginPageUI::run() {
     cout << getHeader();
@@ -22,7 +22,7 @@ void LoginPageUI::run() {
 
         if (login) {
             cout << endl << "Successfully logged in." << endl;
-            // SET DIFFERENT PAGE
+            controller.redirect(identification_number);
         } else {
             cout << endl << "An unexpected error occurred..." << endl;
         }

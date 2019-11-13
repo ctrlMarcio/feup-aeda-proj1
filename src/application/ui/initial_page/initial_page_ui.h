@@ -20,6 +20,12 @@ public:
 
 private:
     UIManager &ui_manager;
+
+    string options();
+
+    char getOption();
+
+    string singleOffer(int index);
 };
 
 

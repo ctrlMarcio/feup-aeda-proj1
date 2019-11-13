@@ -4,17 +4,11 @@
 
 InitialPageUI::InitialPageUI(UIManager &ui_manager) : ui_manager(ui_manager) {}
 
-char getOption(const UIManager &ui_manager);
-
-string options(const UIManager &ui_manager);
-
-string singleOffer(const UIManager &ui_manager, int index);
-
 void InitialPageUI::run() {
     char option = 0;
 
     do {
-        option = getOption(ui_manager);
+        option = getOption();
         switch (option) {
             case '1':
             case '2':
@@ -40,8 +34,25 @@ void InitialPageUI::run() {
     } while (option != '0');
 }
 
-char getOption(const UIManager &ui_manager) {
-    cout << options(ui_manager);
+string InitialPageUI::options() {
+    stringstream options_stream;
+
+    options_stream << endl << ui_manager.getCompany().getName() << "                    " << Date().toString() << endl;
+    options_stream << endl;
+    options_stream << "1 - " << singleOffer(0) << endl;
+    options_stream << "2 - " << singleOffer(1) << endl;
+    options_stream << "3 - " << singleOffer(2) << endl;
+    options_stream << "4 - View more..." << endl;
+    options_stream << endl;
+    options_stream << "8 - Login" << endl;
+    options_stream << "9 - Register" << endl;
+    options_stream << "0 - Exit" << endl;
+
+    return options_stream.str();
+}
+
+char InitialPageUI::getOption() {
+    cout << options();
 
     string option;
 
@@ -52,24 +63,7 @@ char getOption(const UIManager &ui_manager) {
     return option[0];
 }
 
-string options(const UIManager &ui_manager) {
-    stringstream options_stream;
-
-    options_stream << endl << ui_manager.getCompany().getName() << "                    " << Date().toString() << endl;
-    options_stream << endl;
-    options_stream << "1 - " << singleOffer(ui_manager, 0) << endl;
-    options_stream << "2 - " << singleOffer(ui_manager, 1) << endl;
-    options_stream << "3 - " << singleOffer(ui_manager, 2) << endl;
-    options_stream << "4 - View more..." << endl;
-    options_stream << endl;
-    options_stream << "8 - Login" << endl;
-    options_stream << "9 - Register" << endl;
-    options_stream << "0 - Exit" << endl;
-
-    return options_stream.str();
-}
-
-string singleOffer(const UIManager &ui_manager, int index) {
+string InitialPageUI::singleOffer(int index) {
     OfferManager offer_manager = ui_manager.getCompany().getOfferManager();
 
     if (index >= offer_manager.getOffers().size()) return "There are not enough offers to show.";

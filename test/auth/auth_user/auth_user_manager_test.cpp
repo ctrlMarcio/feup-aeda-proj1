@@ -8,7 +8,7 @@ using testing::Eq;
 
 TEST(auth_user_manager, build) {
     AuthUserManager manager;
-    AuthUser auth_user = manager.build("255716320", "1234565");
+    AuthUser auth_user = manager.build("255716320", "1234565", AuthUser::ADMIN_ROLE);
 
     ASSERT_EQ(auth_user.getIdentificationNumber(), "255716320");
     ASSERT_EQ(auth_user.getPassword(), "1234565");
@@ -16,8 +16,8 @@ TEST(auth_user_manager, build) {
 
 TEST(auth_user_manager, add) {
     AuthUserManager manager;
-    AuthUser auth_user = manager.build("255716320", "1234565");
-    AuthUser auth_user_2 = manager.build("255716320", "1234565455");
+    AuthUser auth_user = manager.build("255716320", "1234565", AuthUser::ADMIN_ROLE);
+    AuthUser auth_user_2 = manager.build("255716320", "1234565455", AuthUser::ADMIN_ROLE);
 
     ASSERT_TRUE(manager.add(auth_user));
     ASSERT_FALSE(manager.add(auth_user));
@@ -28,8 +28,8 @@ TEST(auth_user_manager, add) {
 
 TEST(auth_user_manager, remove) {
     AuthUserManager manager;
-    AuthUser auth_user = manager.build("255716320", "1234565");
-    AuthUser auth_user_2 = manager.build("255716321", "1234565455");
+    AuthUser auth_user = manager.build("255716320", "1234565", AuthUser::ADMIN_ROLE);
+    AuthUser auth_user_2 = manager.build("255716321", "1234565455", AuthUser::ADMIN_ROLE);
 
     manager.add(auth_user);
 
@@ -41,7 +41,7 @@ TEST(auth_user_manager, remove) {
 
 TEST(auth_user_manager, get_user) {
     AuthUserManager manager;
-    AuthUser auth_user = manager.build("255716320", "1234565");
+    AuthUser auth_user = manager.build("255716320", "1234565", AuthUser::ADMIN_ROLE);
 
     manager.add(auth_user);
 

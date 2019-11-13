@@ -9,7 +9,7 @@ using testing::Eq;
 
 TEST(current_session, login) {
     AuthUserManager manager;
-    AuthUser user = manager.build("255716320", "12345678");
+    AuthUser user = manager.build("255716320", "12345678", AuthUser::ADMIN_ROLE);
 
     CurrentSession session(manager);
 
@@ -18,7 +18,7 @@ TEST(current_session, login) {
     ASSERT_THROW(session.login("1234124", "312313"), InvalidLoginException);
     ASSERT_THROW(session.login("255716320", "312313"), InvalidLoginException);
 
-    ASSERT_EQ(session.getUser(), AuthUser("", ""));
+    ASSERT_EQ(session.getUser(), AuthUser("", "", ""));
 
     ASSERT_NO_THROW(session.login("255716320", "12345678"));
 
@@ -29,7 +29,7 @@ TEST(current_session, login) {
 
 TEST(current_session, logout) {
     AuthUserManager manager;
-    AuthUser user = manager.build("255716320", "12345678");
+    AuthUser user = manager.build("255716320", "12345678", AuthUser::ADMIN_ROLE);
 
     CurrentSession session(manager);
 
@@ -41,5 +41,5 @@ TEST(current_session, logout) {
 
     session.logout();
 
-    ASSERT_EQ(session.getUser(), AuthUser("", ""));
+    ASSERT_EQ(session.getUser(), AuthUser("", "", ""));
 }
