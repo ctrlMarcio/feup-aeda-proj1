@@ -22,8 +22,12 @@ string ClientCompany::getAddress() const {
     return address;
 }
 
-PreferenceList &ClientCompany::getPreferenceList() {
+PreferenceList ClientCompany::getPreferenceList() const {
     return preference_list;
+}
+
+PreferenceList &ClientCompany::getPreferenceList() {
+	return preference_list;
 }
 
 bool ClientCompany::operator==(const ClientCompany &rhs) const {

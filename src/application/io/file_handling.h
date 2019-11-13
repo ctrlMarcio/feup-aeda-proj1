@@ -35,6 +35,10 @@ namespace file_handling {
 	 */
 	extern std::string rental;
 
+	/*!
+	 * The name of the file that stores client companies.
+	 */
+	extern std::string client_company;
 }
 
 

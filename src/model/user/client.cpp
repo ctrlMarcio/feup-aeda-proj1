@@ -13,6 +13,10 @@ VehicleList &Client::getVehicleList() {
     return vehicle_list;
 }
 
+PreferenceList Client::getPreferenceList() const {
+	return preference_list;
+}
+
 PreferenceList &Client::getPreferenceList() {
     return preference_list;
 }

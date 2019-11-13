@@ -13,7 +13,13 @@ Rental RentalManager::build(Offer &offer, const Date &begin, const Date &end) {
 }
 
 bool RentalManager::isValid(const Rental &rental) {
-	return (rental.getOffer().hasSchedule(rental.getSchedule()));
+	bool valid = (rental.getOffer().hasSchedule(rental.getSchedule()));
+
+	if (!valid)
+		return false;
+
+	// verifies if the rental already exists.
+	return std::find(this->rentals.begin(), this->rentals.end(), rental) == this->rentals.end();
 }
 
 bool RentalManager::add(Rental rental) {

@@ -32,12 +32,26 @@ public:
 	 */
 	void write(const std::string &directory) const;
 
+	/*!
+	 * Gets the container with all the rentals.
+	 *
+	 * @return the container
+	 */
 	const std::list<Rental> &getAllRentals() const;
 
 private:
+	/*!
+	 * All the existent rentals.
+	 */
 	std::list<Rental> rentals;
 
-	static bool isValid(const Rental &rental);
+	/*!
+	 * Verifies if a rental is valid.
+	 *
+	 * @param rental the rental to verify
+	 * @return true if the rental is valid, false otherwise
+	 */
+	bool isValid(const Rental &rental);
 };
 
 

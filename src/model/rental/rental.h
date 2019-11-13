@@ -7,13 +7,44 @@
 
 class Rental {
 public:
+	/*!
+	 * Constructs a rental given its offer and schedule.
+	 *
+	 * @param offer the reference to the offer
+	 * @param schedule the schedule
+	 */
 	Rental(Offer &offer, Schedule schedule);
 
+	/*!
+	 * Constructs a new rental given an offer, its start and end date.
+	 * The dates will be used to construct a new schedule.
+	 *
+	 * @param offer the reference to the offer
+	 * @param begin the start date
+	 * @param end the end date
+	 */
 	Rental(Offer &offer, const Date &begin, const Date &end);
 
+	/*!
+	 * Gets the offer of the rental
+	 * @return the const reference to the offer
+	 */
 	const Offer &getOffer() const;
 
+	/*!
+	 * Gets the schedule of the rental.
+	 *
+	 * @return the const reference to the schedule
+	 */
 	const Schedule &getSchedule() const;
+
+	/*!
+	 * Verifies if another rental is equal to this one.
+	 *
+	 * @param rhs the other rental
+	 * @return true if they are equal, false otherwise
+	 */
+	bool operator==(const Rental &rhs) const;
 
 private:
 	const Offer &offer;

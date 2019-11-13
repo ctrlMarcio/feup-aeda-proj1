@@ -15,6 +15,8 @@ public:
 
     string getAddress() const override;
 
+	PreferenceList getPreferenceList() const override;
+
 	PreferenceList &getPreferenceList() override;
 
     bool operator==(const ClientCompany &rhs) const;
@@ -28,7 +30,7 @@ private:
 
     string address;
 
-	PreferenceList preference_list{};
+	PreferenceList preference_list;
 };
 
 

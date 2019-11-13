@@ -7,6 +7,8 @@
 
 class IRenter : public IUser {
 public:
+	virtual PreferenceList getPreferenceList() const = 0;
+
 	virtual PreferenceList &getPreferenceList() = 0;
 };
 

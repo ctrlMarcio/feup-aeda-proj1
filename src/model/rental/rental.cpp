@@ -24,3 +24,9 @@ const Offer &Rental::getOffer() const {
 const Schedule &Rental::getSchedule() const {
 	return schedule;
 }
+
+bool Rental::operator==(const Rental &rhs) const {
+	return offer == rhs.offer &&
+		   schedule == rhs.schedule &&
+		   price == rhs.price;
+}

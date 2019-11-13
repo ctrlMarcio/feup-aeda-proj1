@@ -6,6 +6,14 @@ class CommercialPreference {
 public:
 	CommercialPreference(unsigned int minYear, float cargoVolume, float minMaxWeight, bool refrigerated);
 
+	unsigned int getMinYear() const;
+
+	float getCargoVolume() const;
+
+	float getMinMaxWeight() const;
+
+	bool isRefrigerated() const;
+
 private:
 	unsigned min_year;
 

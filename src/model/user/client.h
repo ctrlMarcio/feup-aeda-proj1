@@ -18,6 +18,8 @@ public:
 
     VehicleList &getVehicleList() override;
 
+	PreferenceList getPreferenceList() const override;
+
 	PreferenceList &getPreferenceList() override;
 
 	void print(std::ostream &ostream) const override;

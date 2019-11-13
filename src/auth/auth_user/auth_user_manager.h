@@ -70,7 +70,7 @@ public:
 	/*!
 	 * Writes the users to a file.
 	 *
-	 * @param directory the directory of the file. Should be a relative directory starting in the / (root) of the project. The directory should exist. The file name is stored in the file_handling namespace.
+	 * @param directory the directory of the file. The directory should exist. The file name is stored in the file_handling namespace
 	 */
 	void write(const std::string &directory) const;
 
