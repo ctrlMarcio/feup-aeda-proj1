@@ -26,8 +26,8 @@ public:
 	 * @param seat_number the seat number
 	 * @return the reference to the created vehicle
 	 */
-	IVehicle &createVehicle(const std::string &number_plate, const std::string &brand, const std::string &model,
-							unsigned year, unsigned seat_number) const;
+	static IVehicle &build(const std::string &number_plate, const std::string &brand, const std::string &model,
+						   unsigned year, unsigned seat_number);
 
 	/*!
 	 * Creates a commercial vehicle with a given cargo volume, max weight and refrigeration.
@@ -41,8 +41,8 @@ public:
 	 * @param is_refrigerated the bool that states if it is refrigerated
 	 * @return the reference to the created vehicle
 	 */
-	IVehicle &createVehicle(const std::string &number_plate, const std::string &brand, const std::string &model,
-							unsigned year, double cargo_volume, double max_weight, bool is_refrigerated) const;
+	static IVehicle &build(const std::string &number_plate, const std::string &brand, const std::string &model,
+						   unsigned year, double cargo_volume, double max_weight, bool is_refrigerated);
 
 	/*!
 	 * Adds a vehicle to the list.

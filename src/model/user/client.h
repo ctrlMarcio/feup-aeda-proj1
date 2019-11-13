@@ -18,6 +18,8 @@ public:
 
     VehicleList &getVehicleList() override;
 
+	const VehicleList &getVehicleList() const;
+
 	PreferenceList getPreferenceList() const override;
 
 	PreferenceList &getPreferenceList() override;

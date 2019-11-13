@@ -3,7 +3,7 @@
 IProvider &UserManager::getProvider(const std::string &identification_number) const {
 	// TODO add company (or admin)
 
-	Client &client = client_manager.getClient(identification_number);
+	Client &client = client_manager.get(identification_number);
 	IProvider *provider = &client;
 	return *provider;
 }

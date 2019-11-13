@@ -9,14 +9,14 @@ VehicleList::~VehicleList() {
 	vehicles.clear();
 }
 
-IVehicle &VehicleList::createVehicle(const std::string &number_plate, const std::string &brand, const std::string &model,
-									 unsigned year, unsigned seat_number) const {
+IVehicle &VehicleList::build(const std::string &number_plate, const std::string &brand, const std::string &model,
+							 unsigned year, unsigned seat_number) {
 	IVehicle *vehicle = new PassengerVehicle(number_plate, brand, model, year, seat_number);
 	return *vehicle;
 }
 
-IVehicle &VehicleList::createVehicle(const std::string &number_plate, const std::string &brand, const std::string &model,
-									 unsigned year, double cargo_volume, double max_weight, bool is_refrigerated) const {
+IVehicle &VehicleList::build(const std::string &number_plate, const std::string &brand, const std::string &model,
+							 unsigned year, double cargo_volume, double max_weight, bool is_refrigerated) {
 	IVehicle *vehicle = new CommercialVehicle(number_plate, brand, model, year, cargo_volume, max_weight, is_refrigerated);
 	return *vehicle;
 }

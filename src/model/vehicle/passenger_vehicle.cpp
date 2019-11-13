@@ -1,10 +1,20 @@
 #include "passenger_vehicle.h"
 
+#include "../../application/io/file_handling.h"
 #include <utility>
 
 PassengerVehicle::PassengerVehicle(string number_plate, string brand, string model,
 								   unsigned int year, unsigned int seat_number) :
 		number_plate(std::move(number_plate)), brand(std::move(brand)), model(std::move(model)), year(year), seat_number(seat_number) {}
+
+void PassengerVehicle::printToFile(ofstream &ofstream) const {
+	ofstream << "passenger" << file_handling::delimiter
+			 << number_plate << file_handling::delimiter
+			 << brand << file_handling::delimiter
+			 << model << file_handling::delimiter
+			 << year << file_handling::delimiter
+			 << seat_number;
+}
 
 void PassengerVehicle::print(std::ostream &ostream) const {
 	ostream << "Number plate: " << number_plate << std::endl

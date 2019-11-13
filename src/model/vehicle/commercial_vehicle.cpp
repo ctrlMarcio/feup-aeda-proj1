@@ -1,11 +1,22 @@
 #include "commercial_vehicle.h"
 
+#include "../../application/io/file_handling.h"
 #include <utility>
 
 CommercialVehicle::CommercialVehicle(string number_plate, string brand, string model,
 									 unsigned int year, double cargo_volume, double max_weight, bool refrigerated) :
 		number_plate(std::move(number_plate)), brand(std::move(brand)), model(std::move(model)), year(year), cargo_volume(cargo_volume),
 		max_weight(max_weight), refrigerated(refrigerated) {}
+
+void CommercialVehicle::printToFile(ofstream &ofstream) const {
+	ofstream << "commercial" << file_handling::delimiter
+			 << number_plate << file_handling::delimiter
+			 << brand << file_handling::delimiter
+			 << model << file_handling::delimiter
+			 << year << file_handling::delimiter
+			 << cargo_volume << file_handling::delimiter
+			 << max_weight;
+}
 
 void CommercialVehicle::print(std::ostream &ostream) const {
 	ostream << "Number plate: " << number_plate << std::endl

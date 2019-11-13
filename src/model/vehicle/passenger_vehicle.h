@@ -21,6 +21,13 @@ public:
 	PassengerVehicle(string number_plate, string brand, string model, unsigned int year, unsigned int seat_number);
 
 	/*!
+	 * Prints the vehicle information in a file.
+	 *
+	 * @param ofstream the ofstream of the file
+	 */
+	void printToFile(ofstream &ofstream) const override;
+
+	/*!
 	 * Prints the vehicle in an ostream.
 	 *
 	 * @param ostream the ostream

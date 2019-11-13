@@ -66,13 +66,12 @@ void ClientCompanyManager::read(const std::string &directory) {
 
 		for (unsigned i = 3; i < 10; ++i) {
 			std::string type = params[i];
-			if (type == "passenger") {
+			if (type == "passenger_pref") {
 				unsigned min_year = stoul(params[++i]);
 				unsigned seat_number = stoul(params[++i]);
 
 				client_company->getPreferenceList().updatePreference(min_year, seat_number);
-				client_company->getPreferenceList().updatePreference(min_year, seat_number);
-			} else if (type == "commercial") {
+			} else if (type == "commercial_pref") {
 				unsigned min_year = stoul(params[++i]);
 				float cargo_volume = stof(params[++i]);
 				float min_max_weight = stof(params[++i]);
@@ -81,7 +80,7 @@ void ClientCompanyManager::read(const std::string &directory) {
 
 				client_company->getPreferenceList().updatePreference(min_year, cargo_volume, min_max_weight, refrigerated);
 			} else {
-				continue;
+				break;
 			}
 		}
 
@@ -107,12 +106,12 @@ void ClientCompanyManager::write(const std::string &directory) const {
 				 << client.getAddress() << file_handling::delimiter;
 
 		if (client.getPreferenceList().getPassengerPreference() != nullptr)
-			ofstream << "passenger" << file_handling::delimiter
+			ofstream << "passenger_pref" << file_handling::delimiter
 					 << client.getPreferenceList().getPassengerPreference()->getMinYear() << file_handling::delimiter
 					 << client.getPreferenceList().getPassengerPreference()->getSeatNumber() << file_handling::delimiter;
 
 		if (client.getPreferenceList().getCommercialPreference() != nullptr) {
-			ofstream << "commercial" << file_handling::delimiter
+			ofstream << "commercial_pref" << file_handling::delimiter
 					 << client.getPreferenceList().getCommercialPreference()->getMinYear() << file_handling::delimiter
 					 << client.getPreferenceList().getCommercialPreference()->getCargoVolume() << file_handling::delimiter
 					 << client.getPreferenceList().getCommercialPreference()->getMinMaxWeight() << file_handling::delimiter;

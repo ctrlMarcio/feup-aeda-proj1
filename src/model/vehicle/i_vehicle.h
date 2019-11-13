@@ -4,6 +4,7 @@
 
 #include <ostream>
 #include <string>
+#include <fstream>
 
 
 using namespace std;
@@ -43,11 +44,18 @@ public:
     virtual unsigned getYear() const = 0;
 
 	/*!
-	 * Prints the vehicle information in an ostream
+	 * Prints the vehicle information in an ostream.
 	 *
 	 * @param ostream the ostream
 	 */
 	virtual void print(std::ostream &ostream) const = 0;
+
+	/*!
+	 * Prints the vehicle information to a file.
+	 *
+	 * @param ofstream of the file
+	 */
+	virtual void printToFile(ofstream &ofstream) const = 0;
 
 	/*!
 	 * Compares to another vehicles, first verifying if they are from the same type, and them comparing them.

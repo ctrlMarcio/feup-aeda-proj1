@@ -25,6 +25,13 @@ public:
 					  double max_weight, bool refrigerated);
 
 	/*!
+	 * Prints the vehicle information in a file.
+	 *
+	 * @param ofstream the ofstream of the file
+	 */
+	void printToFile(ofstream &ofstream) const override;
+
+	/*!
 	 * Prints the vehicle in an ostream.
 	 *
 	 * @param ostream the ostream
