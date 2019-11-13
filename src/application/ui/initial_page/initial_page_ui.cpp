@@ -45,7 +45,7 @@ char getOption(const UIManager &ui_manager) {
 
     cout << endl << "Option: ";
 
-    cin >> option;
+    getline(cin, option);
 
     return option[0];
 }

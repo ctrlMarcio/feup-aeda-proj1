@@ -10,6 +10,7 @@
 using namespace std;
 
 class ClientCompanyManager {
+public:
     ClientCompany build(string name, string identification_number, string address);
 
     bool add(ClientCompany &client);

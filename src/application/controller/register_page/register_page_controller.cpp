@@ -9,12 +9,15 @@ bool RegisterPageController::hasUser(const string &identification_number) {
 
 bool RegisterPageController::createUser(const string &type, const string &name, const string &identification_number,
                                         const string &address) {
+    AuthUser user = auth_user_manager.build(identification_number);
     if (type == "client") {
-        // TODO: Get both managers and create
-        return true;
+        Client client = company.getUserManager().getClientManager().build(name, identification_number, address);
+
+        return auth_user_manager.add(user) && company.getUserManager().getClientManager().add(client);
     } else if (type == "company_client") {
-        // TODO: Get both managers and create
-        return true;
+        ClientCompany client_company = company.getUserManager().getClientCompanyManager().build(name, identification_number, address);
+
+        return auth_user_manager.add(user) && company.getUserManager().getClientCompanyManager().add(client_company);
     }
     return false;
 }

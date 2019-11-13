@@ -8,6 +8,10 @@
 #include <fstream>
 #include <vector>
 
+AuthUser AuthUserManager::build(string identification_number) {
+    return AuthUser(std::move(identification_number), random_password(8));
+}
+
 AuthUser AuthUserManager::build(string identification_number, string password) {
     return AuthUser(std::move(identification_number), std::move(password));
 }

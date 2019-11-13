@@ -1,5 +1,9 @@
 #include "register_page_ui.h"
 
+#include "../../../util/string_util.h"
+
+using namespace string_util;
+
 RegisterPageUI::RegisterPageUI(UIManager &ui_manager) : ui_manager(ui_manager), controller(
         RegisterPageController(ui_manager.getAuthUserManager(), ui_manager.getCompany())) {
 }
@@ -33,7 +37,7 @@ void RegisterPageUI::run() {
 
     if (address.empty()) return;
 
-    if (controller.createUser(user_type, name, identification_number, address)){
+    if (controller.createUser(user_type, name, identification_number, address)) {
         string password = controller.getPassword(identification_number);
         cout << endl << "User successfully created. Your password is " << password << endl;
     } else {
@@ -63,10 +67,11 @@ string getUserType() {
     char option;
 
     do {
-        cout << endl << "Option:";
+        cout << endl << "Option: ";
 
         string input;
-        cin >> input;
+        getline(cin, input);
+        input = trim(input);
         option = input[0];
 
         switch (option) {
@@ -89,12 +94,14 @@ string getUserType() {
 }
 
 string getName() {
-    cout << endl << "Type your name:";
-
     string name;
 
     do {
-        cin >> name;
+        cout << endl << "Type your name: ";
+
+        getline(cin, name);
+
+        name = trim(name);
 
         if (name.empty()) {
             cout << endl << "Your name cannot be empty, try again..." << endl;
@@ -105,32 +112,50 @@ string getName() {
     else return name;
 }
 
-string getIdentificationNumber(RegisterPageController &controller){
-    cout << endl << "Type your identification number:";
-
+string getIdentificationNumber(RegisterPageController &controller) {
     string id;
 
     bool has_user;
 
     do {
-        cin >> id;
+        cout << endl << "Type your identification number: ";
+
+        getline(cin, id);
+
+        id = trim(id);
 
         if (id.empty()) {
             cout << endl << "Your identification number cannot be empty, try again..." << endl;
+        } else if (!is_number(id)) {
+            cout << endl << "Your identification number can only contain numbers, try again..." << endl;
         }
 
         has_user = controller.hasUser(id);
 
-        if (has_user){
+        if (has_user) {
             cout << endl << "There is already a user with that identification number, try another..." << endl;
         }
-    } while (id.empty() || has_user);
+    } while (id.empty() || has_user || !is_number(id));
 
     if (id == "0") return "";
     else return id;
 }
 
 string getAddress() {
-	//TODO
-	return "221 B Baker St, London, England";
+    string address;
+
+    do {
+        cout << endl << "Type your address: ";
+
+        getline(cin, address);
+
+        address = trim(address);
+
+        if (address.empty()) {
+            cout << endl << "Your address cannot be empty, try again..." << endl;
+        }
+    } while (address.empty());
+
+    if (address == "0") return "";
+    else return address;
 }

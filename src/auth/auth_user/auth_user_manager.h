@@ -4,13 +4,23 @@
 
 #include <list>
 #include "auth_user.h"
+#include "../../util/string_util.h"
 
 
 using namespace std;
+using namespace string_util;
 
 
 class AuthUserManager {
 public:
+    /*!
+     * Establishes a new instance of an AuthUser with a random password.
+     *
+     * @param identification_number the identification number
+     * @return an AuthUser instance
+     */
+    AuthUser build(string identification_number);
+
     /*!
      * Establishes a new instance of an AuthUser.
      *
