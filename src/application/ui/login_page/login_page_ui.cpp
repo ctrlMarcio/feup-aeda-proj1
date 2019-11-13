@@ -55,5 +55,7 @@ string LoginPageUI::getIdentificationNumber() {
 }
 
 string LoginPageUI::getPassword() {
-
+	// TODO
+	// Temporary code
+	return "Who reading this = gay";
 }

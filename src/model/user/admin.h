@@ -3,27 +3,39 @@
 
 
 #include "i_user.h"
+#include "i_provider.h"
 
-class Admin : public IUser {
+class Admin : public IProvider {
 public:
-    Admin(string name, string identification_number, string address);
+	Admin(string name, string identification_number, string address);
 
-    string getName() const override;
+	void print(std::ostream &ostream) const override;
 
-    string getIdentificationNumber() const override;
+	VehicleList &getVehicleList() override;
 
-    string getAddress() const override;
+	string getName() const override;
 
-    bool operator==(const Admin &rhs) const;
+	string getIdentificationNumber() const override;
 
-    bool operator!=(const Admin &rhs) const;
+	string getAddress() const override;
+
+	void setVehicleList(VehicleList *vehicleList);
+
+	bool operator==(const Admin &rhs) const;
+
+	bool operator!=(const Admin &rhs) const;
 
 private:
-    string name;
+	string name;
 
-    string identification_number;
+	string identification_number;
 
-    string address;
+	string address;
+
+	/*!
+	 * The reference to the company's vehicle list.
+	 */
+	VehicleList *vehicle_list;
 };
 
 

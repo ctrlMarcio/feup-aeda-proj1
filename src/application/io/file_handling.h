@@ -39,6 +39,11 @@ namespace file_handling {
 	 * The name of the file that stores client companies.
 	 */
 	extern std::string client_company;
+
+	/*!
+	 * The name of the file that stores admins.
+	 */
+	extern std::string admin;
 }
 
 
