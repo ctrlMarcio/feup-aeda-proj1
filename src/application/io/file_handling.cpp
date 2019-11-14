@@ -16,3 +16,5 @@ std::string file_handling::client_company = "client_company.csv";
 std::string file_handling::admin = "admin.csv";
 
 std::string file_handling::client = "client.csv";
+
+std::string file_handling::company_vehicle = "company_vehicle.csv";

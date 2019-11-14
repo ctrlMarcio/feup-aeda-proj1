@@ -45,6 +45,14 @@ public:
 						   unsigned year, double cargo_volume, double max_weight, bool is_refrigerated);
 
 	/*!
+	 * Reads the vehicles from a file.
+	 *
+	 * @param params the vector of tokens to read
+	 * @param the index of the starting token
+	 */
+	void read(const std::vector<std::string> &params, size_t first_element);
+
+	/*!
 	 * Adds a vehicle to the list.
 	 *
 	 * @param vehicle the pointer of the vehicle to add
@@ -100,6 +108,24 @@ private:
 	 * @return true if the list has the vehicle, false otherwise
 	 */
 	bool has(const IVehicle &vehicle) const;
+
+	/*!
+	 * Reads a single passenger vehicle.
+	 *
+	 * @param params the vector of tokens to read
+	 * @param i the index of the first token to read
+	 * @return the final index read
+	 */
+	size_t readPassengerVehicle(const vector<std::string> &params, size_t i);
+
+	/*!
+	 * Reads a single commercial vehicle.
+	 *
+	 * @param params the vector of tokens to read
+ 	 * @param i the index of the first token to read
+	 * @return the final index read
+	 */
+	size_t readCommercialVehicle(const vector<std::string> &params, size_t i);
 };
 
 

@@ -5,6 +5,7 @@
 #include "../rental/rental_manager.h"
 #include "../offer/offer_manager.h"
 #include "user_manager.h"
+#include "../vehicle/vehicle_manager.h"
 
 
 class Company {
@@ -23,6 +24,8 @@ public:
 
 	OfferManager &getOfferManager();
 
+	VehicleManager &getVehicleManager();
+
 private:
     string name;
 
@@ -32,7 +35,7 @@ private:
 
 	RentalManager rental_manager;
 
-	VehicleList vehicleList;
+	VehicleManager vehicle_manager;
 };
 
 
