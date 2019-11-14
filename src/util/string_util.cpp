@@ -1,6 +1,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <iomanip>
 #include <random>
 #include <algorithm>
 #include "string_util.h"
@@ -50,4 +51,11 @@ std::string string_util::trim(const std::string &string) {
     for (; *it_e == ' '; it_e--);
     int size = it_e + 1 - it_b;
     return string.substr(it_b - string.begin(), size < 0 ? 0 : size);
+}
+
+std::string string_util::pad_number(int number, int n) {
+	std::string res = std::to_string(number);
+	while (res.length() < n)
+		res = "0" + res;
+	return res;
 }

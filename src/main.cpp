@@ -10,15 +10,18 @@ int main(int argc, char *argv[]) {
 	CurrentSession current_session(auth_user_manager);
 	Company company("Google Ride+");
 
+	string directory;
+
 	if (argc == 2) {
-		std::string directory = argv[1];
+		directory = argv[1];
 		auth_user_manager.read(directory);
 		company.read(directory);
-	} else if (argc > 2) {
-		cerr << "Invalid parameters, initializing without data." << std::endl;
+	} else {
+		directory = "./";
+		cout << "\033[1;31mInvalid parameters, initializing without data.\033[0m" << endl;
 	}
 
-	UIManager ui_manager(current_session, auth_user_manager, company);
+	UIManager ui_manager(current_session, auth_user_manager, company, directory);
 	ui_manager.setCurrent(new InitialPageUI(ui_manager));
 	ui_manager.run();
 }

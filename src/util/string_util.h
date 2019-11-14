@@ -44,6 +44,15 @@ namespace string_util {
      * @return the trimmed string
      */
     std::string trim(const std::string &string);
+
+	/*!
+	 * Adds 0s to the left of a number.
+	 *
+	 * @param number the number
+	 * @param n the size of the string
+	 * @return the string
+	 */
+	std::string pad_number(int number, int n);
 }
 
 

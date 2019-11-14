@@ -8,6 +8,7 @@
 #include "../application/io/file_handling.h"
 
 using namespace std;
+using namespace string_util;
 
 std::string Date::MONTH_NAMES[] = {"January",
 								   "February",
@@ -194,7 +195,7 @@ std::string Date::getMonthName() const {
 
 std::string Date::toString() const {
 	std::stringstream string_stream;
-	string_stream << hour << ":" << minute << ", " << day << " " << getMonthName() << " " << year;
+	string_stream << pad_number(hour, 2) << ":" << pad_number(minute, 2) << ", " << day << " " << getMonthName() << " " << year;
 	return string_stream.str();
 }
 

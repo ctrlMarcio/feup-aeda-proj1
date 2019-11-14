@@ -69,7 +69,6 @@ void AdminManager::read(const std::string &directory) {
 	}
 
 	ifstream.close();
-
 }
 
 void AdminManager::write(const std::string &directory) const {

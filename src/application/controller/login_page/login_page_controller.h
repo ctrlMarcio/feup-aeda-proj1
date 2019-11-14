@@ -23,7 +23,6 @@ private:
     AuthUserManager &auth_user_manager;
 
     UIManager &ui_manager;
-
 };
 
 

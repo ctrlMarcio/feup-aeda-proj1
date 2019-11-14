@@ -4,6 +4,7 @@
 
 #include "../ui.h"
 #include "../ui_manager.h"
+#include "../../controller/initial_page/initial_page_controller.h"
 #include <iostream>
 #include <sstream>
 #include <iomanip>
@@ -21,11 +22,15 @@ public:
 private:
     UIManager &ui_manager;
 
+	InitialPageController controller;
+
     string options();
 
     char getOption();
 
     string singleOffer(int index);
+
+	string exitMessage();
 };
 
 
