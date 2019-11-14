@@ -64,7 +64,7 @@ void ClientCompanyManager::read(const std::string &directory) {
 
 		auto *client_company = new ClientCompany(name, identification_number, address);
 
-		for (unsigned i = 3; i < 10; ++i) {
+		for (unsigned i = 3; i < params.size(); ++i) {
 			std::string type = params[i];
 			if (type == "passenger_pref") {
 				unsigned min_year = stoul(params[++i]);
@@ -103,15 +103,15 @@ void ClientCompanyManager::write(const std::string &directory) const {
 	for (const ClientCompany &client : clients) {
 		ofstream << client.getName() << file_handling::delimiter
 				 << client.getIdentificationNumber() << file_handling::delimiter
-				 << client.getAddress() << file_handling::delimiter;
+				 << client.getAddress();
 
 		if (client.getPreferenceList().getPassengerPreference() != nullptr)
-			ofstream << "passenger_pref" << file_handling::delimiter
+			ofstream << file_handling::delimiter << "passenger_pref" << file_handling::delimiter
 					 << client.getPreferenceList().getPassengerPreference()->getMinYear() << file_handling::delimiter
-					 << client.getPreferenceList().getPassengerPreference()->getSeatNumber() << file_handling::delimiter;
+					 << client.getPreferenceList().getPassengerPreference()->getSeatNumber();
 
 		if (client.getPreferenceList().getCommercialPreference() != nullptr) {
-			ofstream << "commercial_pref" << file_handling::delimiter
+			ofstream << file_handling::delimiter << "commercial_pref" << file_handling::delimiter
 					 << client.getPreferenceList().getCommercialPreference()->getMinYear() << file_handling::delimiter
 					 << client.getPreferenceList().getCommercialPreference()->getCargoVolume() << file_handling::delimiter
 					 << client.getPreferenceList().getCommercialPreference()->getMinMaxWeight() << file_handling::delimiter;

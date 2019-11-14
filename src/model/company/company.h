@@ -11,9 +11,9 @@ class Company {
 public:
 	explicit Company(string name);
 
-	void load(const std::string &directory);
+	void read(const std::string &directory);
 
-	void save(const std::string &directory);
+	void write(const std::string &directory);
 
 	string getName() const;
 

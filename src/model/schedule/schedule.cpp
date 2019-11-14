@@ -19,7 +19,7 @@ Schedule &Schedule::operator=(const Schedule &schedule) {
 }
 
 bool Schedule::isInside(const Schedule &schedule) const {
-	return (this->begin > schedule.begin && this->end < schedule.end);
+	return (this->begin >= schedule.begin && this->end <= schedule.end);
 }
 
 bool Schedule::isInvalid() const {

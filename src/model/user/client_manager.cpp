@@ -70,7 +70,6 @@ void ClientManager::read(const std::string &directory) {
 		if (params[i] == "commercial_pref")
 			i = readCommercialPreference(params, client, i);
 
-
 		for (; i < params.size(); ++i) {
 			if (params[i] == "passenger")
 				i = readPassengerVehicle(params, client, i);
@@ -155,7 +154,7 @@ void ClientManager::write(const std::string &directory) const {
 					 << client.getPreferenceList().getCommercialPreference()->getMinYear() << file_handling::delimiter
 					 << client.getPreferenceList().getCommercialPreference()->getCargoVolume() << file_handling::delimiter
 					 << client.getPreferenceList().getCommercialPreference()->getMinMaxWeight() << file_handling::delimiter
-					 << (client.getPreferenceList().getCommercialPreference()->isRefrigerated() ? "true" : "false");
+					 << client.getPreferenceList().getCommercialPreference()->isRefrigerated();
 		}
 
 		for (const IVehicle *vehicle : client.getVehicleList().getVehicles()) {

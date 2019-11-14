@@ -15,7 +15,8 @@ void CommercialVehicle::printToFile(ofstream &ofstream) const {
 			 << model << file_handling::delimiter
 			 << year << file_handling::delimiter
 			 << cargo_volume << file_handling::delimiter
-			 << max_weight;
+			 << max_weight << file_handling::delimiter
+			 << refrigerated;
 }
 
 void CommercialVehicle::print(std::ostream &ostream) const {
