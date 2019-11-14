@@ -2,12 +2,16 @@
 #define FEUP_AEDA_PROJ1_USER_MANAGER_H
 
 
-#include "client_manager.h"
-#include "admin_manager.h"
-#include "client_company_manager.h"
+#include "../../model/user/client_manager.h"
+#include "../../model/user/admin_manager.h"
+#include "../../model/user/client_company_manager.h"
 
 class UserManager {
 public:
+	void read(const std::string &directory, VehicleList *vehicle_list);
+
+	void write(const std::string &directory);
+
 	IProvider &getProvider(const std::string &identification_number) const;
 
 	AdminManager &getAdminManager();

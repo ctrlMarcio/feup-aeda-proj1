@@ -6,7 +6,7 @@
 #include "../../model/preference/preference_list.h"
 #include "../user/client.h"
 #include "offer.h"
-#include "../user/user_manager.h"
+#include "../../model/company/user_manager.h"
 
 class IProvider;
 
