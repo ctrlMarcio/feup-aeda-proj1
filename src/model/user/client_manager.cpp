@@ -70,44 +70,11 @@ void ClientManager::read(const std::string &directory) {
 		if (params[i] == "commercial_pref")
 			i = readCommercialPreference(params, client, i);
 
-		for (; i < params.size(); ++i) {
-			if (params[i] == "passenger")
-				i = readPassengerVehicle(params, client, i);
-			else if (params[i] == "commercial")
-				i = readCommercialVehicle(params, client, i);
-			else
-				break;
-		}
+		client->getVehicleList().read(params, i);
 		this->add(*client);
 	}
 
 	ifstream.close();
-}
-
-size_t ClientManager::readCommercialVehicle(const vector<std::string> &params, Client *client, size_t i) const {
-	string number_plate = params[++i];
-	string brand = params[++i];
-	string model = params[++i];
-	unsigned year = stoul(params[++i]);
-	float cargo_volume = stof(params[++i]);
-	float min_max_weight = stof(params[++i]);
-	++i;
-	bool refrigerated = params[i] == "y" || params[i] == "yes" || params[i] == "1" || params[i] == "t" || params[i] == "true";
-
-
-	client->getVehicleList().add(&VehicleList::build(number_plate, brand, model, year, cargo_volume, min_max_weight, refrigerated));
-	return i;
-}
-
-size_t ClientManager::readPassengerVehicle(const vector<std::string> &params, Client *client, size_t i) const {
-	string number_plate = params[++i];
-	string brand = params[++i];
-	string model = params[++i];
-	unsigned year = stoul(params[++i]);
-	unsigned seat_number = stoul(params[++i]);
-
-	client->getVehicleList().add(&VehicleList::build(number_plate, brand, model, year, seat_number));
-	return i;
 }
 
 size_t ClientManager::readCommercialPreference(const vector<std::string> &params, Client *client, size_t i) const {

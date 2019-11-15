@@ -49,6 +49,11 @@ namespace file_handling {
 	 * The name of the file that stores clients.
 	 */
 	extern std::string client;
+
+	/*!
+	 * The name of the file that stores the vehicles of the company.
+	 */
+	extern std::string company_vehicle;
 }
 
 

@@ -39,10 +39,10 @@ public:
 
 private:
     list<Client> clients;
+
 	size_t readPassengerPreference(const vector<std::string> &params, Client *client, size_t i) const;
+
 	size_t readCommercialPreference(const vector<std::string> &params, Client *client, size_t i) const;
-	size_t readPassengerVehicle(const vector<std::string> &params, Client *client, size_t i) const;
-	size_t readCommercialVehicle(const vector<std::string> &params, Client *client, size_t i) const;
 };
 
 
