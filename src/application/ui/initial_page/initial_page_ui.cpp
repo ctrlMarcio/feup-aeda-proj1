@@ -2,6 +2,7 @@
 #include "../register_page/register_page_ui.h"
 #include "../login_page/login_page_ui.h"
 #include "../../../exception/invalid_file_exception.h"
+#include "../offer/view_offers_page_ui.h"
 
 InitialPageUI::InitialPageUI(UIManager &ui_manager) : ui_manager(ui_manager),
 													  controller(ui_manager.getAuthUserManager(),
@@ -19,7 +20,8 @@ void InitialPageUI::run() {
 			case '3':
 				break;
 			case '4':
-				// TODO: View more
+                ui_manager.setCurrent(new ViewOffersPageUI(ui_manager));
+                ui_manager.run();
 				break;
 			case '8':
 				ui_manager.setCurrent(new LoginPageUI(ui_manager));

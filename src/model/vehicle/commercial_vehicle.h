@@ -10,6 +10,8 @@
  */
 class CommercialVehicle : public IVehicle {
 public:
+    const static string TYPE;
+
 	/*!
 	 * Establishes a new instance of a CommercialVehicle.
 	 *
@@ -86,6 +88,13 @@ public:
 	* @return the year
 	*/
 	unsigned int getYear() const override;
+
+	/*!
+	 * Returns the type of this vehicle.
+	 *
+	 * @return the type
+	 */
+	const string &getType() const override;
 
 	/*!
 	 * Verifies if this vehicle is equal to another one.

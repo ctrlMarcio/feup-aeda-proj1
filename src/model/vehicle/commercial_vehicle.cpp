@@ -3,6 +3,8 @@
 #include "../../application/io/file_handling.h"
 #include <utility>
 
+const string CommercialVehicle::TYPE = "commercial";
+
 CommercialVehicle::CommercialVehicle(string number_plate, string brand, string model,
 									 unsigned int year, double cargo_volume, double max_weight, bool refrigerated) :
 		number_plate(std::move(number_plate)), brand(std::move(brand)), model(std::move(model)), year(year), cargo_volume(cargo_volume),
@@ -74,4 +76,8 @@ bool CommercialVehicle::isEqual(const IVehicle &vehicle) const {
 	CommercialVehicle commercialVehicle = dynamic_cast<const CommercialVehicle &>(vehicle);
 
 	return *this == commercialVehicle;
+}
+
+const string &CommercialVehicle::getType() const {
+    return TYPE;
 }

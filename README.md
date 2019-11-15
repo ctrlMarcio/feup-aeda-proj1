@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/luist18/feup-aeda-proj1.svg?branch=master)](https://travis-ci.org/luist18/feup-aeda-proj1)
 [![codecov](https://codecov.io/gh/luist18/feup-aeda-proj1/branch/master/graph/badge.svg)](https://codecov.io/gh/luist18/feup-aeda-proj1)
 [![CodeFactor](https://www.codefactor.io/repository/github/luist18/feup-aeda-proj1/badge)](https://www.codefactor.io/repository/github/luist18/feup-aeda-proj1)
-[![Documentation Status](https://readthedocs.org/projects/feup-aeda-proj1/badge/?version=latest)](https://feup-aeda-proj1.readthedocs.io/en/latest/?badge=latest)
+![Documentation Status](https://img.shields.io/website?down_color=red&down_message=failed&label=docs&up_message=passing&url=https%3A%2F%2Fluist18.github.io%2Ffeup-aeda-proj1%2F)
 ![GitHub](https://img.shields.io/github/license/luist18/feup-aeda-proj1?color=blue)
 ![GitHub language count](https://img.shields.io/github/languages/count/luist18/feup-aeda-proj1)
 ![GitHub last commit](https://img.shields.io/github/last-commit/luist18/feup-aeda-proj1)
@@ -27,7 +27,7 @@ A standard project doxygen configuration file is located in the 'docs' directory
 
 Here is an example of how to export the documentation with the standard project doxygen configuration file:
 ```bash
-cd docs
+cd doc
 doxygen Doxyfile
 ```
 
