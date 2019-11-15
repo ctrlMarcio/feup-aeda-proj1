@@ -53,6 +53,6 @@ bool Schedule::operator==(const Schedule &rhs) const {
 }
 
 std::ostream &operator<<(std::ostream &ostream, const Schedule &schedule) {
-	ostream << schedule.begin << " to " << schedule.end << std::endl;
+	ostream << schedule.begin << " to " << schedule.end;
 	return ostream;
 }

@@ -209,7 +209,7 @@ bool Date::operator==(const Date &rhs) const {
 }
 
 std::ostream &operator<<(std::ostream &ostream, const Date &date) {
-	ostream << date.day << "/" << date.month << "/" << date.year << " "
-			<< date.hour << ":" << date.minute << "." << date.second << std::endl;
+	ostream << pad_number(date.day, 2) << "/" << pad_number(date.month, 2) << "/" << date.year << " "
+			<< pad_number(date.hour, 2) << ":" << pad_number(date.minute, 2) << ".";
 	return ostream;
 }

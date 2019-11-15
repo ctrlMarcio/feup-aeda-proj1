@@ -13,14 +13,14 @@ ViewOffersPageUI::ViewOffersPageUI(UIManager &ui_manager) : ui_manager(ui_manage
                                                                        ui_manager.getCompany()) {}
 
 void ViewOffersPageUI::run() {
-    char option = 0;
+    char option;
 
     do {
         option = getOffer();
 
-        if (is_number(to_string(option)) && (int) option >= 1 &&
-            (int) option <= controller.getOffers(current_page, MAX_PER_PAGE).size()) {
-            Offer *offer = controller.getOffer(current_page, MAX_PER_PAGE, (int) option);
+        if (is_number(to_string(option)) && stoi(to_string(option)) - 48 >= 1 &&
+            stoi(to_string(option)) - 48 <= controller.getOffers(current_page, MAX_PER_PAGE).size()) {
+            Offer *offer = controller.getOffer(current_page, MAX_PER_PAGE, stoi(to_string(option)) - 48 - 1);
 
             selectOffer(*offer);
         } else {
@@ -47,11 +47,14 @@ string ViewOffersPageUI::offers() {
     options_stream << endl << "Offers page" << "                     " << Date().toString() << endl;
     options_stream << endl;
     options_stream << "A/D - Previous/next page" << endl;
+    options_stream << endl;
 
     vector<Offer *> page_offers = controller.getOffers(current_page, MAX_PER_PAGE);
 
+    int number = 1;
+
     for (Offer *offer : page_offers) {
-        options_stream << singleOffer(*offer) << endl;
+        options_stream << number++ << " - " << singleOffer(*offer) << endl;
     }
 
     if (page_offers.empty()) {
@@ -59,7 +62,7 @@ string ViewOffersPageUI::offers() {
     } else {
         int page_count = controller.getPageCount(MAX_PER_PAGE);
 
-        options_stream << endl << current_page << "/" << page_count << endl;
+        options_stream << endl << "Page " << current_page << "/" << page_count << endl;
     }
 
     options_stream << endl;
@@ -116,7 +119,8 @@ void ViewOffersPageUI::selectOffer(Offer &offer) {
                           << " " << offer.getVehicle().getModel() << " [" << offer.getVehicle().getNumberPlate() << "]"
                           << endl;
     complete_offer_stream << endl;
-    complete_offer_stream << "Price: " << fixed << setprecision(2) << offer.getPrice() << " gbp/day";
+    complete_offer_stream << "Price: " << fixed << setprecision(2) << offer.getPrice() << " gbp/day" << endl;
+    complete_offer_stream << endl;
     complete_offer_stream << "Type: " << offer.getVehicle().getType() << endl;
 
     if (offer.getVehicle().getType() == CommercialVehicle::TYPE) {
@@ -147,13 +151,13 @@ void ViewOffersPageUI::selectOffer(Offer &offer) {
     getline(cin, input);
 
     if (input == "Y") {
-        if (ui_manager.getCurrentSession().getUser() == AuthUser("", "", "")){
+        if (ui_manager.getCurrentSession().getUser() == AuthUser("", "", "")) {
             cout << endl << "You dont have an account, do you wish to create an account? (Y/N) ";
             string create_account;
 
             getline(cin, create_account);
 
-            if (create_account == "Y"){
+            if (create_account == "Y") {
                 ui_manager.setCurrent(new RegisterPageUI(ui_manager));
                 ui_manager.run();
             }
