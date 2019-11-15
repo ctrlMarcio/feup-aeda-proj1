@@ -18,3 +18,14 @@ float CommercialPreference::getMinMaxWeight() const {
 bool CommercialPreference::isRefrigerated() const {
 	return refrigerated;
 }
+
+std::ostream &operator<<(std::ostream &ostream, const CommercialPreference &commercial_preference) {
+	ostream << "Commercial preference:" << std::endl;
+	ostream << "Minimum year: " << commercial_preference.min_year << std::endl;
+	ostream << "Minimum cargo volume: " << commercial_preference.cargo_volume << std::endl;
+	ostream << "Minimum max weight: " << commercial_preference.min_max_weight << std::endl;
+	if (!commercial_preference.refrigerated)
+		ostream << "Not ";
+	ostream << "Refrigerated." << std::endl;
+	return ostream;
+}

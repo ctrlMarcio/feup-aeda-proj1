@@ -23,7 +23,7 @@ public:
 	 * @param offer_manager the offer manager to get the offers of
 	 * @param user_manager the user manager to get the author of the rentals
 	 */
-	void read(const std::string &directory, OfferManager &offer_manager, const UserManager &user_Manager);
+	void read(const std::string &directory, OfferManager &offer_manager, UserManager &user_Manager);
 
 	/*!
 	 * Writes the rentals to a file.

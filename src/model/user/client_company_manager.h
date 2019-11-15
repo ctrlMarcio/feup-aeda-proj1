@@ -27,7 +27,7 @@ public:
 	 * @param identification_number the identification number
 	 * @return the reference to the client
 	 */
-	ClientCompany &get(const string &identification_number) const;
+	ClientCompany *get(const string &identification_number);
 
 	/*!
 	 * Reads the client companies from a file.

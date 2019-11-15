@@ -14,12 +14,32 @@ void UserManager::write(const std::string &directory) {
 	client_manager.write(directory);
 }
 
-IProvider &UserManager::getProvider(const std::string &identification_number) const {
-	// TODO add company (or admin)
+IProvider *UserManager::getProvider(const std::string &identification_number) {
+	IProvider *provider;
 
-	Client &client = client_manager.get(identification_number);
-	IProvider *provider = &client;
-	return *provider;
+	Admin *admin = admin_manager.get(identification_number);
+
+	if (admin == nullptr) {
+		Client *client = client_manager.get(identification_number);
+		provider = client;
+	} else {
+		provider = admin;
+	}
+	return provider;
+}
+
+IRenter &UserManager::getRenter(const std::string &identification_number) {
+	IRenter *renter;
+	ClientCompany *cc = client_company_manager.get(identification_number);
+
+	if (cc == nullptr) {
+		Client *client = client_manager.get(identification_number);
+		renter = client;
+	} else {
+		renter = cc;
+	}
+
+	return *renter;
 }
 
 AdminManager &UserManager::getAdminManager() {

@@ -21,7 +21,7 @@ public:
 
     bool has(const string &identification_number) const;
 
-	Client &get(const string &identification_number) const;
+	Client *get(const string &identification_number);
 
 	/*!
 	 * Reads the clients from a file.

@@ -2,6 +2,8 @@
 #define FEUP_AEDA_PROJ1_COMMERCIAL_PREFERENCE_H
 
 
+#include <ostream>
+
 class CommercialPreference {
 public:
 	CommercialPreference(unsigned int minYear, float cargoVolume, float minMaxWeight, bool refrigerated);
@@ -13,6 +15,8 @@ public:
 	float getMinMaxWeight() const;
 
 	bool isRefrigerated() const;
+
+	friend std::ostream &operator<<(std::ostream &ostream, const CommercialPreference &commercial_preference);
 
 private:
 	unsigned min_year;

@@ -37,7 +37,7 @@ public:
 
     bool has(const string &identification_number) const;
 
-	Admin &get(const string &identification_number) const;
+	Admin *get(const string &identification_number);
 
 	/*!
 	 * Reads the admins from a file.

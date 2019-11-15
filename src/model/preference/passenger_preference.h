@@ -1,6 +1,11 @@
 #ifndef FEUP_AEDA_PROJ1_PASSENGER_PREFERENCE_H
 #define FEUP_AEDA_PROJ1_PASSENGER_PREFERENCE_H
 
+#include <ostream>
+
+/*!
+ * Represents a preference to passenger vehicles.
+ */
 class PassengerPreference {
 public:
 	/*!
@@ -19,6 +24,8 @@ public:
 	unsigned int getMinYear() const;
 
 	unsigned int getSeatNumber() const;
+
+	friend std::ostream &operator<<(std::ostream &ostream, const PassengerPreference &passenger_preference);
 
 private:
 	unsigned min_year;

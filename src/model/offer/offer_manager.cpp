@@ -61,7 +61,7 @@ bool OfferManager::isValid(const Offer &offer) const {
 	return std::find(offers.begin(), offers.end(), offer) == offers.end();
 }
 
-void OfferManager::read(const std::string &directory, const UserManager &user_manager) {
+void OfferManager::read(const std::string &directory, UserManager &user_manager) {
 	std::string file_path = directory + "/" + file_handling::offer;
 
 	ifstream ifstream;
@@ -75,7 +75,7 @@ void OfferManager::read(const std::string &directory, const UserManager &user_ma
 		std::vector<std::string> params = string_util::split(line, file_handling::delimiter);
 
 		std::string provider_id = params[0];
-		IProvider &provider = user_manager.getProvider(provider_id);
+		IProvider &provider = *user_manager.getProvider(provider_id);
 
 		std::string vehicle_plate = params[1];
 		IVehicle &vehicle = provider.getVehicleList().get(vehicle_plate);

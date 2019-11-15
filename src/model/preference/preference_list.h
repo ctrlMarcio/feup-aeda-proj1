@@ -15,6 +15,10 @@ public:
 
 	CommercialPreference *getCommercialPreference();
 
+	void removePassengerPreference();
+
+	void removeCommercialPreference();
+
 	bool operator==(const PreferenceList &rhs) const;
 
     bool operator!=(const PreferenceList &rhs) const;

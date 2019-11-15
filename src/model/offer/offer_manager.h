@@ -78,7 +78,7 @@ public:
 	 * @param directory the directory of the file. The file name is stored in the file_handling namespace
 	 * @param the user manager to get access to the offer's users
 	 */
-	void read(const std::string &directory, const UserManager &user_manager);
+	void read(const std::string &directory, UserManager &user_manager);
 
 	/*!
 	 * Writes the users to a file.

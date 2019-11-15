@@ -32,12 +32,12 @@ bool PreferenceList::isValid(CommercialPreference preference) const {
 }
 
 bool PreferenceList::operator==(const PreferenceList &rhs) const {
-    return passenger_preference == rhs.passenger_preference &&
-           commercial_preference == rhs.commercial_preference;
+	return passenger_preference == rhs.passenger_preference &&
+		   commercial_preference == rhs.commercial_preference;
 }
 
 bool PreferenceList::operator!=(const PreferenceList &rhs) const {
-    return !(rhs == *this);
+	return !(rhs == *this);
 }
 
 PassengerPreference *PreferenceList::getPassengerPreference() const {
@@ -46,4 +46,12 @@ PassengerPreference *PreferenceList::getPassengerPreference() const {
 
 CommercialPreference *PreferenceList::getCommercialPreference() {
 	return commercial_preference;
+}
+
+void PreferenceList::removePassengerPreference() {
+	this->passenger_preference = nullptr;
+}
+
+void PreferenceList::removeCommercialPreference() {
+	this->commercial_preference = nullptr;
 }

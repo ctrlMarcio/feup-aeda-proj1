@@ -30,7 +30,7 @@ bool RentalManager::add(Rental rental) {
 	return true;
 }
 
-void RentalManager::read(const std::string &directory, OfferManager &offer_manager, const UserManager &user_manager) {
+void RentalManager::read(const std::string &directory, OfferManager &offer_manager, UserManager &user_manager) {
 	std::string file_path = directory + "/" + file_handling::rental;
 
 	ifstream ifstream;
@@ -46,7 +46,7 @@ void RentalManager::read(const std::string &directory, OfferManager &offer_manag
 		std::string provider_id = params[0];
 		std::string number_plate = params[1];
 
-		IProvider &provider = user_manager.getProvider(provider_id);
+		IProvider &provider = *user_manager.getProvider(provider_id);
 		IVehicle &vehicle = provider.getVehicleList().get(number_plate);
 		Offer &offer = offer_manager.getOfferOf(vehicle);
 

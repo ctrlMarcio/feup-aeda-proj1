@@ -35,17 +35,17 @@ bool AdminManager::has(const string &identification_number) const {
 	}) != admins.end();
 }
 
-Admin &AdminManager::get(const string &identification_number) const {
+Admin *AdminManager::get(const string &identification_number) {
 	auto it = admins.begin();
 
 	while (it != admins.end()){
 		if ((*it).getIdentificationNumber() == identification_number){
-			return const_cast<Admin &>(*it);
+			return &(*it);
 		}
 		it++;
 	}
 
-	return const_cast<Admin &>(*admins.end());
+	return nullptr;
 }
 
 void AdminManager::read(const std::string &directory) {

@@ -32,17 +32,17 @@ bool ClientManager::has(const string &identification_number) const {
 	}) != clients.end();
 }
 
-Client &ClientManager::get(const string &identification_number) const {
+Client *ClientManager::get(const string &identification_number) {
 	auto it = clients.begin();
 
 	while (it != clients.end()) {
 		if ((*it).getIdentificationNumber() == identification_number) {
-			return const_cast<Client &>(*it);
+			return &(*it);
 		}
 		it++;
 	}
 
-	return const_cast<Client &>(*clients.end());
+	return nullptr;
 }
 
 void ClientManager::read(const std::string &directory) {

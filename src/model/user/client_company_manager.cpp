@@ -33,17 +33,17 @@ bool ClientCompanyManager::has(const string &identification_number) const {
 	}) != clients.end();
 }
 
-ClientCompany &ClientCompanyManager::get(const string &identification_number) const {
+ClientCompany *ClientCompanyManager::get(const string &identification_number) {
 	auto it = clients.begin();
 
 	while (it != clients.end()) {
 		if ((*it).getIdentificationNumber() == identification_number) {
-			return const_cast<ClientCompany &>(*it);
+			return &(*it);
 		}
 		it++;
 	}
 
-	return const_cast<ClientCompany &>(*clients.end());
+	return nullptr;
 }
 
 void ClientCompanyManager::read(const std::string &directory) {

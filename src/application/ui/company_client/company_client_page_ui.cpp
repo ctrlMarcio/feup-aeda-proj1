@@ -1,4 +1,5 @@
 #include "company_client_page_ui.h"
+#include "../preference/manage_preferences_ui.h"
 #include <sstream>
 
 CompanyClientPageUI::CompanyClientPageUI(UIManager &ui_manager) : ui_manager(ui_manager), controller(ui_manager.getCurrentSession()) {}
@@ -21,6 +22,9 @@ void CompanyClientPageUI::run() {
             case '4':
                 // TODO: Manage rented vehicles
                 break;
+			case '5':
+				ManagePreferencesUI(ui_manager).run();
+				break;
             case '0':
                 controller.logout();
                 break;
@@ -41,6 +45,7 @@ string CompanyClientPageUI::options() {
     options_stream << "3 - View rent history" << endl;
     options_stream << endl;
     options_stream << "4 - Manage rented vehicles" << endl;
+	options_stream << "5 - Manage preferences" << endl;
     options_stream << endl;
     options_stream << "0 - Logout" << endl;
 

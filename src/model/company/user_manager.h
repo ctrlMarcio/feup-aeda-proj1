@@ -12,7 +12,9 @@ public:
 
 	void write(const std::string &directory);
 
-	IProvider &getProvider(const std::string &identification_number) const;
+	IProvider *getProvider(const std::string &identification_number);
+
+	IRenter &getRenter(const std::string &identification_number);
 
 	AdminManager &getAdminManager();
 

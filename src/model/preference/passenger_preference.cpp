@@ -10,3 +10,10 @@ unsigned int PassengerPreference::getMinYear() const {
 unsigned int PassengerPreference::getSeatNumber() const {
 	return seat_number;
 }
+
+std::ostream &operator<<(std::ostream &ostream, const PassengerPreference &passenger_preference) {
+	ostream << "Passenger preference:" << std::endl;
+	ostream << "Minimum year: " << passenger_preference.min_year << std::endl;
+	ostream << "Number of seats: " << passenger_preference.seat_number << std::endl;
+	return ostream;
+}
