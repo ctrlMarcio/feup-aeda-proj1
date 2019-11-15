@@ -5,6 +5,19 @@
 #include "application/ui/ui_manager.h"
 #include "application/ui/initial_page/initial_page_ui.h"
 
+/*!
+ * \mainpage Rental and car sharing application
+ *
+ * This repository comprises the first part of the Algorithms and Data Structures course unit project.
+ * The goal was to create a solution for a specific problem applying the object-oriented paradigm in C++.
+ *
+ * \section Project description
+ * The theme approached in the problem is 'Fleet management and vehicle rental'.
+ * Besides implementing a solution for the problem the software produced must have basic CRUD operations (create, read, update, delete),
+ * file store handling and allow multiple listings of the data stored.
+ */
+
+
 int main(int argc, char *argv[]) {
 	AuthUserManager auth_user_manager;
 	CurrentSession current_session(auth_user_manager);
