@@ -21,7 +21,7 @@ const Offer &Rental::getOffer() const {
 	return offer;
 }
 
-const Schedule &Rental::getSchedule() const {
+Schedule &Rental::getSchedule() {
 	return schedule;
 }
 

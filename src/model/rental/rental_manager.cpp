@@ -12,7 +12,7 @@ Rental RentalManager::build(Offer &offer, const Date &begin, const Date &end, IR
 	return Rental{offer, begin, end, renter};
 }
 
-bool RentalManager::isValid(const Rental &rental) {
+bool RentalManager::isValid(Rental &rental) {
 	bool valid = (rental.getOffer().hasSchedule(rental.getSchedule()));
 
 	if (!valid)
@@ -72,7 +72,7 @@ void RentalManager::write(const std::string &directory) const {
 	if (!ofstream.is_open())
 		throw InvalidFileException(file_path);
 
-	for (const Rental &rental : rentals) {
+	for (Rental rental : rentals) {
 		ofstream << rental.getOffer().getProvider().getIdentificationNumber() << file_handling::delimiter
 				 << rental.getRenter().getIdentificationNumber() << file_handling::delimiter
 				 << rental.getOffer().getVehicle().getNumberPlate() << file_handling::delimiter;

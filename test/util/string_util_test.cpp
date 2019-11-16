@@ -25,7 +25,7 @@ TEST(string_util, is_number) {
 TEST(string_util, pad_number) {
     int number = 323;
 
-    string padded = pad_number(323, 5);
+    string padded = pad_number(number, 5);
 
     ASSERT_EQ("00323", padded);
 }

@@ -85,7 +85,7 @@ private:
 	 * @param rental the rental to verify
 	 * @return true if the rental is valid, false otherwise
 	 */
-	bool isValid(const Rental &rental);
+	bool isValid(Rental &rental);
 };
 
 

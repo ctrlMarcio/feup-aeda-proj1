@@ -2,6 +2,8 @@
 #include "../preference/manage_preferences_ui.h"
 #include "../offer/view_offers_page_ui.h"
 #include "../offer/view_recommended_offers_ui.h"
+#include "../renter/view_rental_history_page_ui.h"
+#include "../renter/manage_rented_vehicles_page_ui.h"
 #include <sstream>
 
 CompanyClientPageUI::CompanyClientPageUI(UIManager &ui_manager) : ui_manager(ui_manager), controller(ui_manager.getCurrentSession()) {}
@@ -21,10 +23,12 @@ void CompanyClientPageUI::run() {
 				ui_manager.run();
                 break;
             case '3':
-                // TODO: View rent history
+                ui_manager.setCurrent(new ViewRentalHistoryPageUI(ui_manager));
+                ui_manager.run();
                 break;
             case '4':
-                // TODO: Manage rented vehicles
+                ui_manager.setCurrent(new ManageRentedVehiclesPageUI(ui_manager));
+                ui_manager.run();
                 break;
 			case '5':
 				ui_manager.setCurrent(new ManagePreferencesUI(ui_manager));
