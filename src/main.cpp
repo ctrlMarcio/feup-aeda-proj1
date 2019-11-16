@@ -18,7 +18,9 @@ int main(int argc, char *argv[]) {
 		auth_user_manager.read(directory);
 		company.read(directory);
 	} else {
-		directory = "./";
+		directory = ".";
+        auth_user_manager.read(directory);
+		company.read(directory);
 		cout << "\033[1;31mInvalid parameters, initializing without data.\033[0m" << endl;
 	}
 

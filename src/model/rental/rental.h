@@ -34,7 +34,7 @@ public:
 	 * @param end the end date
 	 * @param renter the user who rent
 	 */
-	Rental(Offer &offer, const Date &begin, const Date &end, IRenter &renter);
+	Rental(Offer &offer, Date begin, Date end, IRenter &renter);
 
 	/*!
 	 * Gets the offer of the rental

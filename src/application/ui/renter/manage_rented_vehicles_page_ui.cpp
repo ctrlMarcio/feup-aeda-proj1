@@ -25,7 +25,11 @@ void ManageRentedVehiclesPageUI::run() {
 
             if (string_date.empty()) return;
 
-            controller.setDeliveryDate(rental, date);
+            if (controller.setDeliveryDate(rental, date)) {
+                cout << endl << "Delivery date updated with success..." << endl;
+            } else {
+                cout << endl << "Could not modify the delivery date..." << endl;
+            }
         } else {
             switch (toupper(option[0])) {
                 case '0':
@@ -44,12 +48,14 @@ string ManageRentedVehiclesPageUI::rentals() {
     options_stream << endl << "Rental manage page" << "                     " << Date().toString() << endl;
     options_stream << endl;
 
+    options_stream << "Select a vehicle to modify the delivery date..." << endl;
+    options_stream << endl;
     vector<Rental *> page_rentals = controller.getActiveRentals();
 
     int number = 1;
 
     if (page_rentals.empty()) {
-        options_stream << endl << "There is nothing to show in the page." << endl;
+        options_stream << "There is nothing to show in the page." << endl;
     } else {
         for (Rental *rental : page_rentals) {
             options_stream << number++ << " - " << rental->toOneLineDescription() << endl;
@@ -116,7 +122,7 @@ bool ManageRentedVehiclesPageUI::verifyFormat(Date &date, const string &date_str
     try {
         date = Date(stoi(dd), stoi(mm), stoi(yyyy), stoi(hh), stoi(minmin));
         return true;
-    } catch (InvalidDateException e){
+    } catch (InvalidDateException e) {
         return false;
     }
 }

@@ -10,15 +10,14 @@ vector<Rental *> ManageRentedVehiclesPageController::getActiveRentals() {
     vector<Rental *> result;
     Date now;
     for (Rental *rental : rentals)
-        if (now > rental->getSchedule().getEnd())
+        if (now > rental->getSchedule().getBegin())
             result.push_back(rental);
     return result;
 }
 
 bool ManageRentedVehiclesPageController::setDeliveryDate(Rental *rental, Date end_date) {
-    Date now;
-    if (end_date > now && end_date < rental->getSchedule().getEnd()){
-        rental->getSchedule().setEnd(now);
+    if (end_date > rental->getSchedule().getBegin() && end_date < rental->getSchedule().getEnd()){
+        rental->getSchedule().setEnd(end_date);
         return true;
     } else {
         return false;

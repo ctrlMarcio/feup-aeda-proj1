@@ -22,7 +22,7 @@ void RentVehicleUI::run() {
 		if (!valid)
 			cout << "The rental is invalid, returning ..." << endl;
 		else
-			cout << "Rented!" << endl;
+			cout << endl << "Rented!" << endl;
 	}
 }
 
@@ -81,5 +81,6 @@ Date RentVehicleUI::requestDate() {
 
 bool RentVehicleUI::confirms(Rental &rental) {
 	cout << endl << rental.toOneLineDescription() << endl;
-	return io_util::askBool("Do you confirm?");
+	cout << endl;
+	return io_util::askBool("Do you confirm? (Y/N)");
 }

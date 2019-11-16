@@ -43,7 +43,7 @@ string ViewRentalHistoryPageUI::rentals() {
     }
 
     if (page_rentals.empty()) {
-        options_stream << endl << "There is nothing to show in the page." << endl;
+        options_stream << "There is nothing to show in the page." << endl;
     } else {
         int page_count = controller.getPageCount(ui_manager.getCurrentSession().getUser().getIdentificationNumber(),
                                                  MAX_PER_PAGE);

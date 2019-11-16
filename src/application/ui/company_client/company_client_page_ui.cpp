@@ -51,7 +51,7 @@ string CompanyClientPageUI::options() {
     options_stream << endl;
     options_stream << "1 - View all offers" << endl;
     options_stream << "2 - View recommended offers" << endl;
-    options_stream << "3 - View rent history" << endl;
+    options_stream << "3 - View rental history" << endl;
     options_stream << endl;
     options_stream << "4 - Manage rented vehicles" << endl;
 	options_stream << "5 - Manage preferences" << endl;

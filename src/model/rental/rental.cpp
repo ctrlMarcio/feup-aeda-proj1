@@ -8,7 +8,7 @@ Rental::Rental(Offer &offer, Schedule schedule, IRenter &renter) : offer(offer),
 	this->price = this->calculatePrice();
 }
 
-Rental::Rental(Offer &offer, const Date &begin, const Date &end, IRenter &renter) :
+Rental::Rental(Offer &offer, Date begin, Date end, IRenter &renter) :
 		offer(offer), schedule(Schedule(begin, end)), renter(renter) {
 	this->price = this->calculatePrice();
 }
@@ -42,7 +42,7 @@ std::string Rental::toOneLineDescription() const {
 	res_stream << " | " << this->schedule.getBegin().toString();
 	res_stream << " to " << this->schedule.getEnd().toString();
 	res_stream << " | id: " << this->offer.getProvider().getIdentificationNumber();
-	res_stream << " | " << std::setprecision(2) << price << " gbp";
+	res_stream << " | " << std::fixed << std::setprecision(2) << price << " gbp";
 
 	return res_stream.str();
 }
