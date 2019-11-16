@@ -9,27 +9,18 @@ void ViewRentalHistoryPageUI::run() {
 
     do {
         option = getOption();
-
-        if (option[0] != '0' && is_number(option) && stoi(option) >= 1 &&
-            stoi(option) <=
-            controller.getRentals(ui_manager.getCurrentSession().getUser().getIdentificationNumber(), current_page,
-                                  MAX_PER_PAGE).size()) {
-
-            // SHOW DETAILED THING
-        } else {
-            switch (toupper(option[0])) {
-                case 'A':
-                    increasePage();
-                    break;
-                case 'D':
-                    decreasePage();
-                    break;
-                case '0':
-                    break;
-                default:
-                    cout << endl << "Invalid option, try again..." << endl;
-                    break;
-            }
+        switch (toupper(option[0])) {
+            case 'A':
+                increasePage();
+                break;
+            case 'D':
+                decreasePage();
+                break;
+            case '0':
+                break;
+            default:
+                cout << endl << "Invalid option, try again..." << endl;
+                break;
         }
     } while (option[0] != '0');
 }
