@@ -27,9 +27,9 @@ private:
 
     int current_page = 1;
 
-    void previousPage();
+    void increasePage();
 
-    void nextPage();
+    void decreasePage();
 
     void selectOffer(Offer &offer);
 };

@@ -26,10 +26,10 @@ void ViewOffersPageUI::run() {
         } else {
             switch (option) {
                 case 'A':
-                    previousPage();
+                    increasePage();
                     break;
                 case 'D':
-                    nextPage();
+                    decreasePage();
                     break;
                 case '0':
                     break;
@@ -92,7 +92,7 @@ string ViewOffersPageUI::singleOffer(Offer &offer) {
     return offer_stream.str();
 }
 
-void ViewOffersPageUI::previousPage() {
+void ViewOffersPageUI::increasePage() {
     if (current_page - 1 < 1) {
         cout << endl << "That page is invalid, try another..." << endl;
         return;
@@ -101,7 +101,7 @@ void ViewOffersPageUI::previousPage() {
     current_page--;
 }
 
-void ViewOffersPageUI::nextPage() {
+void ViewOffersPageUI::decreasePage() {
     int page_count = controller.getPageCount(MAX_PER_PAGE);
 
     if (current_page + 1 > page_count) {

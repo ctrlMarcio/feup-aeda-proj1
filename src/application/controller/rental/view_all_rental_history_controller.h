@@ -3,8 +3,8 @@
 
 
 #include <list>
-#include "../../model/rental/rental_manager.h"
-#include "../../model/rental/rental.h"
+#include "../../../model/rental/rental_manager.h"
+#include "../../../model/rental/rental.h"
 
 class ViewAllRentalHistoryController {
 public:
