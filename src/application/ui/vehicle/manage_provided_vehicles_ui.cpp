@@ -20,7 +20,7 @@ void ManageProvidedVehiclesUI::run() {
 				controller.addVehicle();
 				break;
 			case '3':
-				//TODO controller.removeVehicle();
+				controller.removeVehicle();
 				break;
 			case '4':
 				//TODO controller.editVehicle();
@@ -87,6 +87,7 @@ void ManageProvidedVehiclesUI::showVehicles() const {
 
 		switch (ch) {
 			case '1':
+				cout << endl << "=== All Vehicles ===" << endl << endl;
 				for (IVehicle *v : vehicles)
 					cout << *v << endl;
 				break;

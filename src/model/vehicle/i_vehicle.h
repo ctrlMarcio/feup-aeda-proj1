@@ -15,11 +15,16 @@ using namespace std;
  */
 class IVehicle {
 public:
-    /*!
-     * Gets the number plate of this vehicle.
-     *
-     * @return the number plate
-     */
+	/*!
+	 * Destructs the vehicle.
+	 */
+	virtual ~IVehicle();
+
+	/*!
+	 * Gets the number plate of this vehicle.
+	 *
+	 * @return the number plate
+	 */
     virtual const string &getNumberPlate() const = 0;
 
     /*!

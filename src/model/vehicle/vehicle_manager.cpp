@@ -40,6 +40,7 @@ void VehicleManager::write(const std::string &directory) {
 
 	for (const IVehicle *vehicle : vehicle_list.getVehicles()) {
 		vehicle->printToFile(ofstream);
+		ofstream << endl;
 	}
 	ofstream << std::endl;
 }

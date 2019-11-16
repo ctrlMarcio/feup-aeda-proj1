@@ -58,6 +58,23 @@ unsigned io_util::askUnsigned(const string &question) {
 	return ans;
 }
 
+int io_util::askInt(const string &question) {
+	unsigned ans = 0;
+	string option;
+
+	cout << question << " ";
+
+	try {
+		getline(cin, option);
+		ans = stoi(option);
+	} catch (const exception &e) {
+		cout << "The value is invalid." << endl;
+		ans = askInt(question);
+	}
+
+	return ans;
+}
+
 bool io_util::askBool(const string &question) {
 	bool ans;
 	string option;

@@ -35,6 +35,14 @@ namespace io_util {
 	unsigned askUnsigned(const std::string &question);
 
 	/*!
+	 * Asks a question in the terminal, returning the answer as an unsigned int.
+	 *
+	 * @param question the question to ask
+	 * @return the answer as an unsigned int
+	 */
+	int askInt(const std::string &question);
+
+	/*!
 	 * Asks a question in the terminal, returning the answer as a bool.
 	 *
 	 * @param question the question to ask

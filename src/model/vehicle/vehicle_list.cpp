@@ -51,7 +51,9 @@ bool VehicleList::remove(const IVehicle &vehicle) {
 
 	for (auto it = vehicles.begin(); it != vehicles.end(); ++it) {
 		if (*(*it) == vehicle) {
+			IVehicle *v = *it;
 			vehicles.erase(it);
+			delete v;
 			removed = true;
 			break;
 		}
