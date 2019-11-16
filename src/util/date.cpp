@@ -213,3 +213,13 @@ std::ostream &operator<<(std::ostream &ostream, const Date &date) {
 			<< pad_number(date.hour, 2) << ":" << pad_number(date.minute, 2) << "." << pad_number(date.second, 2);
 	return ostream;
 }
+
+int Date::dayDifference(const Date &later, const Date &sooner) {
+	// TODO fix
+	int year_difference = later.getYear() - sooner.getYear();
+	int month_difference = 12 * year_difference + (later.getMonth() - sooner.getMonth() < 0 ? 12 + later.getMonth() - sooner.getMonth() : later.getMonth() - sooner.getMonth());
+	int day_difference = 30 * month_difference + (later.getDay() - sooner.getDay() < 0 ? 30 + later.getDay() - sooner.getDay() : later.getDay() - sooner.getDay());
+	if (!day_difference)
+		day_difference++; // round up
+	return day_difference;
+}

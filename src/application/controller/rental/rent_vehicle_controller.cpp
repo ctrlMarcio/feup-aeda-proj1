@@ -17,3 +17,7 @@ bool RentVehicleController::confirm(Rental rental) {
 		offer.removeScheduleAvailability(rental.getSchedule());
 	return valid;
 }
+
+bool RentVehicleController::isValid(Rental rental) {
+	return rental_manager.isValid(rental);
+}

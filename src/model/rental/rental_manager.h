@@ -73,12 +73,6 @@ public:
 	 */
 	std::vector<Rental *> getRentals(const string &identification_number);
 
-private:
-	/*!
-	 * All the existent rentals.
-	 */
-	std::list<Rental> rentals;
-
 	/*!
 	 * Verifies if a rental is valid.
 	 *
@@ -86,6 +80,11 @@ private:
 	 * @return true if the rental is valid, false otherwise
 	 */
 	bool isValid(Rental &rental);
+private:
+	/*!
+	 * All the existent rentals.
+	 */
+	std::list<Rental> rentals;
 };
 
 

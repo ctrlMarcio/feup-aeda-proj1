@@ -54,6 +54,15 @@ public:
     std::string toString() const;
 
 	/*!
+	 * Calculates the difference in days from two dates.
+	 *
+	 * @param date1 the later date
+	 * @param date2 the sooner date
+	 * @return the difference in hours
+	 */
+	static int dayDifference(const Date &later, const Date &sooner);
+
+	/*!
 	 * Verifies if another date is equal to this one.
 	 *
 	 * @param rhs the other date

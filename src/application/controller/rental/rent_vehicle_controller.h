@@ -15,6 +15,8 @@ public:
 
 	bool confirm(Rental rental);
 
+	bool isValid(Rental rental);
+
 private:
 	RentalManager &rental_manager;
 

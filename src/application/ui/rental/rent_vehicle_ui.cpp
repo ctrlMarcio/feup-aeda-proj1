@@ -43,7 +43,7 @@ Rental RentVehicleUI::requestRental() {
 	cout << "Insert the start date and time." << endl;
 	cout << "Starting when?" << endl;
 	Date begin = requestDate();
-	cout << endl << "Finishing when?";
+	cout << endl << "Finishing when?" << endl;
 	Date end = requestDate();
 
 	try {
@@ -52,18 +52,24 @@ Rental RentVehicleUI::requestRental() {
 		cout << "The schedule inserted is invalid. Try again." << endl;
 		return requestRental();
 	}
-	return controller.createRental(begin, end);
+	Rental rental = controller.createRental(begin, end);
+	if (!controller.isValid(rental)) {
+		cout << "The rental is invalid. Try again." << endl;
+		return requestRental();
+	}
+
+	return rental;
 }
 
 Date RentVehicleUI::requestDate() {
 	Date date;
 	try {
-		unsigned day = io_util::askUnsigned("Day: ");
-		unsigned month = io_util::askUnsigned("Month: ");
-		unsigned year = io_util::askUnsigned("Year: ");
-		unsigned hour = io_util::askUnsigned("Hour: ");
-		unsigned minute = io_util::askUnsigned("Minute: ");
-		unsigned second = io_util::askUnsigned("Second: ");
+		unsigned day = io_util::askUnsigned("Day:");
+		unsigned month = io_util::askUnsigned("Month:");
+		unsigned year = io_util::askUnsigned("Year:");
+		unsigned hour = io_util::askUnsigned("Hour:");
+		unsigned minute = io_util::askUnsigned("Minute:");
+		unsigned second = io_util::askUnsigned("Second:");
 
 		date = Date(day, month, year, hour, minute, second);
 	} catch (const InvalidDateException &e) {

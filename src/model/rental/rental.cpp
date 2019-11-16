@@ -2,6 +2,7 @@
 
 #include <utility>
 #include <sstream>
+#include <iomanip>
 
 Rental::Rental(Offer &offer, Schedule schedule, IRenter &renter) : offer(offer), schedule(schedule), renter(renter) {
 	this->price = this->calculatePrice();
@@ -13,8 +14,9 @@ Rental::Rental(Offer &offer, const Date &begin, const Date &end, IRenter &renter
 }
 
 float Rental::calculatePrice() const {
-	// TODO
-	return 0;
+	float provider_price = offer.getPrice() * (float) Date::dayDifference(schedule.getEnd(), schedule.getBegin());
+
+	return provider_price + ((float) COMPANY_PERCENTAGE / 100) * provider_price;
 }
 
 const Offer &Rental::getOffer() const {
@@ -40,7 +42,7 @@ std::string Rental::toOneLineDescription() const {
 	res_stream << " | " << this->schedule.getBegin().toString();
 	res_stream << " to " << this->schedule.getEnd().toString();
 	res_stream << " | id: " << this->offer.getProvider().getIdentificationNumber();
-	res_stream << " | " + to_string(this->price) << " gbp";
+	res_stream << " | " << std::setprecision(2) << price << " gbp";
 
 	return res_stream.str();
 }

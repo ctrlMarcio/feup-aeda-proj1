@@ -12,6 +12,11 @@
 class Rental {
 public:
 	/*!
+	 * Percentage of the money that goes to the company.
+	 */
+	constexpr static float COMPANY_PERCENTAGE = 30;
+
+	/*!
 	 * Constructs a rental given its offer, schedule and renter
 	 *
 	 * @param offer the reference to the offer
@@ -84,6 +89,9 @@ private:
 
 	float price;
 
+	/*!
+	 * Calculates the price of the rental taking into account the price of the offer and the company's percentage.
+	 */
 	float calculatePrice() const;
 };
 
