@@ -10,6 +10,9 @@
 using namespace std;
 
 
+/*!
+ * Represents a class that is responsible for managing admins.
+ */
 class AdminManager {
 public:
 	/*!
@@ -29,14 +32,44 @@ public:
 	 */
 	void setVehicleList(VehicleList *vehicle_list);
 
+    /*!
+     * Adds an admin to the list.
+     *
+     * @param admin the admin
+     * @return true, if the admin is added successfully. false, otherwise
+     */
     bool add(Admin &admin);
 
+    /*!
+     * Removes an admin from the list.
+     *
+     * @param admin the admin
+     * @return true, if the admin is removed successfully. false, otherwise
+     */
     bool remove(Admin &admin);
 
+    /*!
+     * Verifies if an admin is in the list or not.
+     *
+     * @param admin the admin
+     * @return true, if the admin is in the list. false, otherwise
+     */
     bool has(Admin &admin) const;
 
+    /*!
+     * Verifies if an admin is in the list or not.
+     *
+     * @param identification_number the identification number of the admin
+     * @return true, if the admin is in the list. false, otherwise
+     */
     bool has(const string &identification_number) const;
 
+    /*!
+     * Gets a specific admin given a identification number.
+     *
+     * @param identification_number the identification number
+     * @return a pointer to the admin
+     */
 	Admin *get(const string &identification_number);
 
 	/*!

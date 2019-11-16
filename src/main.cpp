@@ -9,7 +9,7 @@
 int main(int argc, char *argv[]) {
 	AuthUserManager auth_user_manager;
 	CurrentSession current_session(auth_user_manager);
-	Company company("FEUP drive++");
+	Company company("FEUP Drive++");
 
 	string directory;
 

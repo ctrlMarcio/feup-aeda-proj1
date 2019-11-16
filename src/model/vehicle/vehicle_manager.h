@@ -9,8 +9,18 @@
  */
 class VehicleManager {
 public:
+    /*!
+     * Reads the manager information based in a file in a specific a directory.
+     *
+     * @param directory the directory
+     */
 	void read(const std::string &directory);
 
+	/*!
+	 * Writes the manager information into a file in a specific directory.
+	 *
+	 * @param directory the directory
+	 */
 	void write(const std::string &directory);
 
 	/*!
@@ -28,6 +38,9 @@ public:
 	VehicleList &getVehicleList();
 
 private:
+    /*!
+     * The vehicle list.
+     */
 	VehicleList vehicle_list;
 };
 

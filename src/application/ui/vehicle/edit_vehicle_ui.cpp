@@ -90,7 +90,7 @@ std::list<Schedule> EditVehicleUI::requestSchedules() {
 	do {
 		Schedule schedule = askSchedule();
 		for (Schedule &s : schedules)
-			if (schedule.interfersWith(s)) {
+			if (schedule.interferesWith(s)) {
 				cout << "The schedule conflicts with another one. Ignoring ...";
 				continue;
 			}

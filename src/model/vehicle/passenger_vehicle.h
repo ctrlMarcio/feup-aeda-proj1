@@ -9,6 +9,9 @@
  */
 class PassengerVehicle : public IVehicle {
 public:
+    /*!
+     * The type.
+     */
     const static string TYPE;
 
     /*!

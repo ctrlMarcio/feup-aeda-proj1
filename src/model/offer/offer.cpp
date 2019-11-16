@@ -47,7 +47,7 @@ bool Offer::addSchedule(const Date &begin, const Date &end) {
 
 bool Offer::addSchedule(const Schedule &schedule) {
 	for (const Schedule &s : available_schedules)
-		if (schedule.interfersWith(s))
+		if (schedule.interferesWith(s))
 			return false;
 
 	available_schedules.push_back(schedule);

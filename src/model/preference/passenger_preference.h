@@ -9,7 +9,7 @@
 class PassengerPreference {
 public:
 	/*!
-	 * Constructs a new passenger preference given its minimum year and seat number
+	 * Constructs a new passenger preference given its minimum year and seat number.
 	 *
 	 * @param min_year the minimum year
 	 * @param seat_number the seat number
@@ -17,19 +17,30 @@ public:
 	PassengerPreference(unsigned int min_year, unsigned int seat_number);
 
 	/*!
-	 * Gets the minimum year
+	 * Gets the minimum year.
 	 *
 	 * @return the minimum year
 	 */
 	unsigned int getMinYear() const;
 
+	/*!
+	 * Gets the seat number.
+	 *
+	 * @return the seat number
+	 */
 	unsigned int getSeatNumber() const;
 
 	friend std::ostream &operator<<(std::ostream &ostream, const PassengerPreference &passenger_preference);
 
 private:
+    /*!
+     * The min year.
+     */
 	unsigned min_year;
 
+	/*!
+	 * The seat number.
+	 */
 	unsigned seat_number;
 };
 

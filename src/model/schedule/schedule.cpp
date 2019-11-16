@@ -26,7 +26,7 @@ bool Schedule::isInvalid() const {
 	return begin >= end;
 }
 
-bool Schedule::interfersWith(const Schedule &schedule) const {
+bool Schedule::interferesWith(const Schedule &schedule) const {
 	// TODO
 	return false;
 }

@@ -26,8 +26,18 @@ public:
 	 */
 	Offer(IVehicle &vehicle, std::list<Schedule> available_schedules, IProvider &provider, float price = 0);
 
+	/*!
+	 * Removes a schedule availability.
+	 *
+	 * @param to_remove the schedule
+	 */
 	void removeScheduleAvailability(const Schedule &to_remove);
 
+	/*!
+	 * Gets the vehicle.
+	 *
+	 * @return the vehicle
+	 */
 	IVehicle &getVehicle() const;
 
 	/*!
@@ -126,6 +136,11 @@ private:
 	 */
 	void setVehicle(const IVehicle &vehicle);
 
+	/*!
+	 * Sets the available schedules.
+	 *
+	 * @param available_schedules the available schedules
+	 */
 	void setAvailableSchedules(const std::list<Schedule> &available_schedules);
 
 	/*!

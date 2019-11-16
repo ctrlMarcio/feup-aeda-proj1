@@ -87,6 +87,9 @@ public:
 	void write(const std::string &directory) const;
 
 private:
+    /*!
+     * The list of users.
+     */
     list<AuthUser> users;
 };
 

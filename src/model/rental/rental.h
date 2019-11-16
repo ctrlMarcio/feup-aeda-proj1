@@ -81,12 +81,24 @@ public:
 	friend ostream &operator<<(ostream &ostream, const Rental &rental);
 
 private:
+    /*!
+     * The offer.
+     */
 	const Offer &offer;
 
+	/*!
+	 * The schedule.
+	 */
 	Schedule schedule;
 
+	/*!
+	 * The renter.
+	 */
 	IRenter &renter;
 
+	/*!
+	 * The price.
+	 */
 	float price;
 
 	/*!

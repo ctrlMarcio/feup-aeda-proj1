@@ -5,10 +5,26 @@
 #include <string>
 
 
+/*!
+ * The Date class represents a specific instant in time, with millisecond precision.
+ */
 class Date {
 public:
+    /*!
+     * Establishes a new instance of a date, with the current time.
+     */
 	Date();
 
+	/*!
+	 * Establishes a new instance of a date, given its parameters.
+	 *
+	 * @param day the day
+	 * @param month the month
+	 * @param year the year
+	 * @param hour the hour, default is 0
+	 * @param minute the minute, default is 0
+	 * @param second the second, default is 0
+	 */
 	Date(int day, int month, int year, int hour = 0, int minute = 0, int second = 0);
 
 	/*!
@@ -27,30 +43,99 @@ public:
 	 */
 	static void printDate(std::ofstream &ofstream, const Date &date);
 
+	/*!
+	 * Returns whether the the year is a leap or not.
+	 *
+	 * @return true, if the year is leap. false, otherwise
+	 */
 	bool isLeapYear() const;
 
+	/*!
+	 * Returns whether a date is greater than another.
+	 *
+	 * @param date the date
+	 * @return true, if this date is greater than the given one. false, otherwise
+	 */
 	bool operator>(const Date &date) const;
 
+    /*!
+     * Returns whether a date is less than another.
+     *
+     * @param date the date
+     * @return true, if this date is less than the given one. false, otherwise
+     */
 	bool operator<(const Date &date) const;
 
+    /*!
+     * Returns whether a date is greater or equal than another.
+     *
+     * @param date the date
+     * @return true, if this date is greater or equal than the given one. false, otherwise
+     */
 	bool operator>=(const Date &date) const;
 
+    /*!
+     * Returns whether a date is less or equal than another.
+     *
+     * @param date the date
+     * @return true, if this date is less or equal than the given one. false, otherwise
+     */
 	bool operator<=(const Date &date) const;
 
+	/*!
+	 * Gets the day of this date.
+	 *
+	 * @return the day
+	 */
     int getDay() const;
 
+    /*!
+     * Gets the month of this date.
+     *
+     * @return the month
+     */
     int getMonth() const;
 
+    /*!
+     * Gets the year of this date.
+     *
+     * @return the year
+     */
     int getYear() const;
 
+    /*!
+     * Gets the hour of this date.
+     *
+     * @return the hour
+     */
     int getHour() const;
 
+    /*!
+     * Gets the minute of this date.
+     *
+     * @return the minute
+     */
     int getMinute() const;
 
+    /*!
+     * Gets the second of this date.
+     *
+     * @return the second
+     */
     int getSecond() const;
 
+    /*!
+     * Gets the month name of this date.
+     *
+     * @return the month name
+     */
     std::string getMonthName() const;
 
+    /*!
+     * Gets a text representation of the date.
+     *
+     * @return a text representation
+     */
     std::string toString() const;
 
 	/*!
@@ -80,32 +165,90 @@ public:
 	friend std::ostream &operator<<(std::ostream &ostream, const Date &date);
 
 private:
+    /*!
+     * The month names.
+     */
     static std::string MONTH_NAMES[];
 
+    /*!
+     * The day of this date.
+     */
 	int day;
 
+    /*!
+     * The month of this date.
+     */
 	int month;
 
+    /*!
+     * The year of this date.
+     */
 	int year;
 
+    /*!
+     * The hour of this date.
+     */
 	int hour;
 
+    /*!
+     * The minute of this date.
+     */
 	int minute;
 
+    /*!
+     * The second of this date.
+     */
 	int second;
 
+	/*!
+	 * Returns whether a date is after another.
+	 *
+	 * @param date the date to compare
+	 * @param equal_to the equal comparison
+	 * @return true, if this date is after than the other. false, otherwise
+	 */
 	bool afterThan(const Date &date, bool equal_to) const;
 
+	/*!
+	 * Sets the day of the date.
+	 *
+	 * @param day the day
+	 */
 	void setDay(int day);
 
+    /*!
+	 * Sets the month of the date.
+	 *
+	 * @param month the month
+	 */
 	void setMonth(int month);
 
+    /*!
+     * Sets the year of the date.
+     *
+     * @param year the year
+     */
 	void setYear(int year);
 
+    /*!
+     * Sets the hour of the date.
+     *
+     * @param hour the hour
+     */
 	void setHour(int hour);
 
+    /*!
+     * Sets the minute of the date.
+     *
+     * @param minute the minute
+     */
 	void setMinute(int minute);
 
+    /*!
+     * Sets the second of the date.
+     *
+     * @param second the second
+     */
 	void setSecond(int second);
 };
 

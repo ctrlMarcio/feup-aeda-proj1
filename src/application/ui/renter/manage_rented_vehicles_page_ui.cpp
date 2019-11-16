@@ -48,8 +48,12 @@ string ManageRentedVehiclesPageUI::rentals() {
 
     int number = 1;
 
-    for (Rental *rental : page_rentals) {
-        options_stream << number++ << " - " << rental->toOneLineDescription() << endl;
+    if (page_rentals.empty()) {
+        options_stream << endl << "There is nothing to show in the page." << endl;
+    } else {
+        for (Rental *rental : page_rentals) {
+            options_stream << number++ << " - " << rental->toOneLineDescription() << endl;
+        }
     }
 
     options_stream << endl;
