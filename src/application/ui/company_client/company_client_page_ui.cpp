@@ -1,6 +1,7 @@
 #include "company_client_page_ui.h"
 #include "../preference/manage_preferences_ui.h"
 #include "../offer/view_offers_page_ui.h"
+#include "../offer/view_recommended_offers_ui.h"
 #include <sstream>
 
 CompanyClientPageUI::CompanyClientPageUI(UIManager &ui_manager) : ui_manager(ui_manager), controller(ui_manager.getCurrentSession()) {}
@@ -12,11 +13,12 @@ void CompanyClientPageUI::run() {
         option = getOption();
         switch (option) {
             case '1':
-                // TODO: View all offers
-				ViewOffersPageUI(ui_manager).run();
+				ui_manager.setCurrent(new ViewOffersPageUI(ui_manager));
+				ui_manager.run();
                 break;
             case '2':
-                // TODO: View recommended offers
+				ui_manager.setCurrent(new ViewRecommendedOffersUI(ui_manager));
+				ui_manager.run();
                 break;
             case '3':
                 // TODO: View rent history
@@ -25,7 +27,8 @@ void CompanyClientPageUI::run() {
                 // TODO: Manage rented vehicles
                 break;
 			case '5':
-				ManagePreferencesUI(ui_manager).run();
+				ui_manager.setCurrent(new ManagePreferencesUI(ui_manager));
+				ui_manager.run();
 				break;
             case '0':
                 controller.logout();

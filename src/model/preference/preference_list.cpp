@@ -44,7 +44,7 @@ PassengerPreference *PreferenceList::getPassengerPreference() const {
 	return passenger_preference;
 }
 
-CommercialPreference *PreferenceList::getCommercialPreference() {
+CommercialPreference *PreferenceList::getCommercialPreference() const {
 	return commercial_preference;
 }
 

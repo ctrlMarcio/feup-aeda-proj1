@@ -18,8 +18,6 @@ void ManagePreferencesUI::run() {
 		removePreference();
 	if (option == "s")
 		showPreferences();
-
-	cout << "Success!" << endl;
 }
 
 void ManagePreferencesUI::showPreferences() {
@@ -39,7 +37,7 @@ void ManagePreferencesUI::showPreferences() {
 	else
 		cout << *cp;
 
-	cout << endl;
+	cout << endl << endl;
 }
 
 void ManagePreferencesUI::addPreference() {
@@ -49,14 +47,16 @@ void ManagePreferencesUI::addPreference() {
 
 	getline(cin, option);
 
-	if (option == "passenger")
+	if (option == "passenger" || option == "p")
 		addPassengerPreference();
-	else if (option == "commercial")
+	else if (option == "commercial" || option == "c")
 		addCommercialPreference();
 	else {
 		cout << "The inserted value is invalid" << endl;
 		addPreference();
 	}
+
+	cout << "Success!" << endl;
 }
 
 void ManagePreferencesUI::addCommercialPreference() {
@@ -111,6 +111,8 @@ void ManagePreferencesUI::removePreference() {
 		cout << "The inserted value is invalid" << endl;
 		removePreference(); //invalid value
 	}
+
+	cout << "Success!" << endl;
 }
 
 string ManagePreferencesUI::whatPreferenceRemove() {

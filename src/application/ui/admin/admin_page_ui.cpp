@@ -11,7 +11,8 @@ void AdminPageUI::run() {
         option = getOption();
         switch (option) {
             case '1':
-				ViewAllRentalHistoryUI(ui_manager).run();
+				ui_manager.setCurrent(new ViewAllRentalHistoryUI(ui_manager));
+				ui_manager.run();
                 break;
             case '2':
                 // TODO: Manage provided vehicles

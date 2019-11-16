@@ -2,6 +2,7 @@
 #include <sstream>
 #include "../preference/manage_preferences_ui.h"
 #include "../offer/view_offers_page_ui.h"
+#include "../offer/view_recommended_offers_ui.h"
 
 ClientPageUI::ClientPageUI(UIManager &ui_manager) : ui_manager(ui_manager), controller(ui_manager.getCurrentSession()) {}
 
@@ -12,11 +13,12 @@ void ClientPageUI::run() {
 		option = getOption();
 		switch (option) {
 			case '1':
-				// TODO: View all offers
-				ViewOffersPageUI(ui_manager).run();
+				ui_manager.setCurrent(new ViewOffersPageUI(ui_manager));
+				ui_manager.run();
 				break;
 			case '2':
-				// TODO: View recommended offers
+				ui_manager.setCurrent(new ViewRecommendedOffersUI(ui_manager));
+				ui_manager.run();
 				break;
 			case '3':
 				// TODO: View rent history
@@ -28,7 +30,8 @@ void ClientPageUI::run() {
 				// TODO: Manage provided vehicles
 				break;
 			case '6':
-				ManagePreferencesUI(ui_manager).run();
+				ui_manager.setCurrent(new ManagePreferencesUI(ui_manager));
+				ui_manager.run();
 				break;
 			case '0':
 				controller.logout();

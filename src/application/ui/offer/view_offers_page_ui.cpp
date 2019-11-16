@@ -2,9 +2,9 @@
 #include "../../../model/vehicle/commercial_vehicle.h"
 #include "../../../model/vehicle/passenger_vehicle.h"
 #include "../register_page/register_page_ui.h"
+#include "../rental/rent_vehicle_ui.h"
 #include <sstream>
 #include <iomanip>
-#include "../rental/rent_vehicle_ui.h"
 
 using namespace string_util;
 
@@ -163,8 +163,8 @@ void ViewOffersPageUI::selectOffer(Offer &offer) {
                 ui_manager.run();
             }
         } else {
-			// TODO verify
-			RentVehicleUI(ui_manager, offer).run();
+			ui_manager.setCurrent(new RentVehicleUI(ui_manager, offer));
+			ui_manager.run();
         }
     }
 }

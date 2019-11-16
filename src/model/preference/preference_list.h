@@ -13,7 +13,12 @@ public:
 
 	PassengerPreference *getPassengerPreference() const;
 
-	CommercialPreference *getCommercialPreference();
+	/*!
+	 * Returns a pointer to the commercial preference.
+	 *
+	 * @return the pointer to the commercial preference.
+	 */
+	CommercialPreference *getCommercialPreference() const;
 
 	void removePassengerPreference();
 

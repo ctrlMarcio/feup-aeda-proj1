@@ -3,6 +3,8 @@
 #include "../../application/io/file_handling.h"
 #include "../../exception/invalid_file_exception.h"
 #include "../../util/string_util.h"
+#include "../vehicle/passenger_vehicle.h"
+#include "../vehicle/commercial_vehicle.h"
 #include <algorithm>
 #include <fstream>
 
@@ -10,9 +12,32 @@ Offer OfferManager::build(IVehicle &vehicle, const std::list<Schedule> &availabl
 	return Offer(vehicle, available_schedules, provider);
 }
 
-std::vector<Offer *> OfferManager::getRecommendedOffers(const PreferenceList &preference_list) const {
-	// TODO
-	return std::vector<Offer *>();
+std::vector<Offer *> OfferManager::getRecommendedOffers(const PreferenceList &preference_list) {
+	std::vector<Offer *> rec_offers;
+
+	PassengerPreference *pp = preference_list.getPassengerPreference();
+	CommercialPreference *cp = preference_list.getCommercialPreference();
+
+	for (Offer &offer : offers) {
+		IVehicle &vehicle = offer.getVehicle();
+
+		const string &type = vehicle.getType();
+		if (type == PassengerVehicle::TYPE && pp != nullptr) {
+			auto &pv = dynamic_cast<PassengerVehicle &>(vehicle);
+
+			if (pp->getMinYear() <= pv.getYear() && pp->getSeatNumber() == pv.getSeatNumber())
+				rec_offers.push_back(&offer);
+
+		} else if (type == CommercialVehicle::TYPE && cp != nullptr) {
+			auto &cv = dynamic_cast<CommercialVehicle &>(vehicle);
+
+			if (cp->getMinYear() <= cv.getYear() && cp->isRefrigerated() == cv.isRefrigerated() &&
+				cp->getMinMaxWeight() <= cv.getMaxWeight() && cp->getCargoVolume() <= cv.getCargoVolume())
+				rec_offers.push_back(&offer);
+		}
+	}
+
+	return rec_offers;
 }
 
 bool OfferManager::hasOfferOf(const IVehicle &vehicle) const {

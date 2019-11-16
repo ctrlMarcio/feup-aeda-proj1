@@ -30,7 +30,7 @@ public:
 	 * @param preference_list the list of preferences
 	 * @return the container of recommended offers
 	 */
-	vector<Offer *> getRecommendedOffers(const PreferenceList &preference_list) const;
+	vector<Offer *> getRecommendedOffers(const PreferenceList &preference_list);
 
 	/*!
 	 * Verifies if already exists offers for a given vehicle.
