@@ -39,6 +39,13 @@ public:
 	const Schedule &getSchedule() const;
 
 	/*!
+	 * Gets the rental as a one line description.
+	 *
+	 * @return the description
+	 */
+	std::string toOneLineDescription() const;
+
+	/*!
 	 * Verifies if another rental is equal to this one.
 	 *
 	 * @param rhs the other rental
@@ -47,11 +54,13 @@ public:
 	bool operator==(const Rental &rhs) const;
 
 	/*!
-	 * Gets the rental as a one line description.
+	 * Prints a rental in an ostream.
 	 *
-	 * @return the description
+	 * @param ostream the ostream
+	 * @param rental the rental to print
+	 * @return the modified ostream
 	 */
-	std::string toOneLineDescription() const;
+	friend ostream &operator<<(ostream &ostream, const Rental &rental);
 
 private:
 	const Offer &offer;

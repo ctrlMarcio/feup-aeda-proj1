@@ -11,7 +11,7 @@ float io_util::askFloat(const std::string &question) {
 	float ans = 0;
 	string option;
 
-	cout << endl << question << endl;
+	cout << endl << question << " ";
 
 	try {
 		getline(cin, option);
@@ -28,7 +28,7 @@ unsigned io_util::askUnsigned(const string &question) {
 	unsigned ans = 0;
 	string option;
 
-	cout << endl << question << endl;
+	cout << endl << question << " ";
 
 	try {
 		getline(cin, option);
@@ -45,7 +45,7 @@ bool io_util::askBool(const string &question) {
 	bool ans;
 	string option;
 
-	cout << endl << question << endl;
+	cout << endl << question << " ";
 
 	try {
 		getline(cin, option);
@@ -69,7 +69,7 @@ string io_util::askString(const string &question) {
 	string ans;
 	string option;
 
-	cout << endl << question << endl;
+	cout << endl << question << " ";
 
 	try {
 		getline(cin, option);

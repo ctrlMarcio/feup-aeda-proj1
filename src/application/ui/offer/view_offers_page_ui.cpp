@@ -4,6 +4,7 @@
 #include "../register_page/register_page_ui.h"
 #include <sstream>
 #include <iomanip>
+#include "../rental/rent_vehicle_ui.h"
 
 using namespace string_util;
 
@@ -150,7 +151,7 @@ void ViewOffersPageUI::selectOffer(Offer &offer) {
 
     getline(cin, input);
 
-    if (input == "Y") {
+	if (input == "Y" || input == "y") {
         if (ui_manager.getCurrentSession().getUser() == AuthUser("", "", "")) {
             cout << endl << "You dont have an account, do you wish to create an account? (Y/N) ";
             string create_account;
@@ -162,7 +163,8 @@ void ViewOffersPageUI::selectOffer(Offer &offer) {
                 ui_manager.run();
             }
         } else {
-            // Todo: redirect to UC - Rent vehicle
+			// TODO verify
+			RentVehicleUI(ui_manager, offer).run();
         }
     }
 }

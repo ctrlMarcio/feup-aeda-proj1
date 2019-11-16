@@ -44,3 +44,8 @@ std::string Rental::toOneLineDescription() const {
 
 	return res_stream.str();
 }
+
+ostream &operator<<(ostream &ostream, const Rental &rental) {
+	ostream << rental.offer << endl << rental.schedule << endl << "Price: " << rental.price << "gbp" << endl;
+	return ostream;
+}

@@ -10,13 +10,15 @@ Offer::Offer(IVehicle &vehicle, std::list<Schedule> available_schedules, IProvid
 void Offer::removeScheduleAvailability(const Schedule &to_remove) {
 	for (auto it = available_schedules.begin(); it != available_schedules.end(); ++it) {
 		if (to_remove.isInside(*it)) {
-			Schedule before((*it).getBegin(), to_remove.getBegin());
-			Schedule after(to_remove.getEnd(), (*it).getEnd());
-
-			if (!before.isInvalid())
+			try {
+				Schedule before((*it).getBegin(), to_remove.getBegin());
 				available_schedules.push_back(before);
-			if (!after.isInvalid())
+			} catch (const InvalidScheduleException &e) {}
+
+			try {
+				Schedule after(to_remove.getEnd(), (*it).getEnd());
 				available_schedules.push_back(after);
+			} catch (const InvalidScheduleException &e) {}
 
 			available_schedules.erase(it);
 			break;

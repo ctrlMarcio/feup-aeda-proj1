@@ -1,5 +1,6 @@
 #include "company_client_page_ui.h"
 #include "../preference/manage_preferences_ui.h"
+#include "../offer/view_offers_page_ui.h"
 #include <sstream>
 
 CompanyClientPageUI::CompanyClientPageUI(UIManager &ui_manager) : ui_manager(ui_manager), controller(ui_manager.getCurrentSession()) {}
@@ -12,6 +13,7 @@ void CompanyClientPageUI::run() {
         switch (option) {
             case '1':
                 // TODO: View all offers
+				ViewOffersPageUI(ui_manager).run();
                 break;
             case '2':
                 // TODO: View recommended offers
