@@ -64,3 +64,20 @@ bool io_util::askBool(const string &question) {
 
 	return ans;
 }
+
+string io_util::askString(const string &question) {
+	string ans;
+	string option;
+
+	cout << endl << question << endl;
+
+	try {
+		getline(cin, option);
+		ans = option;
+	} catch (const exception &e) {
+		cout << "The value is invalid." << endl;
+		ans = askString(question);
+	}
+
+	return ans;
+}

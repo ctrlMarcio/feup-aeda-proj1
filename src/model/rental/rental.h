@@ -46,6 +46,13 @@ public:
 	 */
 	bool operator==(const Rental &rhs) const;
 
+	/*!
+	 * Gets the rental as a one line description.
+	 *
+	 * @return the description
+	 */
+	std::string toOneLineDescription() const;
+
 private:
 	const Offer &offer;
 

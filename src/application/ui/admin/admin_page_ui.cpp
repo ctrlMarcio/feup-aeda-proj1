@@ -1,5 +1,6 @@
 #include "admin_page_ui.h"
 #include <sstream>
+#include "../rental/view_all_rental_history_ui.h"
 
 AdminPageUI::AdminPageUI(UIManager &ui_manager) : ui_manager(ui_manager), controller(ui_manager.getCurrentSession()) {}
 
@@ -10,7 +11,7 @@ void AdminPageUI::run() {
         option = getOption();
         switch (option) {
             case '1':
-                // TODO: View rent history
+				ViewAllRentalHistoryUI(ui_manager).run();
                 break;
             case '2':
                 // TODO: Manage provided vehicles

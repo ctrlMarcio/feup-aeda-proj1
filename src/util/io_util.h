@@ -35,6 +35,14 @@ namespace io_util {
 	 */
 	bool askBool(const std::string &question);
 
+	/*!
+	 * Asks a question in the terminal, returning the answer as a bool.
+	 *
+	 * @param question the question to ask
+	 * @return the answer as a bool
+	 */
+	std::string askString(const std::string &question);
+
 };
 
 

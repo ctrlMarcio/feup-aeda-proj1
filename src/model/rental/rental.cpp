@@ -1,6 +1,7 @@
 #include "rental.h"
 
 #include <utility>
+#include <sstream>
 
 Rental::Rental(Offer &offer, Schedule schedule) : offer(offer), schedule(schedule) {
 	this->price = this->calculatePrice();
@@ -28,4 +29,18 @@ bool Rental::operator==(const Rental &rhs) const {
 	return offer == rhs.offer &&
 		   schedule == rhs.schedule &&
 		   price == rhs.price;
+}
+
+std::string Rental::toOneLineDescription() const {
+	stringstream res_stream;
+
+	res_stream << this->offer.getVehicle().getType();
+	res_stream << "-" << this->offer.getVehicle().getBrand();
+	res_stream << " " << this->offer.getVehicle().getModel();
+	res_stream << " | " << this->schedule.getBegin().toString();
+	res_stream << " to " << this->schedule.getEnd().toString();
+	res_stream << " | id: " << this->offer.getProvider().getIdentificationNumber();
+	res_stream << " | " + to_string(this->price) << " gbp";
+
+	return res_stream.str();
 }
