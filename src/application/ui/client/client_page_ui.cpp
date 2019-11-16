@@ -5,6 +5,7 @@
 #include "../offer/view_recommended_offers_ui.h"
 #include "../renter/view_rental_history_page_ui.h"
 #include "../renter/manage_rented_vehicles_page_ui.h"
+#include "../vehicle/manage_provided_vehicles_ui.h"
 
 ClientPageUI::ClientPageUI(UIManager &ui_manager) : ui_manager(ui_manager), controller(ui_manager.getCurrentSession()) {}
 
@@ -31,7 +32,8 @@ void ClientPageUI::run() {
                 ui_manager.run();
 				break;
 			case '5':
-				// TODO: Manage provided vehicles
+				ui_manager.setCurrent(new ManageProvidedVehiclesUI(ui_manager));
+				ui_manager.run();
 				break;
 			case '6':
 				ui_manager.setCurrent(new ManagePreferencesUI(ui_manager));

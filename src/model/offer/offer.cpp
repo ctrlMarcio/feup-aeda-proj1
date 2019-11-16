@@ -79,8 +79,11 @@ void Offer::setAvailableSchedules(const std::list<Schedule> &available_schedules
 	this->available_schedules = available_schedules;
 }
 
-void Offer::setPrice(float price) {
+bool Offer::setPrice(float price) {
+	if (!isPriceValid(price))
+		return false;
 	this->price = price;
+	return true;
 }
 
 bool Offer::operator==(const Offer &rhs) const {
@@ -106,4 +109,8 @@ const list<Schedule> &Offer::getAvailableSchedules() const {
 
 IProvider &Offer::getProvider() const {
 	return provider;
+}
+
+bool Offer::isPriceValid(float price) {
+	return price > 0;
 }

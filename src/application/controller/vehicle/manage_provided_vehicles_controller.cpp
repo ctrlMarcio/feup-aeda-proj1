@@ -1,6 +1,7 @@
 #include "manage_provided_vehicles_controller.h"
 #include "../../ui/vehicle/add_vehicle_ui.h"
 #include "../../ui/vehicle/remove_vehicle_ui.h"
+#include "../../ui/vehicle/edit_vehicle_ui.h"
 
 ManageProvidedVehiclesController::ManageProvidedVehiclesController(UIManager &ui_manager) :
 		ui_manager(ui_manager) {}
@@ -12,6 +13,11 @@ void ManageProvidedVehiclesController::addVehicle() {
 
 void ManageProvidedVehiclesController::removeVehicle() {
 	ui_manager.setCurrent(new RemoveVehicleUI(ui_manager));
+	ui_manager.run();
+}
+
+void ManageProvidedVehiclesController::editVehicle() {
+	ui_manager.setCurrent(new EditVehicleUI(ui_manager));
 	ui_manager.run();
 }
 

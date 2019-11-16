@@ -8,8 +8,8 @@
 #include <algorithm>
 #include <fstream>
 
-Offer OfferManager::build(IVehicle &vehicle, const std::list<Schedule> &available_schedules, IProvider &provider) {
-	return Offer(vehicle, available_schedules, provider);
+Offer *OfferManager::build(IVehicle &vehicle, const std::list<Schedule> &available_schedules, IProvider &provider, float price) {
+	return new Offer(vehicle, available_schedules, provider, price);
 }
 
 std::vector<Offer *> OfferManager::getRecommendedOffers(const PreferenceList &preference_list) {

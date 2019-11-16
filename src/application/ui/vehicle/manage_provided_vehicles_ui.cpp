@@ -23,7 +23,7 @@ void ManageProvidedVehiclesUI::run() {
 				controller.removeVehicle();
 				break;
 			case '4':
-				//TODO controller.editVehicle();
+				controller.editVehicle();
 				break;
 			case '0':
 				cout << endl << "Returning ..." << endl;

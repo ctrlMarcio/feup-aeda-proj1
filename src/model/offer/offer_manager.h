@@ -20,9 +20,10 @@ public:
 	 * @param vehicle the vehicle
 	 * @param available_schedules the available schedules
 	 * @param provider the provider that created the offer
+	 * @param price the price per hour
 	 * @return the created offer
 	 */
-	static Offer build(IVehicle &vehicle, const std::list<Schedule> &available_schedules, IProvider &provider);
+	static Offer *build(IVehicle &vehicle, const std::list<Schedule> &available_schedules, IProvider &provider, float price = 0);
 
 	/*!
 	 * Gets a container of recommended offers given a container of preferences.
