@@ -14,18 +14,18 @@ ViewOffersPageUI::ViewOffersPageUI(UIManager &ui_manager) : ui_manager(ui_manage
                                                                        ui_manager.getCompany()) {}
 
 void ViewOffersPageUI::run() {
-    char option;
+    string option;
 
     do {
         option = getOffer();
 
-        if (is_number(to_string(option)) && stoi(to_string(option)) - 48 >= 1 &&
-            stoi(to_string(option)) - 48 <= controller.getOffers(current_page, MAX_PER_PAGE).size()) {
-            Offer *offer = controller.getOffer(current_page, MAX_PER_PAGE, stoi(to_string(option)) - 48 - 1);
+        if (option[0] != '0' && is_number(option) && stoi(option) >= 1 &&
+            stoi(option) <= controller.getOffers(current_page, MAX_PER_PAGE).size()) {
+            Offer *offer = controller.getOffer(current_page, MAX_PER_PAGE, stoi(option) - 1);
 
             selectOffer(*offer);
         } else {
-            switch (option) {
+            switch (toupper(option[0])) {
                 case 'A':
                     increasePage();
                     break;
@@ -39,7 +39,7 @@ void ViewOffersPageUI::run() {
                     break;
             }
         }
-    } while (option != '0');
+    } while (option[0] != '0');
 }
 
 string ViewOffersPageUI::offers() {
@@ -72,7 +72,7 @@ string ViewOffersPageUI::offers() {
     return options_stream.str();
 }
 
-char ViewOffersPageUI::getOffer() {
+string ViewOffersPageUI::getOffer() {
     cout << offers();
 
     string option;
@@ -81,7 +81,7 @@ char ViewOffersPageUI::getOffer() {
 
     getline(cin, option);
 
-    return option[0];
+    return option;
 }
 
 string ViewOffersPageUI::singleOffer(Offer &offer) {

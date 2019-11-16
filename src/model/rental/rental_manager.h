@@ -65,6 +65,14 @@ public:
 	 */
 	const std::list<Rental> &getAllRentals() const;
 
+	/*!
+	 * Gets the rentals for a specific user.
+	 *
+	 * @param identification_number the identification number
+	 * @return the container
+	 */
+	std::vector<Rental *> getRentals(const string &identification_number);
+
 private:
 	/*!
 	 * All the existent rentals.

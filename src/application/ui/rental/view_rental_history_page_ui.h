@@ -13,13 +13,13 @@ public:
     void run() override;
 
 private:
-    static const int MAX_PER_PAGE = 8;
+    static const int MAX_PER_PAGE = 10;
 
     UIManager &ui_manager;
 
     ViewRentalHistoryPageController controller;
 
-    char getOption();
+    string getOption();
 
     string rentals();
 

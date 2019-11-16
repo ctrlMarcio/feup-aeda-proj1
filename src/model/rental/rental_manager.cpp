@@ -89,3 +89,11 @@ void RentalManager::write(const std::string &directory) const {
 const std::list<Rental> &RentalManager::getAllRentals() const {
 	return rentals;
 }
+
+std::vector<Rental *> RentalManager::getRentals(const string &identification_number) {
+    std::vector<Rental *> result;
+    for (Rental &rental : rentals)
+        if (rental.getRenter().getIdentificationNumber() == identification_number)
+            result.push_back(&rental);
+    return result;
+}

@@ -5,24 +5,33 @@ ViewRentalHistoryPageUI::ViewRentalHistoryPageUI(UIManager &ui_manager) : ui_man
         ui_manager.getCompany().getRentalManager()) {}
 
 void ViewRentalHistoryPageUI::run() {
-    char option;
+    string option;
 
     do {
         option = getOption();
-        switch (option) {
-            case 'A':
-                increasePage();
-                break;
-            case 'D':
-                decreasePage();
-                break;
-            case '0':
-                break;
-            default:
-                cout << endl << "Invalid option, try again..." << endl;
-                break;
+
+        if (option[0] != '0' && is_number(option) && stoi(option) >= 1 &&
+            stoi(option) <=
+            controller.getRentals(ui_manager.getCurrentSession().getUser().getIdentificationNumber(), current_page,
+                                  MAX_PER_PAGE).size()) {
+
+            // SHOW DETAILED THING
+        } else {
+            switch (toupper(option[0])) {
+                case 'A':
+                    increasePage();
+                    break;
+                case 'D':
+                    decreasePage();
+                    break;
+                case '0':
+                    break;
+                default:
+                    cout << endl << "Invalid option, try again..." << endl;
+                    break;
+            }
         }
-    } while (option != '0');
+    } while (option[0] != '0');
 }
 
 string ViewRentalHistoryPageUI::rentals() {
@@ -33,7 +42,8 @@ string ViewRentalHistoryPageUI::rentals() {
     options_stream << "A/D - Previous/next page" << endl;
     options_stream << endl;
 
-    vector<Rental *> page_rentals = controller.getRentals(ui_manager.getCurrentSession().getUser().getIdentificationNumber(), current_page, MAX_PER_PAGE);
+    vector<Rental *> page_rentals = controller.getRentals(
+            ui_manager.getCurrentSession().getUser().getIdentificationNumber(), current_page, MAX_PER_PAGE);
 
     int number = 1;
 
@@ -44,7 +54,8 @@ string ViewRentalHistoryPageUI::rentals() {
     if (page_rentals.empty()) {
         options_stream << endl << "There is nothing to show in the page." << endl;
     } else {
-        int page_count = controller.getPageCount(MAX_PER_PAGE);
+        int page_count = controller.getPageCount(ui_manager.getCurrentSession().getUser().getIdentificationNumber(),
+                                                 MAX_PER_PAGE);
 
         options_stream << endl << "Page " << current_page << "/" << page_count << endl;
     }
@@ -55,7 +66,7 @@ string ViewRentalHistoryPageUI::rentals() {
     return options_stream.str();
 }
 
-char ViewRentalHistoryPageUI::getOption() {
+string ViewRentalHistoryPageUI::getOption() {
     cout << rentals();
 
     string option;
@@ -64,7 +75,7 @@ char ViewRentalHistoryPageUI::getOption() {
 
     getline(cin, option);
 
-    return option[0];
+    return option;
 }
 
 void ViewRentalHistoryPageUI::increasePage() {
@@ -77,7 +88,8 @@ void ViewRentalHistoryPageUI::increasePage() {
 }
 
 void ViewRentalHistoryPageUI::decreasePage() {
-    int page_count = controller.getPageCount(MAX_PER_PAGE);
+    int page_count = controller.getPageCount(ui_manager.getCurrentSession().getUser().getIdentificationNumber(),
+                                             MAX_PER_PAGE);
 
     if (current_page + 1 > page_count) {
         cout << endl << "That page is invalid, try another..." << endl;

@@ -21,7 +21,7 @@ private:
 
     string offers();
 
-    char getOffer();
+    string getOffer();
 
     string singleOffer(Offer &offer);
 

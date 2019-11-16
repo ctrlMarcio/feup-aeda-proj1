@@ -49,3 +49,12 @@ TEST(auth_user_manager, get_user) {
     ASSERT_EQ(manager.getUser(auth_user.getIdentificationNumber()), auth_user);
 }
 
+TEST(auth_user_manager, misc) {
+    AuthUserManager manager;
+    AuthUser auth_user = manager.build("255716320", AuthUser::ADMIN_ROLE);
+
+    manager.add(auth_user);
+    ASSERT_TRUE(manager.has(auth_user));
+    ASSERT_EQ(manager.getUser(auth_user.getIdentificationNumber()), auth_user);
+}
+

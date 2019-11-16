@@ -8,7 +8,7 @@ class ViewRentalHistoryPageController {
 public:
     explicit ViewRentalHistoryPageController(RentalManager &rental_manager);
 
-    int getPageCount(const int MAX_PER_PAGE);
+    int getPageCount(const string &identification_number, int MAX_PER_PAGE);
 
     vector<Rental *> getRentals(const string &identification_number, int current_page, const int MAX_PER_PAGE);
 
