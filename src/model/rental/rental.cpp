@@ -3,12 +3,12 @@
 #include <utility>
 #include <sstream>
 
-Rental::Rental(Offer &offer, Schedule schedule) : offer(offer), schedule(schedule) {
+Rental::Rental(Offer &offer, Schedule schedule, IRenter &renter) : offer(offer), schedule(schedule), renter(renter) {
 	this->price = this->calculatePrice();
 }
 
-Rental::Rental(Offer &offer, const Date &begin, const Date &end) :
-		offer(offer), schedule(Schedule(begin, end)) {
+Rental::Rental(Offer &offer, const Date &begin, const Date &end, IRenter &renter) :
+		offer(offer), schedule(Schedule(begin, end)), renter(renter) {
 	this->price = this->calculatePrice();
 }
 
@@ -48,4 +48,8 @@ std::string Rental::toOneLineDescription() const {
 ostream &operator<<(ostream &ostream, const Rental &rental) {
 	ostream << rental.offer << endl << rental.schedule << endl << "Price: " << rental.price << "gbp" << endl;
 	return ostream;
+}
+
+IRenter &Rental::getRenter() const {
+	return renter;
 }

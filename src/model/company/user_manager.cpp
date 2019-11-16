@@ -28,7 +28,7 @@ IProvider *UserManager::getProvider(const std::string &identification_number) {
 	return provider;
 }
 
-IRenter &UserManager::getRenter(const std::string &identification_number) {
+IRenter *UserManager::getRenter(const std::string &identification_number) {
 	IRenter *renter;
 	ClientCompany *cc = client_company_manager.get(identification_number);
 
@@ -39,7 +39,7 @@ IRenter &UserManager::getRenter(const std::string &identification_number) {
 		renter = cc;
 	}
 
-	return *renter;
+	return renter;
 }
 
 AdminManager &UserManager::getAdminManager() {

@@ -4,7 +4,9 @@
 #include "../../../exception/invalid_schedule_exception.h"
 
 RentVehicleUI::RentVehicleUI(UIManager &ui_manager, Offer &offer) :
-		controller(ui_manager.getCompany().getRentalManager(), offer) {}
+		controller(ui_manager.getCompany().getRentalManager(),
+				   offer,
+				   *ui_manager.getCompany().getUserManager().getRenter(ui_manager.getCurrentSession().getUser().getIdentificationNumber())) {}
 
 void RentVehicleUI::run() {
 	showVehicle();

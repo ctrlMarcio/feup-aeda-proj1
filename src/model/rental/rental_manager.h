@@ -8,12 +8,38 @@
 #include "../schedule/schedule.h"
 #include "../offer/offer_manager.h"
 
+/*!
+ * Manages all the rents in a company.
+ */
 class RentalManager {
 public:
-	static Rental build(Offer &offer, const Schedule &schedule);
+	/*!
+	 * Builds a rent.
+	 *
+	 * @param offer the offer of the rent
+	 * @param schedule the schedule
+	 * @param renter the user who rented
+	 * @return the built rent
+	 */
+	static Rental build(Offer &offer, const Schedule &schedule, IRenter &renter);
 
-	static Rental build(Offer &offer, const Date &begin, const Date &end);
+	/*!
+	 * Builds a rent.
+	 *
+	 * @param offer the offer
+	 * @param begin the beginning date
+	 * @param end the ending date
+	 * @param renter the user who rent
+	 * @return the built rent
+	 */
+	static Rental build(Offer &offer, const Date &begin, const Date &end, IRenter &renter);
 
+	/*!
+	 * Adds a rental to the manager.
+	 *
+	 * @param rental the rental to add
+	 * @return if the rental was successfully added
+	 */
 	bool add(Rental rental);
 
 	/*!

@@ -14,7 +14,7 @@ public:
 
 	IProvider *getProvider(const std::string &identification_number);
 
-	IRenter &getRenter(const std::string &identification_number);
+	IRenter *getRenter(const std::string &identification_number);
 
 	AdminManager &getAdminManager();
 

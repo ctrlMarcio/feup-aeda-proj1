@@ -5,7 +5,7 @@
 ManagePreferencesUI::ManagePreferencesUI(const UIManager &ui_manager) :
 		controller(ManagePreferencesController(ui_manager.getCompany().
 				getUserManager().getRenter(ui_manager.getCurrentSession().getUser().
-				getIdentificationNumber()).getPreferenceList())) {}
+				getIdentificationNumber())->getPreferenceList())) {}
 
 void ManagePreferencesUI::run() {
 	std::string option;

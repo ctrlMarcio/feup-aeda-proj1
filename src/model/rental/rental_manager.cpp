@@ -4,12 +4,12 @@
 #include "../../application/io/file_handling.h"
 #include "../../util/string_util.h"
 
-Rental RentalManager::build(Offer &offer, const Schedule &schedule) {
-	return Rental{offer, schedule};
+Rental RentalManager::build(Offer &offer, const Schedule &schedule, IRenter &renter) {
+	return Rental{offer, schedule, renter};
 }
 
-Rental RentalManager::build(Offer &offer, const Date &begin, const Date &end) {
-	return Rental{offer, begin, end};
+Rental RentalManager::build(Offer &offer, const Date &begin, const Date &end, IRenter &renter) {
+	return Rental{offer, begin, end, renter};
 }
 
 bool RentalManager::isValid(const Rental &rental) {
@@ -44,17 +44,19 @@ void RentalManager::read(const std::string &directory, OfferManager &offer_manag
 		std::vector<std::string> params = string_util::split(line, file_handling::delimiter);
 
 		std::string provider_id = params[0];
-		std::string number_plate = params[1];
+		std::string renter_id = params[1];
+		std::string number_plate = params[2];
 
 		IProvider &provider = *user_manager.getProvider(provider_id);
+		IRenter &renter = *user_manager.getRenter(renter_id);
 		IVehicle &vehicle = provider.getVehicleList().get(number_plate);
 		Offer &offer = offer_manager.getOfferOf(vehicle);
 
-		Date *begin = Date::getDate(params[2]);
-		Date *end = Date::getDate(params[3]);
+		Date *begin = Date::getDate(params[3]);
+		Date *end = Date::getDate(params[4]);
 		auto *schedule = new Schedule(*begin, *end);
 
-		auto *rental = new Rental(offer, *schedule);
+		auto *rental = new Rental(offer, *schedule, renter);
 		this->add(*rental);
 	}
 
@@ -72,6 +74,7 @@ void RentalManager::write(const std::string &directory) const {
 
 	for (const Rental &rental : rentals) {
 		ofstream << rental.getOffer().getProvider().getIdentificationNumber() << file_handling::delimiter
+				 << rental.getRenter().getIdentificationNumber() << file_handling::delimiter
 				 << rental.getOffer().getVehicle().getNumberPlate() << file_handling::delimiter;
 
 		Date::printDate(ofstream, rental.getSchedule().getBegin());
