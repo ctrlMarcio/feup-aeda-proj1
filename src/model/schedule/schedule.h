@@ -28,6 +28,8 @@ public:
 	 */
 	bool operator==(const Schedule &rhs) const;
 
+    void setEnd(const Date &end);
+
 	/*!
 	 * Prints a schedule in an ostream.
 	 *
@@ -43,8 +45,6 @@ private:
 	Date end;
 
 	void setBegin(const Date &begin);
-
-	void setEnd(const Date &end);
 };
 
 

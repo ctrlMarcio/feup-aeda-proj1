@@ -4,7 +4,7 @@
 
 #include "../ui.h"
 #include "../ui_manager.h"
-#include "../../controller/rental/view_rental_history_page_controller.h"
+#include "../../controller/renter/view_rental_history_page_controller.h"
 
 class ViewRentalHistoryPageUI : public UI {
 public:

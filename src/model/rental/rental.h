@@ -40,9 +40,9 @@ public:
 	/*!
 	 * Gets the schedule of the rental.
 	 *
-	 * @return the const reference to the schedule
+	 * @return the reference to the schedule
 	 */
-	const Schedule &getSchedule() const;
+	Schedule &getSchedule();
 
 	/*!
 	 * Gets the user who rented the vehicle.
@@ -78,7 +78,7 @@ public:
 private:
 	const Offer &offer;
 
-	const Schedule schedule;
+	Schedule schedule;
 
 	IRenter &renter;
 
