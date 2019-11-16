@@ -18,6 +18,13 @@ namespace io_util {
 	 */
 	float askFloat(const std::string &question);
 
+	/*!
+	 * Asks a question in the terminal, returning the answer as a float.
+	 *
+	 * @param question the question to ask
+	 * @return the answer as a float
+	 */
+	double askDouble(const std::string &question);
 
 	/*!
 	 * Asks a question in the terminal, returning the answer as an unsigned int.

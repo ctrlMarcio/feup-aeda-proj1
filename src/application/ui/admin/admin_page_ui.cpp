@@ -1,6 +1,7 @@
 #include "admin_page_ui.h"
 #include <sstream>
 #include "../rental/view_all_rental_history_ui.h"
+#include "../vehicle/manage_provided_vehicles_ui.h"
 
 AdminPageUI::AdminPageUI(UIManager &ui_manager) : ui_manager(ui_manager), controller(ui_manager.getCurrentSession()) {}
 
@@ -15,7 +16,8 @@ void AdminPageUI::run() {
 				ui_manager.run();
                 break;
             case '2':
-                // TODO: Manage provided vehicles
+				ui_manager.setCurrent(new ManageProvidedVehiclesUI(ui_manager));
+				ui_manager.run();
                 break;
             case '0':
                 controller.logout();

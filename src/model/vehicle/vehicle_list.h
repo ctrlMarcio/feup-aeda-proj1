@@ -83,16 +83,6 @@ public:
 	 */
 	IVehicle &get(const std::string &number_plate);
 
-    bool operator==(const VehicleList &rhs) const;
-
-    bool operator!=(const VehicleList &rhs) const;
-
-private:
-	/*!
-	 * The container that stores the vehicles
-	 */
-	std::vector<IVehicle *> vehicles;
-
 	/*!
 	 * Verifies if a vehicle is valid, i.e., if it is possible to add it to the list.
 	 *
@@ -100,6 +90,28 @@ private:
 	 * @return true if the vehicle is valid, false otherwise
 	 */
 	bool isValid(const IVehicle &vehicle) const;
+
+	/*!
+	 * Verifies if another vehicle list is equal to this one.
+	 *
+	 * @param rhs the other list
+	 * @return true if they are equal, false otherwise
+	 */
+	bool operator==(const VehicleList &rhs) const;
+
+	/*!
+	 * Verifies if another vehicle list is different from this one.
+	 *
+	 * @param rhs the other list
+	 * @return true if they are different, false otherwise
+	 */
+	bool operator!=(const VehicleList &rhs) const;
+
+private:
+	/*!
+	 * The container that stores the vehicles
+	 */
+	std::vector<IVehicle *> vehicles;
 
 	/*!
 	 * Verifies if the list already has a vehicle.
