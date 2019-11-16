@@ -47,7 +47,7 @@ unsigned PassengerVehicle::getSeatNumber() const {
 }
 
 bool PassengerVehicle::isEqual(const IVehicle &vehicle) const {
-	return seat_number == dynamic_cast<const PassengerVehicle &>(vehicle).seat_number;
+	return number_plate == dynamic_cast<const PassengerVehicle &>(vehicle).number_plate;
 }
 
 const string &PassengerVehicle::getType() const {

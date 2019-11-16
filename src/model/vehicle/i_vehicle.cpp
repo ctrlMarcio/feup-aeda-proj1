@@ -4,7 +4,7 @@
 IVehicle::~IVehicle() = default;
 
 bool IVehicle::operator==(const IVehicle &vehicle) const {
-	return typeid(*this) == typeid(vehicle) && isEqual(vehicle);
+	return this->getNumberPlate() == vehicle.getNumberPlate();
 }
 
 ostream &operator<<(ostream &ostream, const IVehicle &vehicle) {
