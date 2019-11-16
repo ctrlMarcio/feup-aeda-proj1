@@ -13,7 +13,8 @@ Rental RentalManager::build(Offer &offer, const Date &begin, const Date &end, IR
 }
 
 bool RentalManager::isValid(const Rental &rental) {
-	bool valid = (rental.getOffer().hasSchedule(rental.getSchedule()));
+	bool valid = (rental.getOffer().hasSchedule(rental.getSchedule()) &&
+				  (rental.getOffer().getProvider().getIdentificationNumber() != rental.getRenter().getIdentificationNumber()));
 
 	if (!valid)
 		return false;

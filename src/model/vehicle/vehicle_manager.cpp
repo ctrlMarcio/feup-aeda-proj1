@@ -30,7 +30,7 @@ void VehicleManager::read(const std::string &directory) {
 }
 
 void VehicleManager::write(const std::string &directory) {
-	std::string file_path = directory + file_handling::company_vehicle;
+	std::string file_path = directory + "/" + file_handling::company_vehicle;
 
 	ofstream ofstream;
 	ofstream.open(file_path);
@@ -39,7 +39,6 @@ void VehicleManager::write(const std::string &directory) {
 		throw InvalidFileException(file_path);
 
 	for (const IVehicle *vehicle : vehicle_list.getVehicles()) {
-		ofstream << file_handling::delimiter;
 		vehicle->printToFile(ofstream);
 	}
 	ofstream << std::endl;

@@ -11,7 +11,7 @@ float io_util::askFloat(const std::string &question) {
 	float ans = 0;
 	string option;
 
-	cout << endl << question << " ";
+	cout << question << " ";
 
 	try {
 		getline(cin, option);
@@ -24,11 +24,28 @@ float io_util::askFloat(const std::string &question) {
 	return ans;
 }
 
+double io_util::askDouble(const std::string &question) {
+	float ans = 0;
+	string option;
+
+	cout << question << " ";
+
+	try {
+		getline(cin, option);
+		ans = stod(option);
+	} catch (const exception &e) {
+		cout << "The value is invalid." << endl;
+		ans = askDouble(question);
+	}
+
+	return ans;
+}
+
 unsigned io_util::askUnsigned(const string &question) {
 	unsigned ans = 0;
 	string option;
 
-	cout << endl << question << " ";
+	cout << question << " ";
 
 	try {
 		getline(cin, option);
@@ -45,7 +62,7 @@ bool io_util::askBool(const string &question) {
 	bool ans;
 	string option;
 
-	cout << endl << question << " ";
+	cout << question << " ";
 
 	try {
 		getline(cin, option);
@@ -69,7 +86,7 @@ string io_util::askString(const string &question) {
 	string ans;
 	string option;
 
-	cout << endl << question << " ";
+	cout << question << " ";
 
 	try {
 		getline(cin, option);
