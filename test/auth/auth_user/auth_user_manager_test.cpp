@@ -39,6 +39,19 @@ TEST(auth_user_manager, remove) {
     ASSERT_FALSE(manager.has(auth_user));
 }
 
+TEST(auth_user_manager, has) {
+	AuthUserManager manager;
+	AuthUser auth_user = manager.build("255716320", "1234565", AuthUser::ADMIN_ROLE);
+	AuthUser auth_user_2 = manager.build("255716321", "1234565455", AuthUser::ADMIN_ROLE);
+
+	manager.add(auth_user);
+
+	ASSERT_TRUE(manager.has(auth_user));
+	ASSERT_TRUE(manager.has("255716320"));
+	ASSERT_FALSE(manager.has(auth_user_2));
+	ASSERT_FALSE(manager.has("255716321"));
+}
+
 TEST(auth_user_manager, get_user) {
     AuthUserManager manager;
     AuthUser auth_user = manager.build("255716320", "1234565", AuthUser::ADMIN_ROLE);

@@ -62,7 +62,7 @@ void PassengerVehicle::setYear(unsigned year) {
 	Date now;
 	Date toVerify(1, 1, year);
 
-	if (now.getYear() > toVerify.getYear())
+	if (toVerify.getYear() > now.getYear())
 		throw InvalidVehicleException("The year is invalid.");
 
 	this->year = year;

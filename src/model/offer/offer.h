@@ -98,6 +98,7 @@ public:
 
 	/*!
 	 * Verifies if another offer is equal to this one.
+	 * Two offers are equal if the vehicle and the schedules are equal.
 	 *
 	 * @param rhs the another offer
 	 * @return true if they are equal, false otherwise

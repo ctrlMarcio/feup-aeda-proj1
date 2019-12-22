@@ -37,9 +37,8 @@ bool Offer::hasSchedule(const Schedule &schedule) const {
 bool Offer::addSchedule(const Date &begin, const Date &end) {
 	try {
 		Schedule schedule(begin, end);
-		available_schedules.push_back(schedule);
+		return addSchedule(schedule);
 
-		return true;
 	} catch (const std::logic_error &e) {
 		return false;
 	}
