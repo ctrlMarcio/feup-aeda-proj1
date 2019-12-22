@@ -89,10 +89,14 @@ std::list<Schedule> EditVehicleUI::requestSchedules() {
 
 	do {
 		Schedule schedule = askSchedule();
-		for (Schedule &s : schedules)
-			if (schedule.interferesWith(s)) {
-				cout << "The schedule conflicts with another one. Ignoring ...";
-				continue;
+		for (auto it = schedules.begin(); it != schedules.end(); ++it)
+			if (schedule.interferesWith(*it)) {
+				cout << "The schedule conflicts with another one. Merging ..." << endl;
+
+				Schedule to_merge = *it;
+				it = schedules.erase(it);
+
+				schedule = schedule.mergeWith(to_merge);
 			}
 
 		schedules.push_back(schedule);

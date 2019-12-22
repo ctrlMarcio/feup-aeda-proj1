@@ -35,6 +35,17 @@ public:
 	bool interferesWith(const Schedule &schedule) const;
 
 	/*!
+	 * Gets a schedule that is a merge of this schedule with a given one.
+	 * Simplified example: 	13h-15h merging with 14h-16h would return 13h-16h.
+	 * 						14h-15h merging with 13h-16h would return 13h-16h.
+	 * Note: "interferesWith" is called; if the schedules do not interfere, the result will be only the first schedule.
+	 *
+	 * @param schedule the given schedule to merge with
+	 * @return the schedule that is the result of the merging
+	 */
+	Schedule mergeWith(const Schedule &schedule) const;
+
+	/*!
 	 * Checks if a schedule is valid or not.
 	 *
 	 * @return true, if the schedule is valid. false, otherwise

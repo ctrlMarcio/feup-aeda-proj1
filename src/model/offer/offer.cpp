@@ -45,10 +45,14 @@ bool Offer::addSchedule(const Date &begin, const Date &end) {
 	}
 }
 
-bool Offer::addSchedule(const Schedule &schedule) {
-	for (const Schedule &s : available_schedules)
-		if (schedule.interferesWith(s))
-			return false;
+bool Offer::addSchedule(Schedule schedule) {
+	for (auto it = available_schedules.begin(); it != available_schedules.end(); ++it)
+		if (schedule.interferesWith(*it)) {
+			Schedule to_merge = *it;
+
+			available_schedules.erase(it);
+			schedule = schedule.mergeWith(to_merge);
+		}
 
 	available_schedules.push_back(schedule);
 	return true;

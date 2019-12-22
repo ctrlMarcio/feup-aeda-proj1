@@ -131,21 +131,33 @@ public:
      */
     std::string getMonthName() const;
 
+	/*!
+	 * Calculates the julian day of the date.
+	 * https://en.wikipedia.org/wiki/Julian_day for more information on the julian day.
+	 * The conversion is made in O(1) to ease day operations.
+	 * Source: https://stason.org/TULARC/society/calendars/2-15-1-Is-there-a-formula-for-calculating-the-Julian-day-nu.html
+	 *
+	 * @return the corresponding julian day
+	 */
+	unsigned long toJulianDay() const;
+
+	/*!
+	 * Calculates the difference in days from two dates.
+	 * The calculation is made using julian days, using the "toJulianDay" function.
+	 * E.g.: 21-dez-2019 23h59 to 22-dez-2019 00h02 would return 1 day of difference.
+	 *
+	 * @param date1 the later date
+	 * @param date2 the sooner date
+	 * @return the difference in hours
+	 */
+	static unsigned long dayDifference(const Date &later, const Date &sooner);
+
     /*!
      * Gets a text representation of the date.
      *
      * @return a text representation
      */
     std::string toString() const;
-
-	/*!
-	 * Calculates the difference in days from two dates.
-	 *
-	 * @param date1 the later date
-	 * @param date2 the sooner date
-	 * @return the difference in hours
-	 */
-	static int dayDifference(const Date &later, const Date &sooner);
 
 	/*!
 	 * Verifies if another date is equal to this one.

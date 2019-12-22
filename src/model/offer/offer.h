@@ -59,11 +59,12 @@ public:
 
 	/*!
 	 * Adds a schedule to the offer.
+	 * If the schedule interferes with one that already exists there, merges them into one.
 	 *
 	 * @param schedule the schedule to add.
 	 * @return true if the schedule was successfully added, false otherwise
 	 */
-	bool addSchedule(const Schedule &schedule);
+	bool addSchedule(Schedule schedule);
 
 	/*!
 	 * Sets the price of the offer.

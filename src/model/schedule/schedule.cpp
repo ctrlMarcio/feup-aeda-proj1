@@ -27,8 +27,17 @@ bool Schedule::isInvalid() const {
 }
 
 bool Schedule::interferesWith(const Schedule &schedule) const {
-	// TODO
-	return false;
+	return !(schedule.end < this->begin || schedule.begin > this->end);
+}
+
+Schedule Schedule::mergeWith(const Schedule &schedule) const {
+	if (!this->interferesWith(schedule))
+		return *this;
+
+	Date new_begin = (this->begin < schedule.begin) ? this->begin : schedule.begin; // gets the earliest begin
+	Date new_end = (this->end > schedule.end) ? this->end : schedule.end; // gets the latest end
+
+	return Schedule(new_begin, new_end);
 }
 
 const Date &Schedule::getBegin() const {

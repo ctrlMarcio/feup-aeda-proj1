@@ -11,13 +11,19 @@
  */
 class PreferenceList {
 public:
-    /*!
-     * Updates a preference.
-     *
-     * @param min_year the min year
-     * @param seat_number the seat number
-     * @return true, if successfully updated. false, otherwise
-     */
+
+	/*!
+	 * Destructs the preference list, deleting the pointers;
+	 */
+	virtual ~PreferenceList();
+
+	/*!
+	 * Updates a preference.
+	 *
+	 * @param min_year the min year
+	 * @param seat_number the seat number
+	 * @return true, if successfully updated. false, otherwise
+	 */
 	bool updatePreference(unsigned min_year, unsigned seat_number);
 
 	/*!

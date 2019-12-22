@@ -94,6 +94,15 @@ private:
      * @return true if they are equal, false otherwise
      */
     virtual bool isEqual(const IVehicle &vehicle) const = 0;
+
+	/*!
+	 * Changes the year of the vehicle.
+	 * Verifies if the year is valid, setting it right after.
+	 * Only verifies if the year is after the current one.
+	 *
+	 * @param year the year to set
+	 */
+    virtual void setYear(unsigned year) = 0;
 };
 
 

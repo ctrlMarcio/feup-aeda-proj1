@@ -2,13 +2,18 @@
 
 #include "../../application/io/file_handling.h"
 #include <utility>
+#include "../../exception/invalid_vehicle_exception.h"
+#include "../../util/date.h"
 
 const string CommercialVehicle::TYPE = "commercial";
 
 CommercialVehicle::CommercialVehicle(string number_plate, string brand, string model,
 									 unsigned int year, double cargo_volume, double max_weight, bool refrigerated) :
-		number_plate(std::move(number_plate)), brand(std::move(brand)), model(std::move(model)), year(year), cargo_volume(cargo_volume),
-		max_weight(max_weight), refrigerated(refrigerated) {}
+		number_plate(std::move(number_plate)), brand(std::move(brand)), model(std::move(model)), cargo_volume(cargo_volume),
+		max_weight(max_weight), refrigerated(refrigerated) {
+
+	setYear(year);
+}
 
 void CommercialVehicle::printToFile(ofstream &ofstream) const {
 	ofstream << "commercial" << file_handling::delimiter
@@ -80,4 +85,14 @@ bool CommercialVehicle::isEqual(const IVehicle &vehicle) const {
 
 const string &CommercialVehicle::getType() const {
     return TYPE;
+}
+
+void CommercialVehicle::setYear(unsigned year) {
+	Date now;
+	Date toVerify(1, 1, year);
+
+	if (now.getYear() > toVerify.getYear())
+		throw InvalidVehicleException("The year is invalid.");
+
+	this->year = year;
 }

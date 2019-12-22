@@ -1,5 +1,12 @@
+#include "../../model/vehicle/passenger_vehicle.h"
+#include "../../model/vehicle/commercial_vehicle.h"
 #include "../../model/user/client.h"
 #include "preference_list.h"
+
+PreferenceList::~PreferenceList() {
+	delete passenger_preference;
+	delete commercial_preference;
+}
 
 bool PreferenceList::updatePreference(unsigned min_year, unsigned seat_number) {
 	auto *preference = new PassengerPreference(min_year, seat_number);
@@ -22,13 +29,21 @@ bool PreferenceList::updatePreference(unsigned min_year, float cargo_volume, flo
 }
 
 bool PreferenceList::isValid(PassengerPreference preference) const {
-	// TODO
-	return true;
+	try {
+		PassengerVehicle("", "", "", preference.getMinYear(), 0);
+		return true;
+	} catch (exception &e) {
+		return false;
+	}
 }
 
 bool PreferenceList::isValid(CommercialPreference preference) const {
-	// TODO
-	return true;
+	try {
+		CommercialVehicle("", "", "", preference.getMinYear(), 0, 0, true);
+		return true;
+	} catch (exception &e) {
+		return false;
+	}
 }
 
 bool PreferenceList::operator==(const PreferenceList &rhs) const {

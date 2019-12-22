@@ -193,6 +193,14 @@ std::string Date::getMonthName() const {
 	return MONTH_NAMES[month - 1];
 }
 
+unsigned long Date::toJulianDay() const {
+	int a = (14-month) / 12;
+	int y = year + 4800 - a;
+	int m = month + 12*a - 3;
+
+	return day + (153*m+2)/5 + y*365 + y/4 - 32083;
+}
+
 std::string Date::toString() const {
 	std::stringstream string_stream;
 	string_stream << pad_number(hour, 2) << ":" << pad_number(minute, 2) << ", " << day << " " << getMonthName() << " " << year;
@@ -214,12 +222,6 @@ std::ostream &operator<<(std::ostream &ostream, const Date &date) {
 	return ostream;
 }
 
-int Date::dayDifference(const Date &later, const Date &sooner) {
-	// TODO fix
-	int year_difference = later.getYear() - sooner.getYear();
-	int month_difference = 12 * year_difference + (later.getMonth() - sooner.getMonth() < 0 ? 12 + later.getMonth() - sooner.getMonth() : later.getMonth() - sooner.getMonth());
-	int day_difference = 30 * month_difference + (later.getDay() - sooner.getDay() < 0 ? 30 + later.getDay() - sooner.getDay() : later.getDay() - sooner.getDay());
-	if (!day_difference)
-		day_difference++; // round up
-	return day_difference;
+unsigned long Date::dayDifference(const Date &later, const Date &sooner) {
+	return later.toJulianDay() - sooner.toJulianDay();
 }

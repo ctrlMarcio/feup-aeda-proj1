@@ -147,6 +147,16 @@ private:
 	  * @return true if they are equal, false otherwise
 	  */
 	bool isEqual(const IVehicle &vehicle) const override;
+
+	/*!
+	 * Changes the year of the vehicle.
+	 * Verifies if the year is valid, setting it right after.
+ 	 * Only verifies if the year is after the current one.
+	 *
+	 * @param year the year to set
+	 * @throw InvalidVehicleException
+	 */
+	void setYear(unsigned year) override;
 };
 
 
