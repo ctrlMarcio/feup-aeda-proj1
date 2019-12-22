@@ -49,7 +49,7 @@ bool Offer::addSchedule(Schedule schedule) {
 		if (schedule.interferesWith(*it)) {
 			Schedule to_merge = *it;
 
-			available_schedules.erase(it);
+			it = available_schedules.erase(it);
 			schedule = schedule.mergeWith(to_merge);
 		}
 

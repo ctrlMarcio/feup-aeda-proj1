@@ -42,7 +42,10 @@ TEST(offer, add_schedule) {
 	offer.addSchedule(schedule);
 	ASSERT_TRUE(offer.getAvailableSchedules().size() == 2);
 
-	offer.addSchedule(Date(3, 1, 2020), Date(5, 1, 2020));
+	offer.addSchedule(Date(3, 12, 2019), Date(25, 12, 2019));
+	ASSERT_TRUE(offer.getAvailableSchedules().size() == 2);
+
+	offer.addSchedule(Date(3, 1, 2020), Date(25, 1, 2020));
 	ASSERT_TRUE(offer.getAvailableSchedules().size() == 2);
 }
 
