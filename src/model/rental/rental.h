@@ -65,6 +65,7 @@ public:
 
 	/*!
 	 * Verifies if another rental is equal to this one.
+	 * Two rentals are equal when the offer, the renter and the price is the same.
 	 *
 	 * @param rhs the other rental
 	 * @return true if they are equal, false otherwise

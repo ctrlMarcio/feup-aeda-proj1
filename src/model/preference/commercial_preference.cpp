@@ -29,3 +29,14 @@ std::ostream &operator<<(std::ostream &ostream, const CommercialPreference &comm
 	ostream << "Refrigerated." << std::endl;
 	return ostream;
 }
+
+bool CommercialPreference::operator==(const CommercialPreference &rhs) const {
+	return min_year == rhs.min_year &&
+		   cargo_volume == rhs.cargo_volume &&
+		   min_max_weight == rhs.min_max_weight &&
+		   refrigerated == rhs.refrigerated;
+}
+
+bool CommercialPreference::operator!=(const CommercialPreference &rhs) const {
+	return !(rhs == *this);
+}

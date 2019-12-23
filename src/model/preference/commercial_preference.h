@@ -48,6 +48,10 @@ public:
 	 */
 	bool isRefrigerated() const;
 
+	bool operator==(const CommercialPreference &rhs) const;
+
+	bool operator!=(const CommercialPreference &rhs) const;
+
 	friend std::ostream &operator<<(std::ostream &ostream, const CommercialPreference &commercial_preference);
 
 private:

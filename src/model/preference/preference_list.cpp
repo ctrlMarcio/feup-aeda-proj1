@@ -14,6 +14,7 @@ bool PreferenceList::updatePreference(unsigned min_year, unsigned seat_number) {
 	if (!isValid(*preference))
 		return false;
 
+	delete passenger_preference;
 	this->passenger_preference = preference;
 	return true;
 }
@@ -24,6 +25,7 @@ bool PreferenceList::updatePreference(unsigned min_year, float cargo_volume, flo
 	if (!isValid(*preference))
 		return false;
 
+	delete commercial_preference;
 	this->commercial_preference = preference;
 	return true;
 }
@@ -47,8 +49,8 @@ bool PreferenceList::isValid(CommercialPreference preference) const {
 }
 
 bool PreferenceList::operator==(const PreferenceList &rhs) const {
-	return passenger_preference == rhs.passenger_preference &&
-		   commercial_preference == rhs.commercial_preference;
+	return *passenger_preference == *rhs.passenger_preference &&
+		   *commercial_preference == *rhs.commercial_preference;
 }
 
 bool PreferenceList::operator!=(const PreferenceList &rhs) const {

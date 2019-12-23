@@ -17,3 +17,12 @@ std::ostream &operator<<(std::ostream &ostream, const PassengerPreference &passe
 	ostream << "Number of seats: " << passenger_preference.seat_number << std::endl;
 	return ostream;
 }
+
+bool PassengerPreference::operator==(const PassengerPreference &rhs) const {
+	return min_year == rhs.min_year &&
+		   seat_number == rhs.seat_number;
+}
+
+bool PassengerPreference::operator!=(const PassengerPreference &rhs) const {
+	return !(rhs == *this);
+}

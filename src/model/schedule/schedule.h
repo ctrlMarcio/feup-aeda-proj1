@@ -20,18 +20,21 @@ public:
 
 	/*!
 	 * Checks if a schedule is inside another.
+	 * E.g.: 14h-15h is inside 13h-16h.
 	 *
 	 * @param schedule the other schedule
 	 * @return true, if the schedule is inside another. false, otherwise
 	 */
 	bool isInside(const Schedule &schedule) const;
 
-    /*!
-     * Checks if a schedule interferes with another.
-     *
-     * @param schedule the other schedule
-     * @return true, if the schedule is inside another. false, otherwise
-     */
+	/*!
+	 * Checks if a schedule interferes with another.
+	 * Two schedule interfere if one is partially, or completely, inside the other.
+	 * E.g.: 13h-15h interferes with 14h-16h, 12h-16h, 12h-14h, 13h-15h, etc and does not with 11h-12h, 16h-17h, etc.
+	 *
+	 * @param schedule the other schedule
+	 * @return true, if the schedule is inside another. false, otherwise
+	 */
 	bool interferesWith(const Schedule &schedule) const;
 
 	/*!
@@ -47,6 +50,8 @@ public:
 
 	/*!
 	 * Checks if a schedule is valid or not.
+	 * A schedule is invalid if the beginning date is after the ending date, or if it consists of only one "moment",
+	 * this is, the beginning and the ending date is the same.
 	 *
 	 * @return true, if the schedule is valid. false, otherwise
 	 */
@@ -70,6 +75,7 @@ public:
 
 	/*!
 	 * Verifies if another schedule is equal to this one.
+	 * Two schedules are equal if their beginning and end is equal.
 	 *
 	 * @param rhs the other schedule
 	 * @return true if they are equal, false otherwise

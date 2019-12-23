@@ -30,6 +30,10 @@ public:
 	 */
 	unsigned int getSeatNumber() const;
 
+	bool operator==(const PassengerPreference &rhs) const;
+
+	bool operator!=(const PassengerPreference &rhs) const;
+
 	friend std::ostream &operator<<(std::ostream &ostream, const PassengerPreference &passenger_preference);
 
 private:

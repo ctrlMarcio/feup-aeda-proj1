@@ -18,7 +18,7 @@ public:
 	virtual ~PreferenceList();
 
 	/*!
-	 * Updates a preference.
+	 * Updates the passenger preference, deleting the previous one and building a new one with the given attributes.
 	 *
 	 * @param min_year the min year
 	 * @param seat_number the seat number
@@ -27,7 +27,7 @@ public:
 	bool updatePreference(unsigned min_year, unsigned seat_number);
 
 	/*!
-     * Updates a preference.
+     * Updates the commercial preference, deleting the previous one and building a new one with the given attributes.
 	 *
 	 * @param min_year the min year
 	 * @param cargo_volume the cargo volume

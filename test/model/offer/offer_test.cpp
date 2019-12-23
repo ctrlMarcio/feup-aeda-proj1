@@ -47,6 +47,8 @@ TEST(offer, add_schedule) {
 
 	offer.addSchedule(Date(3, 1, 2020), Date(25, 1, 2020));
 	ASSERT_TRUE(offer.getAvailableSchedules().size() == 2);
+
+	EXPECT_FALSE(offer.addSchedule(Date(25, 1, 2020), Date(3, 1, 2020)));
 }
 
 TEST(offer, equal_comparison_operator) {
@@ -69,5 +71,22 @@ TEST(offer, equal_comparison_operator) {
 	offer3.removeScheduleAvailability(schedule1);
 	ASSERT_FALSE(offer1 == offer3);
 	ASSERT_FALSE(offer1 == offer4);
+}
 
+TEST(offer, set_price) {
+	PassengerVehicle vehicle("ab-ab-12", "Opel", "Corsa", 2012, 5);
+	Schedule schedule1(Date(21, 12, 2019), Date(22, 12, 2019));
+	Schedule schedule2(Date(4, 1, 2020), Date(5, 1, 2020));
+	std::list<Schedule> schedules{schedule1, schedule2};
+	Client provider("Client", "123", "Porto");
+
+	Offer offer(vehicle, schedules, provider);
+
+	float correct_price = 123.5;
+	float wrong_price = -5;
+
+	ASSERT_TRUE(offer.setPrice(correct_price));
+	ASSERT_EQ(offer.getPrice(), correct_price);
+	ASSERT_FALSE(offer.setPrice(wrong_price));
+	ASSERT_EQ(offer.getPrice(), correct_price);
 }
