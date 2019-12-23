@@ -6,6 +6,13 @@ using namespace std;
 using namespace string_util;
 using testing::Eq;
 
+TEST(string_util, split) {
+	std::vector<string> vector{"Hi", "my", "name", "is", "Abel"};
+	std::vector<string> abcd{"abcd"};
+
+	EXPECT_EQ(split("Hi my name is Abel", " "), vector);
+	EXPECT_EQ(split("abcd", "1"), abcd);
+}
 
 TEST(string_util, trim) {
     string untrimmed = "     abc       ";

@@ -30,6 +30,7 @@ public:
 	/*!
 	 * Reads a date from a string.
 	 * Used to read the files.
+	 * E.g.: "12.11.2019.12.21.43" should describe 12/12/2019 at 12H21m43s.
 	 *
 	 * @param date_vector the string of the date
 	 * @return the pointer of the date

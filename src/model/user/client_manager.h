@@ -23,7 +23,7 @@ public:
      * @param address the address
      * @return the instance
      */
-    Client build(string name, string identification_number, string address);
+	static Client build(string name, string identification_number, string address);
 
     /*!
      * Adds a client to the list.

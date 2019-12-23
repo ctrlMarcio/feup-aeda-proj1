@@ -49,6 +49,38 @@ bool PreferenceList::isValid(CommercialPreference preference) const {
 }
 
 bool PreferenceList::operator==(const PreferenceList &rhs) const {
+	// TODO update this
+	bool one_pass_null = false;
+	bool two_pass_null = false;
+	bool one_comm_null = false;
+	bool two_comm_null = false;
+
+	if (passenger_preference == nullptr || rhs.passenger_preference == nullptr) {
+		if (passenger_preference == nullptr && rhs.passenger_preference == nullptr)
+			two_pass_null = true;
+		else
+			one_pass_null = true;
+	}
+
+	if (commercial_preference == nullptr || rhs.commercial_preference == nullptr) {
+		if (commercial_preference == nullptr && rhs.commercial_preference == nullptr)
+			two_comm_null = true;
+		else
+			one_comm_null = true;
+	}
+
+	if (one_pass_null || one_comm_null)
+		return false;
+
+	if (two_pass_null && !two_comm_null)
+		return *commercial_preference == *rhs.commercial_preference;
+
+	if (!two_pass_null && two_comm_null)
+		return *passenger_preference == *rhs.passenger_preference;
+
+	if (two_pass_null && two_comm_null)
+		return true;
+
 	return *passenger_preference == *rhs.passenger_preference &&
 		   *commercial_preference == *rhs.commercial_preference;
 }

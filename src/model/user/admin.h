@@ -101,7 +101,7 @@ private:
 	/*!
 	 * The reference to the company's vehicle list.
 	 */
-	VehicleList *vehicle_list;
+	VehicleList *vehicle_list = nullptr;
 };
 
 

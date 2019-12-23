@@ -34,6 +34,16 @@ TEST(date, constructor) {
     EXPECT_NO_THROW(Date(31, 12, 2099, 23, 59, 59));
 }
 
+TEST(date, get_date) {
+	std::string date = "12.11.2019.12.21.43";
+	std::string wrong = "31.11.2019.12.21.43";
+
+	Date res(12, 11, 2019, 12, 21, 43);
+
+	EXPECT_EQ(*Date::getDate(date), res);
+	EXPECT_THROW(Date::getDate(wrong), InvalidDateException);
+}
+
 TEST(date, current_date_constructor) {
     EXPECT_NO_THROW(Date());
 }

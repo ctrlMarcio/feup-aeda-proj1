@@ -23,7 +23,7 @@ public:
      * @param address the address
      * @return the instance
      */
-    ClientCompany build(string name, string identification_number, string address);
+	static ClientCompany build(string name, string identification_number, string address);
 
     /*!
      * Adds a client company to the list.
