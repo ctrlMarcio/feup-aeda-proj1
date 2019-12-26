@@ -45,6 +45,27 @@ public:
 	static void printDate(std::ofstream &ofstream, const Date &date);
 
 	/*!
+	 * Calculates the difference in days from two dates.
+	 * The calculation is made using julian days, using the "toJulianDay" function.
+	 * E.g.: 21-dez-2019 23h59 to 22-dez-2019 00h02 would return 1 day of difference.
+	 *
+	 * @param date1
+	 * @param date2
+	 * @return the difference in days
+	 */
+	static unsigned long dayDifference(const Date &date1, const Date &date2);
+
+	/*!
+	 * Calculates the difference in days to another date.
+	 * The calculation is made using julian days, using the "toJulianDay" function.
+	 * E.g.: 21-dez-2019 23h59 to 22-dez-2019 00h02 would return 1 day of difference.
+	 *
+	 * @param date the other date
+	 * @return the difference in days
+	 */
+	unsigned long dayDifference(const Date &date);
+
+	/*!
 	 * Returns whether the the year is a leap or not.
 	 *
 	 * @return true, if the year is leap. false, otherwise
@@ -142,17 +163,6 @@ public:
 	 */
 	unsigned long toJulianDay() const;
 
-	/*!
-	 * Calculates the difference in days from two dates.
-	 * The calculation is made using julian days, using the "toJulianDay" function.
-	 * E.g.: 21-dez-2019 23h59 to 22-dez-2019 00h02 would return 1 day of difference.
-	 *
-	 * @param date1 the later date
-	 * @param date2 the sooner date
-	 * @return the difference in hours
-	 */
-	static unsigned long dayDifference(const Date &later, const Date &sooner);
-
     /*!
      * Gets a text representation of the date.
      *
@@ -212,6 +222,17 @@ private:
      * The second of this date.
      */
 	int second;
+
+	/*!
+	 * Calculates the difference in days from two dates.
+	 * The calculation is made using julian days, using the "toJulianDay" function.
+	 * E.g.: 21-dez-2019 23h59 to 22-dez-2019 00h02 would return 1 day of difference.
+	 *
+	 * @param date1 the later date
+	 * @param date2 the sooner date
+	 * @return the difference in days
+	 */
+	static unsigned long dayDifferenceInOrder(const Date &later, const Date &sooner);
 
 	/*!
 	 * Returns whether a date is after another.

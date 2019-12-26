@@ -88,7 +88,6 @@ void ClientCompanyManager::read(const std::string &directory) {
 	}
 
 	ifstream.close();
-
 }
 
 void ClientCompanyManager::write(const std::string &directory) const {

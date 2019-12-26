@@ -1,3 +1,4 @@
+#include <list>
 #include "vehicle_manager.h"
 #include "../../application/io/file_handling.h"
 #include "../../exception/invalid_file_exception.h"
@@ -26,7 +27,6 @@ void VehicleManager::read(const std::string &directory) {
 		std::vector<std::string> params = string_util::split(line, file_handling::delimiter);
 		this->vehicle_list.read(params, 0);
 	}
-
 }
 
 void VehicleManager::write(const std::string &directory) {
@@ -43,4 +43,64 @@ void VehicleManager::write(const std::string &directory) {
 		ofstream << endl;
 	}
 	ofstream << std::endl;
+}
+
+vector<MaintainedVehicle> VehicleManager::getMaintainedVehicles(size_t amount) {
+	vector<MaintainedVehicle> res;
+
+	for (size_t count = 0; count < amount && !maintained_vehicles.empty(); count++) {
+		MaintainedVehicle vehicle = maintained_vehicles.top();
+		maintained_vehicles.pop();
+		res.push_back(vehicle);
+		count++;
+	}
+
+	for (MaintainedVehicle mv : res)
+		maintained_vehicles.push(mv);
+
+	return res;
+}
+
+bool VehicleManager::setMaintenanceDay(MaintainedVehicle &maintained_vehicle, const Date &day) {
+	if (!hasMaintainedVehicle(maintained_vehicle))
+		return false;
+
+	list<MaintainedVehicle> aux;
+
+	while (!maintained_vehicles.empty()) {
+		MaintainedVehicle mv = maintained_vehicles.top();
+		maintained_vehicles.pop();
+
+		if (mv == maintained_vehicle)
+			break;
+
+		aux.push_back(mv);
+	}
+
+	bool valid = maintained_vehicle.setMaintenanceDay(day);
+	maintained_vehicles.push(maintained_vehicle);
+
+	for (MaintainedVehicle vehicle : aux)
+		maintained_vehicles.push(vehicle);
+
+	return valid;
+}
+
+bool VehicleManager::hasMaintainedVehicle(const MaintainedVehicle &vehicle) {
+	bool has = false;
+	list<MaintainedVehicle> aux;
+
+	while (!maintained_vehicles.empty() && !has) {
+		MaintainedVehicle mv = maintained_vehicles.top();
+		aux.push_back(mv);
+		maintained_vehicles.pop();
+
+		if (mv == vehicle)
+			has = true;
+	}
+
+	for (MaintainedVehicle i : aux)
+		maintained_vehicles.push(i);
+
+	return has;
 }

@@ -23,7 +23,6 @@ void AddVehicleUI::run() {
 			cout << "The input is invalid." << endl;
 			valid = false;
 		}
-
 	} while (!valid);
 
 	bool repeated = !controller.isValid();
@@ -58,7 +57,6 @@ void AddVehicleUI::addPassengerVehicle() {
 	unsigned seat_number = io_util::askUnsigned("Seat number:");
 
 	controller.createVehicle(number_plate, brand, model, year, seat_number);
-
 }
 
 void AddVehicleUI::addCommercialVehicle() {

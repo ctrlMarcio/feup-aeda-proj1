@@ -92,7 +92,6 @@ string ManagePreferencesUI::addOrRemovePreference() const {
 
 		if (invalid)
 			cout << "Please choose a correct option... (s)ee all, (a)dd or (r)emove a preference?" << endl;
-
 	} while (invalid);
 
 	option = option[0];

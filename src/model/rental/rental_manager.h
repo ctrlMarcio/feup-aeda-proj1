@@ -80,6 +80,7 @@ public:
 	 * @return true if the rental is valid, false otherwise
 	 */
 	bool isValid(Rental &rental);
+
 private:
 	/*!
 	 * All the existent rentals.

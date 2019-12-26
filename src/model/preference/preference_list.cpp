@@ -49,7 +49,7 @@ bool PreferenceList::isValid(CommercialPreference preference) const {
 }
 
 bool PreferenceList::operator==(const PreferenceList &rhs) const {
-	// TODO update this
+	// TODO too complex
 	bool one_pass_null = false;
 	bool two_pass_null = false;
 	bool one_comm_null = false;

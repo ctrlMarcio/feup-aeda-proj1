@@ -222,6 +222,24 @@ std::ostream &operator<<(std::ostream &ostream, const Date &date) {
 	return ostream;
 }
 
-unsigned long Date::dayDifference(const Date &later, const Date &sooner) {
+unsigned long Date::dayDifference(const Date &date1, const Date &date2) {
+	Date sooner, later;
+
+	if (date1 < date2) {
+		sooner = date1;
+		later = date2;
+	} else {
+		sooner = date2;
+		later = date1;
+	}
+
+	return later.toJulianDay() - sooner.toJulianDay();
+}
+
+unsigned long Date::dayDifference(const Date &date) {
+	return dayDifference(*this, date);
+}
+
+unsigned long Date::dayDifferenceInOrder(const Date &later, const Date &sooner) {
 	return later.toJulianDay() - sooner.toJulianDay();
 }

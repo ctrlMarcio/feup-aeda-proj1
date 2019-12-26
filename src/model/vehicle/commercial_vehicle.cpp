@@ -11,7 +11,6 @@ CommercialVehicle::CommercialVehicle(string number_plate, string brand, string m
 									 unsigned int year, double cargo_volume, double max_weight, bool refrigerated) :
 		number_plate(std::move(number_plate)), brand(std::move(brand)), model(std::move(model)), cargo_volume(cargo_volume),
 		max_weight(max_weight), refrigerated(refrigerated) {
-
 	setYear(year);
 }
 

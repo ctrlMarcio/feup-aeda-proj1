@@ -11,7 +11,6 @@
  */
 class PreferenceList {
 public:
-
 	/*!
 	 * Destructs the preference list, deleting the pointers;
 	 */

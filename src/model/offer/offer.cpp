@@ -38,7 +38,6 @@ bool Offer::addSchedule(const Date &begin, const Date &end) {
 	try {
 		Schedule schedule(begin, end);
 		return addSchedule(schedule);
-
 	} catch (const std::logic_error &e) {
 		return false;
 	}

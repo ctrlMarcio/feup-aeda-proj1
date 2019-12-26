@@ -97,6 +97,5 @@ void ManageProvidedVehiclesUI::showVehicles() const {
 				cout << endl << "Invalid option, try again..." << endl;
 				break;
 		}
-
 	} while (ch != '0' && ch != '1');
 }
