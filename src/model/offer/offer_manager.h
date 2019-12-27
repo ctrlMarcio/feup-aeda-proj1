@@ -61,7 +61,7 @@ public:
 	 * Removes an offer from the container.
 	 *
 	 * @param offer the offer to remove
-	 * @return true if the offer was successfully removed, false otherwiseShould be a relative directory starting in the / (root) of the project.
+	 * @return true if the offer was successfully removed, false otherwise
 	 */
 	bool remove(const Offer &offer);
 
