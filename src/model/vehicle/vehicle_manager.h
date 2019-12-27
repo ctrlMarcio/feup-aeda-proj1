@@ -49,6 +49,8 @@ public:
 	 */
 	vector<MaintainedVehicle> getMaintainedVehicles(size_t amount);
 
+	bool addMaintainedVehicle(const MaintainedVehicle &maintained_vehicle);
+
 	/*!
 	 * Changes the maintenance day of a given vehicle.
 	 * This will change the priority queue.

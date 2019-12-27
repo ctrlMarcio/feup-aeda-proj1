@@ -104,3 +104,11 @@ bool VehicleManager::hasMaintainedVehicle(const MaintainedVehicle &vehicle) {
 
 	return has;
 }
+
+bool VehicleManager::addMaintainedVehicle(const MaintainedVehicle &maintained_vehicle) {
+	if (hasMaintainedVehicle(maintained_vehicle))
+		return false;
+
+	maintained_vehicles.push(maintained_vehicle);
+	return true;
+}

@@ -20,11 +20,14 @@ public:
 
 	/*!
 	 * Sets the maintenance day of a vehicle, validating it first.
+	 * For a day to be valid, it must be in the future. This is, starting from tomorrow.
 	 *
 	 * @param maintenance_day the new maintenance day
 	 * @return true of the day was successfully set, false otherwise
 	 */
 	bool setMaintenanceDay(const Date &maintenance_day);
+
+	const Date &getMaintenanceDay() const;
 
 	/*!
 	 * Compares two maintained vehicles taking into account the number of days left until its maintenance day.

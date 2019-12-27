@@ -51,3 +51,18 @@ TEST(preference_list, equal_comparison_operator) {
 
 	EXPECT_FALSE(preference_list1 != preference_list2);
 }
+
+TEST(preference_list, remove_preference) {
+	PreferenceList preference_list1;
+	preference_list1.updatePreference(2012, 5);
+	preference_list1.updatePreference(2013, 5, 5, true);
+
+	EXPECT_FALSE(preference_list1.getPassengerPreference() == nullptr);
+	EXPECT_FALSE(preference_list1.getCommercialPreference() == nullptr);
+
+	preference_list1.removePassengerPreference();
+	EXPECT_TRUE(preference_list1.getPassengerPreference() == nullptr);
+
+	preference_list1.removeCommercialPreference();
+	EXPECT_TRUE(preference_list1.getCommercialPreference() == nullptr);
+}
