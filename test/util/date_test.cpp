@@ -157,6 +157,40 @@ TEST(date, less_or_equal_date) {
     ASSERT_TRUE(date8 >= date1);
 }
 
+TEST(date, add) {
+	Date date1(2, 5, 2020, 12, 15, 20);
+	Date date2(28, 2, 2020, 23, 59, 59);
+	Date date3(28, 2, 2019, 23, 59, 59);
+	Date date4(31, 12, 2019, 23, 59, 59);
+
+	EXPECT_EQ(date1.addSecond().getSecond(), 21);
+	EXPECT_EQ(date1.addMinute().getMinute(), 16);
+	EXPECT_EQ(date1.addHour().getHour(), 13);
+	EXPECT_EQ(date1.addYear().getYear(), 2021);
+	EXPECT_EQ(date1.addMonth().getMonth(), 6);
+	EXPECT_EQ(date1.addDay().getDay(), 3);
+	EXPECT_EQ(date2.addSecond(), Date(29, 2, 2020));
+	EXPECT_EQ(date3.addSecond(), Date(1, 3, 2019));
+	EXPECT_EQ(date4.addSecond(), Date(1, 1, 2020));
+}
+
+TEST(date, remove) {
+	Date date1(2, 5, 2020, 12, 15, 20);
+	Date date2(1, 3, 2020, 0, 0, 0);
+	Date date3(1, 3, 2019, 0, 0, 0);
+	Date date4(1, 1, 2020, 0, 0, 0);
+
+	EXPECT_EQ(date1.removeSecond().getSecond(), 19);
+	EXPECT_EQ(date1.removeMinute().getMinute(), 14);
+	EXPECT_EQ(date1.removeHour().getHour(), 11);
+	EXPECT_EQ(date1.removeYear().getYear(), 2019);
+	EXPECT_EQ(date1.removeMonth().getMonth(), 4);
+	EXPECT_EQ(date1.removeDay().getDay(), 1);
+	EXPECT_EQ(date2.removeSecond(), Date(29, 2, 2020, 23, 59, 59));
+	EXPECT_EQ(date3.removeSecond(), Date(28, 2, 2019, 23, 59, 59));
+	EXPECT_EQ(date4.removeSecond(), Date(31, 12, 2019, 23, 59, 59));
+}
+
 TEST(date, misc) {
     Date date1(20, 12, 2018, 12, 20, 19);
     Date date2(20, 12, 2018, 12, 20, 19);

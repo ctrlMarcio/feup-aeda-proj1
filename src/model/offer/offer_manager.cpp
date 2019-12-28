@@ -151,3 +151,15 @@ void OfferManager::write(const std::string &directory) const {
 
 	ofstream.close();
 }
+
+void OfferManager::removeDay(const IVehicle &vehicle, const Date &date) {
+	Date begin(date.getDay(), date.getMonth(), date.getYear(), 0, 0, 0);
+	Date end(date.getDay(), date.getMonth(), date.getYear(), 23, 59, 59);
+	Schedule to_remove(begin, end);
+
+	for (Offer &offer : offers) {
+		if (offer.getVehicle() == vehicle) {
+			offer.removeScheduleAvailability(to_remove);
+		}
+	}
+}

@@ -11,14 +11,14 @@ Offer::Offer(IVehicle &vehicle, std::list<Schedule> available_schedules, IProvid
 
 void Offer::removeScheduleAvailability(const Schedule &to_remove) {
 	for (auto it = available_schedules.begin(); it != available_schedules.end(); ++it) {
-		if (to_remove.isInside(*it)) {
+		if (to_remove.interferesWith(*it)) {
 			try {
-				Schedule before((*it).getBegin(), to_remove.getBegin());
+				Schedule before((*it).getBegin(), to_remove.getBegin().removeSecond());
 				available_schedules.push_back(before);
 			} catch (const InvalidScheduleException &e) {}
 
 			try {
-				Schedule after(to_remove.getEnd(), (*it).getEnd());
+				Schedule after(to_remove.getEnd().addSecond(), (*it).getEnd());
 				available_schedules.push_back(after);
 			} catch (const InvalidScheduleException &e) {}
 

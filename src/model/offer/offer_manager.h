@@ -73,6 +73,14 @@ public:
 	vector<Offer> &getOffers();
 
 	/*!
+	 * Removes the day from the available schedules of the vehicle.
+	 *
+	 * @param vehicle the vehicle
+	 * @param date the date whose day is to remove
+	 */
+	void removeDay(const IVehicle &vehicle, const Date &date);
+
+	/*!
 	 * Reads offers from a file.
 	 * Should only be implemented after all the IProvider's read.
 	 *

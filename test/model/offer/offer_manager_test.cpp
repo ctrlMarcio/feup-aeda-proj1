@@ -133,6 +133,34 @@ TEST(offer_manager, add) {
 	EXPECT_FALSE(manager.add(offer2));
 }
 
+TEST(offer_manager, remove_day) {
+	OfferManager manager;
+
+	PassengerVehicle vehicle1("plate1", "brand1", "model1", 2010, 5);
+	PassengerVehicle vehicle2("plate2", "brand2", "model2", 2011, 5);
+	PassengerVehicle vehicle3("plat3", "brand3", "model3", 2012, 5);
+	Schedule schedule1(Date(5, 2, 2020, 12), Date(7, 2, 2020, 12));
+	list<Schedule> schedules{schedule1};
+	Client client("name", "id", "address");
+
+	Offer offer1(vehicle1, schedules, client);
+	Offer offer2(vehicle2, schedules, client);
+	Offer offer3(vehicle3, schedules, client);
+
+	manager.add(offer1);
+	manager.add(offer2);
+	manager.add(offer3);
+
+	manager.removeDay(vehicle1, Date(5, 2, 2020));
+	EXPECT_EQ(manager.getOffers()[0].getAvailableSchedules().begin()->getBegin(), Date(6, 2, 2020));
+	manager.removeDay(vehicle2, Date(6, 2, 2020));
+	ASSERT_EQ(manager.getOffers()[1].getAvailableSchedules().size(), 2);
+	EXPECT_EQ(manager.getOffers()[1].getAvailableSchedules().begin()->getEnd(), Date(5, 2, 2020, 23, 59, 59));
+	EXPECT_EQ((manager.getOffers()[1].getAvailableSchedules().back()).getBegin(), Date(7, 2, 2020));
+	manager.removeDay(vehicle3, Date(7, 2, 2020));
+	EXPECT_EQ(manager.getOffers()[2].getAvailableSchedules().begin()->getEnd(), Date(6, 2, 2020, 23, 59, 59));
+}
+
 /* TODO failing
 TEST(offer_manager, remove) {
 	OfferManager manager;

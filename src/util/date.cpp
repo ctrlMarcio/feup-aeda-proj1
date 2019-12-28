@@ -126,10 +126,12 @@ void Date::setDay(int day) {
 
 	if (tmp_month % 2 == 1) {
 		if (day > 31)
-			throw InvalidDateException(std::to_string(day) + " is an incorrect day for the " + std::to_string(month) + ".");
+			throw InvalidDateException(
+					std::to_string(day) + " is an incorrect day for the " + std::to_string(month) + ".");
 	} else if (tmp_month == 2) {
 		if ((isLeapYear() && day > 29) || (!isLeapYear() && day > 28))
-			throw InvalidDateException(std::to_string(day) + " is an incorrect day for the " + std::to_string(month) + ".");
+			throw InvalidDateException(
+					std::to_string(day) + " is an incorrect day for the " + std::to_string(month) + ".");
 	} else if (day > 30) {
 		throw InvalidDateException(std::to_string(day) + " is an incorrect day for the " + std::to_string(month) + ".");
 	}
@@ -194,16 +196,17 @@ std::string Date::getMonthName() const {
 }
 
 unsigned long Date::toJulianDay() const {
-	int a = (14-month) / 12;
+	int a = (14 - month) / 12;
 	int y = year + 4800 - a;
-	int m = month + 12*a - 3;
+	int m = month + 12 * a - 3;
 
-	return day + (153*m+2)/5 + y*365 + y/4 - 32083;
+	return day + (153 * m + 2) / 5 + y * 365 + y / 4 - 32083;
 }
 
 std::string Date::toString() const {
 	std::stringstream string_stream;
-	string_stream << pad_number(hour, 2) << ":" << pad_number(minute, 2) << ", " << day << " " << getMonthName() << " " << year;
+	string_stream << pad_number(hour, 2) << ":" << pad_number(minute, 2) << ", " << day << " " << getMonthName() << " "
+				  << year;
 	return string_stream.str();
 }
 
@@ -242,4 +245,158 @@ unsigned long Date::dayDifference(const Date &date) {
 
 unsigned long Date::dayDifferenceInOrder(const Date &later, const Date &sooner) {
 	return later.toJulianDay() - sooner.toJulianDay();
+}
+
+Date Date::addSecond() const {
+	Date res = *this;
+
+	try {
+		res.setSecond(second + 1);
+	} catch (InvalidDateException &e) {
+		res.setSecond(0);
+		res = res.addMinute();
+	}
+
+	return res;
+}
+
+Date Date::addMinute() const {
+	Date res = *this;
+
+	try {
+		res.setMinute(minute + 1);
+	} catch (InvalidDateException &e) {
+		res.setMinute(0);
+		res = res.addHour();
+	}
+
+	return res;
+}
+
+Date Date::addHour() const {
+	Date res = *this;
+
+	try {
+		res.setHour(hour + 1);
+	} catch (InvalidDateException &e) {
+		res.setHour(0);
+		res = res.addDay();
+	}
+
+	return res;
+}
+
+Date Date::addDay() const {
+	Date res = *this;
+
+	try {
+		res.setDay(day + 1);
+	} catch (InvalidDateException &e) {
+		res.setDay(1);
+		res = res.addMonth();
+	}
+
+	return res;
+}
+
+Date Date::addMonth() const {
+	Date res = *this;
+
+	try {
+		res.setMonth(month + 1);
+	} catch (InvalidDateException &e) {
+		res.setMonth(1);
+		res = res.addYear();
+	}
+
+	return res;
+}
+
+Date Date::addYear() const {
+	Date res = *this;
+	res.setYear(year + 1);
+	return res;
+}
+
+Date Date::removeSecond() const {
+	Date res = *this;
+
+	try {
+		res.setSecond(second - 1);
+	} catch (InvalidDateException &e) {
+		res.setSecond(59);
+		res = res.removeMinute();
+	}
+
+	return res;
+}
+
+Date Date::removeMinute() const {
+	Date res = *this;
+
+	try {
+		res.setMinute(minute - 1);
+	} catch (InvalidDateException &e) {
+		res.setMinute(59);
+		res = res.removeHour();
+	}
+
+	return res;
+}
+
+Date Date::removeHour() const {
+	Date res = *this;
+
+	try {
+		res.setHour(hour - 1);
+	} catch (InvalidDateException &e) {
+		res.setHour(23);
+		res = res.removeDay();
+	}
+
+	return res;
+}
+
+Date Date::removeDay() const {
+	Date res = *this;
+
+	try {
+		res.setDay(day - 1);
+	} catch (InvalidDateException &e) { // day == 0
+		res = res.removeMonth();
+
+		int aux_day = 31;
+		bool error;
+
+		do {
+			error = false;
+			try {
+				res.setDay(aux_day);
+			} catch (InvalidDateException &e) {
+				error = true;
+			}
+			aux_day--;
+		} while (error);
+	}
+
+	return res;
+}
+
+Date Date::removeMonth() const {
+	Date res = *this;
+
+	try {
+		res.setMonth(month - 1);
+	} catch (InvalidDateException &e) {
+		res.setMonth(12);
+		res = res.removeYear();
+	}
+
+	return res;
+}
+
+Date Date::removeYear() const {
+	Date res = *this;
+	res.setYear(year - 1);
+	return res;
 }

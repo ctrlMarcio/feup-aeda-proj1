@@ -73,6 +73,90 @@ public:
 	bool isLeapYear() const;
 
 	/*!
+	 * Adds a second to the date.
+	 *
+	 * @return the new Date
+	 */
+	Date addSecond() const;
+
+	/*!
+	 * Adds a minute to the date.
+	 *
+	 * @return the new Date
+	 */
+	Date addMinute() const;
+
+	/*!
+	 * Adds an hour to the date.
+	 *
+	 * @return the new Date
+	 */
+	Date addHour() const;
+
+	/*!
+	 * Adds a day to the date.
+	 *
+	 * @return the new Date
+	 */
+	Date addDay() const;
+
+	/*!
+	 * Adds a month to the date.
+	 *
+	 * @return the new Date
+	 */
+	Date addMonth() const;
+
+	/*!
+	 * Adds a year to the date.
+	 *
+	 * @return the new Date
+	 */
+	Date addYear() const;
+
+	/*!
+	 * Removes a second to the date.
+	 *
+	 * @return the new Date
+	 */
+	Date removeSecond() const;
+
+	/*!
+	 * Removes a minute to the date.
+	 *
+	 * @return the new Date
+	 */
+	Date removeMinute() const;
+
+	/*!
+	 * Removes an hour to the date.
+	 *
+	 * @return the new Date
+	 */
+	Date removeHour() const;
+
+	/*!
+	 * Removes a day to the date.
+	 *
+	 * @return the new Date
+	 */
+	Date removeDay() const;
+
+	/*!
+	 * Removes a month to the date.
+	 *
+	 * @return the new Date
+	 */
+	Date removeMonth() const;
+
+	/*!
+	 * Removes a year to the date.
+	 *
+	 * @return the new Date
+	 */
+	Date removeYear() const;
+
+	/*!
 	 * Returns whether a date is greater than another.
 	 *
 	 * @param date the date
