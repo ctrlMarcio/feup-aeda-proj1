@@ -10,7 +10,6 @@ int main(int argc, char *argv[]) {
 	AuthUserManager auth_user_manager;
 	CurrentSession current_session(auth_user_manager);
 	Company company("FEUP Drive++");
-	// TODO vehicle maintenance, this is, read and write, and update the maintenance date when it is reached
 
 	string directory;
 

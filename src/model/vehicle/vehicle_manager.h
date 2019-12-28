@@ -10,7 +10,6 @@
  * Manages the vehicles in a company.
  */
 class VehicleManager {
-	// TODO: update read and write to maintained vehicles
 public:
     /*!
      * Reads the manager information based in a file in a specific a directory.
@@ -52,14 +51,41 @@ public:
 	bool addMaintainedVehicle(const MaintainedVehicle &maintained_vehicle);
 
 	/*!
+	 * Verifies if a given vehicle has scheduled maintenance.
+	 *
+	 * @param vehicle the vehicle to verify
+	 * @return true if the vehicle has maintenance, false otherwise
+	 */
+	bool hasMaintenance(const IVehicle &vehicle);
+
+	/*!
+	 * Gets the maintenance day of a given vehicle.
+	 *
+	 * @throw InvalidVehicleException if the vehicle has no maintenance scheduled
+	 * @param vehicle the vehicle to get the maintenance day from
+	 * @return the maintenance day
+	 */
+	Date getMaintenanceDay(const IVehicle &vehicle);
+
+	/*!
 	 * Changes the maintenance day of a given vehicle.
 	 * This will change the priority queue.
+	 * If the maintained vehicle does not exist, this is, if the vehicle has no maintenance schedule, adds it.
 	 *
 	 * @param maintained_vehicle the vehicle
 	 * @param day the new day
-	 * @return true if the change was successful, false otherwise
 	 */
-	bool setMaintenanceDay(MaintainedVehicle &maintained_vehicle, const Date &day);
+	void setMaintenanceDay(MaintainedVehicle &maintained_vehicle, const Date &day);
+
+	/*!
+	 * Changes the maintenance day of a given vehicle.
+	 * This will change the priority queue.
+	 * If the maintained vehicles does not exist, this is, if the vehicle has no maintenance schedule, adds it.
+	 *
+	 * @param vehicle the vehicle
+	 * @param date the new day
+	 */
+	void setMaintenanceDay(IVehicle &vehicle, const Date &date);
 
 private:
     /*!

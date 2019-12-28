@@ -1,4 +1,6 @@
 #include "i_vehicle.h"
+#include "passenger_vehicle.h"
+#include "commercial_vehicle.h"
 #include <typeinfo>
 
 IVehicle::~IVehicle() = default;

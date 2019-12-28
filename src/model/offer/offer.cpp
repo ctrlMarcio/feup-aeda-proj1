@@ -3,6 +3,8 @@
 #include <utility>
 #include <iostream>
 #include "../../exception/invalid_schedule_exception.h"
+#include "../vehicle/passenger_vehicle.h"
+#include "../vehicle/commercial_vehicle.h"
 
 Offer::Offer(IVehicle &vehicle, std::list<Schedule> available_schedules, IProvider &provider, float price) :
 		vehicle(vehicle), available_schedules(std::move(available_schedules)), provider(provider), price(price) {}
@@ -94,8 +96,9 @@ bool Offer::operator==(const Offer &rhs) const {
 }
 
 Offer &Offer::operator=(const Offer &offer) {
-	this->vehicle = offer.vehicle;
+	this->vehicle = offer.vehicle; // TODO this line causes errors, assigning on interface
 	this->available_schedules = offer.available_schedules;
+	this->provider = offer.provider;
 	this->price = offer.price;
 
 	return *this;

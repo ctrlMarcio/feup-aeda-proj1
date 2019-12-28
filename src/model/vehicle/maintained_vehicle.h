@@ -29,6 +29,8 @@ public:
 
 	const Date &getMaintenanceDay() const;
 
+	IVehicle &getVehicle() const;
+
 	/*!
 	 * Compares two maintained vehicles taking into account the number of days left until its maintenance day.
 	 * The less the number of days, bigger its priority, so

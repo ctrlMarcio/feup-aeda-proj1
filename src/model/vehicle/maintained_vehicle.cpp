@@ -26,10 +26,7 @@ bool MaintainedVehicle::operator<(const MaintainedVehicle &rhs) const {
 }
 
 bool MaintainedVehicle::operator==(const MaintainedVehicle &rhs) const {
-	return vehicle == rhs.vehicle &&
-		   maintenance_day.getDay() == rhs.maintenance_day.getDay() &&
-		   maintenance_day.getMonth() == maintenance_day.getMonth() &&
-		   maintenance_day.getYear() == maintenance_day.getYear();
+	return vehicle == rhs.vehicle;
 }
 
 MaintainedVehicle &MaintainedVehicle::operator=(const MaintainedVehicle &rhs) {
@@ -43,4 +40,8 @@ MaintainedVehicle &MaintainedVehicle::operator=(const MaintainedVehicle &rhs) {
 
 const Date &MaintainedVehicle::getMaintenanceDay() const {
 	return maintenance_day;
+}
+
+IVehicle &MaintainedVehicle::getVehicle() const {
+	return vehicle;
 }
