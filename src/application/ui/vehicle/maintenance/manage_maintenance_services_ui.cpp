@@ -6,6 +6,7 @@ ManageMaintenanceServicesUI::ManageMaintenanceServicesUI(UIManager &ui_manager) 
 				   ui_manager.getCompany().getOfferManager()) {}
 
 void ManageMaintenanceServicesUI::run() {
+	cout << endl;
 	unsigned vehicle_amount = io_util::askUnsigned("How many vehicles do you wish to see?");
 	vector<MaintainedVehicle> vehicles_to_see = controller.getVehicles(vehicle_amount);
 
@@ -33,7 +34,10 @@ void ManageMaintenanceServicesUI::run() {
 		return;
 
 	Date maintenance_day = io_util::askDate("Insert the new maintenance day.");
-	controller.changeMaintenanceDay(maintenance_day);
+	if (!controller.changeMaintenanceDay(maintenance_day)) {
+		cout << "Invalid date, aborting ..." << endl;
+		return;
+	}
 
 	cout << endl << "Date change successfully!" << endl;
 }
@@ -43,6 +47,11 @@ void ManageMaintenanceServicesUI::printVehicles(const vector<MaintainedVehicle> 
 	for (const MaintainedVehicle &mv : to_print) {
 		cout << endl << to_string(i) + "." << endl;
 		cout << mv.getVehicle();
-		cout << "Maintenance date: " << mv.getMaintenanceDay() << endl;
+
+		cout << "Maintenance date: ";
+
+		Date date = mv.getMaintenanceDay();
+		cout << date.getDay() << "/" << date.getMonth() << "/" << date.getYear() << endl;
 	}
+	cout << endl;
 }

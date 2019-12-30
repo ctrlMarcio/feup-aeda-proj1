@@ -79,8 +79,9 @@ public:
 	 *
 	 * @param maintained_vehicle the vehicle
 	 * @param day the new day
+	 * @return true if it the day was successfully set, false otherwise
 	 */
-	void setMaintenanceDay(MaintainedVehicle &maintained_vehicle, const Date &day);
+	bool setMaintenanceDay(MaintainedVehicle &maintained_vehicle, const Date &day);
 
 	/*!
 	 * Changes the maintenance day of a given vehicle.
@@ -89,8 +90,9 @@ public:
 	 *
 	 * @param vehicle the vehicle
 	 * @param date the new day
+	 * @return true if it the day was successfully set, false otherwise
 	 */
-	void setMaintenanceDay(IVehicle &vehicle, const Date &date);
+	bool setMaintenanceDay(IVehicle &vehicle, const Date &date);
 
 private:
     /*!

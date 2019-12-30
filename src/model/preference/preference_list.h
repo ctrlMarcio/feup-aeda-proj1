@@ -11,10 +11,6 @@
  */
 class PreferenceList {
 public:
-	/*!
-	 * Destructs the preference list, deleting the pointers;
-	 */
-	virtual ~PreferenceList();
 
 	/*!
 	 * Updates the passenger preference, deleting the previous one and building a new one with the given attributes.

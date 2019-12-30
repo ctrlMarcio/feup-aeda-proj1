@@ -42,7 +42,6 @@ string AdminPageUI::options() {
     options_stream << "1 - View rental history" << endl;
     options_stream << endl;
     options_stream << "2 - Manage provided vehicles" << endl;
-    options_stream << endl;
 	options_stream << "3 - Manage maintenance services" << endl;
 	options_stream << endl;
     options_stream << "0 - Logout" << endl;

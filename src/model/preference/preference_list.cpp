@@ -3,11 +3,6 @@
 #include "../../model/user/client.h"
 #include "preference_list.h"
 
-PreferenceList::~PreferenceList() {
-	delete passenger_preference;
-	delete commercial_preference;
-}
-
 bool PreferenceList::updatePreference(unsigned min_year, unsigned seat_number) {
 	auto *preference = new PassengerPreference(min_year, seat_number);
 

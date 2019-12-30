@@ -12,8 +12,11 @@ void ManageMaintenanceServicesController::setVehicle(MaintainedVehicle *vehicle)
 	ManageMaintenanceServicesController::vehicle = vehicle;
 }
 
-void ManageMaintenanceServicesController::changeMaintenanceDay(const Date &maintenance_day) const {
-	vehicle_manager.setMaintenanceDay(*vehicle, maintenance_day);
+bool ManageMaintenanceServicesController::changeMaintenanceDay(const Date &maintenance_day) const {
+	bool done = vehicle_manager.setMaintenanceDay(*vehicle, maintenance_day);
 
-	offer_manager.removeDay(vehicle->getVehicle(), maintenance_day);
+	if (done)
+		offer_manager.removeDay(vehicle->getVehicle(), maintenance_day);
+
+	return done;
 }

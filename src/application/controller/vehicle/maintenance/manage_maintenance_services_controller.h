@@ -13,7 +13,7 @@ public:
 
 	void setVehicle(MaintainedVehicle *vehicle);
 
-	void changeMaintenanceDay(const Date &maintenance_day) const;
+	bool changeMaintenanceDay(const Date &maintenance_day) const;
 
 private:
 	VehicleManager &vehicle_manager;

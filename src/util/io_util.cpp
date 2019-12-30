@@ -121,7 +121,7 @@ Date io_util::askDate(const string &question) {
 	Date ans;
 	string option;
 
-	cout << question << " (dd/MM/yyyy hh:mm:ss, time is optional)";
+	cout << question << " (dd/MM/yyyy hh:mm:ss, time is optional) ";
 
 	try {
 		int day, month, year, hour, minute, second;
@@ -129,21 +129,21 @@ Date io_util::askDate(const string &question) {
 		getline(cin, option);
 
 		vector<string> complete_vector = string_util::split(option, " ");
-		string date = complete_vector[0];
+		string date = complete_vector.at(0);
 		try {
-			string time = complete_vector[1];
+			string time = complete_vector.at(1);
 
 			vector<string> hour_vector = string_util::split(time, ":");
-			hour = stoi(hour_vector[0]);
+			hour = stoi(hour_vector.at(0));
 
 			try {
-				string min_secs = hour_vector[1];
+				string min_secs = hour_vector.at(1);
 
 				vector<string> min_secs_vector = string_util::split(time, ".");
-				minute = stoi(hour_vector[0]);
+				minute = stoi(hour_vector.at(0));
 
 				try {
-					second = stoi(min_secs_vector[1]);
+					second = stoi(min_secs_vector.at(1));
 
 				} catch (out_of_range &e) {
 					second = 0;
