@@ -60,7 +60,7 @@ Date *Date::getDate(const std::string &date_string) {
 	return new Date(day, month, year, hour, minute, second);
 }
 
-void Date::printDate(std::ofstream &ofstream, const Date &date) {
+void Date::printDateToFile(std::ofstream &ofstream, const Date &date) {
 	ofstream << date.getDay() << file_handling::time_delimiter <<
 			 date.getMonth() << file_handling::time_delimiter <<
 			 date.getYear() << file_handling::time_delimiter <<
@@ -399,4 +399,8 @@ Date Date::removeYear() const {
 	Date res = *this;
 	res.setYear(year - 1);
 	return res;
+}
+
+void Date::printToFile(std::ofstream &ofstream) {
+	Date::printDateToFile(ofstream, *this);
 }

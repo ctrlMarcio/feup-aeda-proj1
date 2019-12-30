@@ -141,9 +141,9 @@ void OfferManager::write(const std::string &directory) const {
 			const Date &end = schedule.getEnd();
 
 			ofstream << file_handling::delimiter;
-			Date::printDate(ofstream, begin);
+			Date::printDateToFile(ofstream, begin);
 			ofstream << file_handling::delimiter;
-			Date::printDate(ofstream, end);
+			Date::printDateToFile(ofstream, end);
 		}
 
 		ofstream << std::endl;

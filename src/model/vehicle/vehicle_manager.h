@@ -59,6 +59,11 @@ public:
 	bool hasMaintenance(const IVehicle &vehicle);
 
 	/*!
+	 * Removes the vehicles with the maintenance services already made from the queue.
+	 */
+	void update();
+
+	/*!
 	 * Gets the maintenance day of a given vehicle.
 	 *
 	 * @throw InvalidVehicleException if the vehicle has no maintenance scheduled

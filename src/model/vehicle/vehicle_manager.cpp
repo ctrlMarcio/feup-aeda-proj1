@@ -26,7 +26,16 @@ void VehicleManager::read(const std::string &directory) {
 	std::string line;
 	while (getline(ifstream, line)) {
 		std::vector<std::string> params = string_util::split(line, file_handling::delimiter);
-		this->vehicle_list.read(params, 0);
+		size_t first_element = 1;
+		this->vehicle_list.read(params, first_element);
+
+		vector<string> date = string_util::split(params[0], file_handling::time_delimiter);
+		if (date.size() == 6) {
+			Date maintenance_day(stoi(date[0]), stoi(date[1]), stoi(date[2]), stoi(date[3]), stoi(date[4]),
+								 stoi(date[5]));
+
+			setMaintenanceDay(vehicle_list.get(params[first_element + 1]), maintenance_day);
+		}
 	}
 }
 
@@ -40,6 +49,13 @@ void VehicleManager::write(const std::string &directory) {
 		throw InvalidFileException(file_path);
 
 	for (const IVehicle *vehicle : vehicle_list.getVehicles()) {
+		if (hasMaintenance(*vehicle))
+			getMaintenanceDay(*vehicle).printToFile(ofstream);
+		else
+			ofstream << "null";
+
+		ofstream << file_handling::delimiter;
+
 		vehicle->printToFile(ofstream);
 		ofstream << endl;
 	}
@@ -171,4 +187,11 @@ Date VehicleManager::getMaintenanceDay(const IVehicle &vehicle) {
 void VehicleManager::setMaintenanceDay(IVehicle &vehicle, const Date &date) {
 	MaintainedVehicle maintained_vehicle(vehicle, date);
 	setMaintenanceDay(maintained_vehicle, date);
+}
+
+void VehicleManager::update() {
+	Date now;
+
+	while (!maintained_vehicles.empty() && maintained_vehicles.top().getMaintenanceDay() < now)
+		maintained_vehicles.pop();
 }

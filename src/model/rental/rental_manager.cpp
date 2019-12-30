@@ -77,9 +77,9 @@ void RentalManager::write(const std::string &directory) const {
 				 << rental.getRenter().getIdentificationNumber() << file_handling::delimiter
 				 << rental.getOffer().getVehicle().getNumberPlate() << file_handling::delimiter;
 
-		Date::printDate(ofstream, rental.getSchedule().getBegin());
+		Date::printDateToFile(ofstream, rental.getSchedule().getBegin());
 		ofstream << file_handling::delimiter;
-		Date::printDate(ofstream, rental.getSchedule().getEnd());
+		Date::printDateToFile(ofstream, rental.getSchedule().getEnd());
 		ofstream << std::endl;
 	}
 

@@ -38,11 +38,12 @@ public:
 	static Date *getDate(const std::string &date_vector);
 
 	/*!
-	 * Prints a date to
-	 * @param ofstream
-	 * @param date
+	 * Prints a date to external files.
+	 *
+	 * @param ofstream the ofstream
+	 * @param date the date
 	 */
-	static void printDate(std::ofstream &ofstream, const Date &date);
+	static void printDateToFile(std::ofstream &ofstream, const Date &date);
 
 	/*!
 	 * Calculates the difference in days from two dates.
@@ -155,6 +156,13 @@ public:
 	 * @return the new Date
 	 */
 	Date removeYear() const;
+
+	/*!
+	 * Prints the date to a file.
+	 *
+	 * @param ofstream the representing ofstream
+	 */
+	void printToFile(std::ofstream &ofstream);
 
 	/*!
 	 * Returns whether a date is greater than another.
