@@ -1,11 +1,12 @@
 #include <iostream>
 #include <algorithm>
 #include "io_util.h"
+#include "string_util.h"
 
 using namespace std;
 
-list<string> affirmative_answers = {"Y", "yes", "y", "aye", "si", "sim", "s"};
-list<string> negative_answers = {"N", "no", "n", "nah", "nope", "nao", "não"};
+list<string> affirmative_answers = {"Y", "yes", "y", "aye", "si", "sim", "s", "1"};
+list<string> negative_answers = {"N", "no", "n", "nah", "nope", "nao", "não", "0", "-1"};
 
 float io_util::askFloat(const std::string &question) {
     float ans = 0;
@@ -114,4 +115,62 @@ string io_util::askString(const string &question) {
     }
 
     return ans;
+}
+
+Date io_util::askDate(const string &question) {
+	Date ans;
+	string option;
+
+	cout << question << " (dd/MM/yyyy hh:mm:ss, time is optional)";
+
+	try {
+		int day, month, year, hour, minute, second;
+
+		getline(cin, option);
+
+		vector<string> complete_vector = string_util::split(option, " ");
+		string date = complete_vector[0];
+		try {
+			string time = complete_vector[1];
+
+			vector<string> hour_vector = string_util::split(time, ":");
+			hour = stoi(hour_vector[0]);
+
+			try {
+				string min_secs = hour_vector[1];
+
+				vector<string> min_secs_vector = string_util::split(time, ".");
+				minute = stoi(hour_vector[0]);
+
+				try {
+					second = stoi(min_secs_vector[1]);
+
+				} catch (out_of_range &e) {
+					second = 0;
+				}
+
+			} catch (out_of_range &e) {
+				minute = 0;
+				second = 0;
+			}
+
+		} catch (out_of_range &e) {
+			hour = 0;
+			minute = 0;
+			second = 0;
+		}
+
+		vector<string> date_vector = string_util::split(date, "/");
+
+		day = stoi(date_vector[0]);
+		month = stoi(date_vector[1]);
+		year = stoi(date_vector[2]);
+
+		ans = Date(day, month, year, hour, minute, second);
+	} catch (const exception &e) {
+		cout << "The value is invalid." << endl;
+		ans = askDate(question);
+	}
+
+	return ans;
 }
