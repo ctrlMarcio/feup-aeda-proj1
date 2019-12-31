@@ -152,16 +152,15 @@ TEST(offer_manager, remove_day) {
 	manager.add(offer3);
 
 	manager.removeDay(vehicle1, Date(5, 2, 2020));
-	EXPECT_EQ(manager.getOffers()[0].getAvailableSchedules().begin()->getBegin(), Date(6, 2, 2020));
+	EXPECT_EQ(manager.getOffers()[0]->getAvailableSchedules().begin()->getBegin(), Date(6, 2, 2020));
 	manager.removeDay(vehicle2, Date(6, 2, 2020));
-	ASSERT_EQ(manager.getOffers()[1].getAvailableSchedules().size(), 2);
-	EXPECT_EQ(manager.getOffers()[1].getAvailableSchedules().begin()->getEnd(), Date(5, 2, 2020, 23, 59, 59));
-	EXPECT_EQ((manager.getOffers()[1].getAvailableSchedules().back()).getBegin(), Date(7, 2, 2020));
+	ASSERT_EQ(manager.getOffers()[1]->getAvailableSchedules().size(), 2);
+	EXPECT_EQ(manager.getOffers()[1]->getAvailableSchedules().begin()->getEnd(), Date(5, 2, 2020, 23, 59, 59));
+	EXPECT_EQ((manager.getOffers()[1]->getAvailableSchedules().back()).getBegin(), Date(7, 2, 2020));
 	manager.removeDay(vehicle3, Date(7, 2, 2020));
-	EXPECT_EQ(manager.getOffers()[2].getAvailableSchedules().begin()->getEnd(), Date(6, 2, 2020, 23, 59, 59));
+	EXPECT_EQ(manager.getOffers()[2]->getAvailableSchedules().begin()->getEnd(), Date(6, 2, 2020, 23, 59, 59));
 }
 
-/* TODO failing
 TEST(offer_manager, remove) {
 	OfferManager manager;
 
@@ -186,4 +185,3 @@ TEST(offer_manager, remove) {
 	EXPECT_EQ(manager.getOffers().size(), 0);
 	EXPECT_FALSE(manager.remove(offer2));
 }
- */

@@ -8,7 +8,7 @@ ManageMaintenanceServicesUI::ManageMaintenanceServicesUI(UIManager &ui_manager) 
 void ManageMaintenanceServicesUI::run() {
 	cout << endl;
 	unsigned vehicle_amount = io_util::askUnsigned("How many vehicles do you wish to see?");
-	vector<MaintainedVehicle> vehicles_to_see = controller.getVehicles(vehicle_amount);
+	vector<MaintainedVehicle *> vehicles_to_see = controller.getVehicles(vehicle_amount);
 
 	printVehicles(vehicles_to_see);
 
@@ -22,7 +22,7 @@ void ManageMaintenanceServicesUI::run() {
 			return;
 
 		try {
-			controller.setVehicle(&vehicles_to_see.at(vehicle - 1));
+			controller.setVehicle(vehicles_to_see.at(vehicle - 1));
 		} catch (std::out_of_range &e) {
 			valid = false;
 		}
@@ -42,15 +42,15 @@ void ManageMaintenanceServicesUI::run() {
 	cout << endl << "Date change successfully!" << endl;
 }
 
-void ManageMaintenanceServicesUI::printVehicles(const vector<MaintainedVehicle> &to_print) const {
+void ManageMaintenanceServicesUI::printVehicles(const vector<MaintainedVehicle *> &to_print) const {
 	int i = 1;
-	for (const MaintainedVehicle &mv : to_print) {
+	for (const MaintainedVehicle *mv : to_print) {
 		cout << endl << to_string(i++) + "." << endl;
-		cout << mv.getVehicle();
+		cout << mv->getVehicle();
 
 		cout << "Maintenance date: ";
 
-		Date date = mv.getMaintenanceDay();
+		Date date = mv->getMaintenanceDay();
 		cout << date.getDay() << "/" << date.getMonth() << "/" << date.getYear() << endl;
 	}
 	cout << endl;

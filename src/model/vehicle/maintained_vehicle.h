@@ -10,6 +10,9 @@
  */
 class MaintainedVehicle {
 public:
+
+	MaintainedVehicle(const MaintainedVehicle &maintained_vehicle);
+
 	/*!
 	 * The full default constructor.
 	 *
@@ -25,7 +28,7 @@ public:
 	 * @param maintenance_day the new maintenance day
 	 * @return true of the day was successfully set, false otherwise
 	 */
-	bool setMaintenanceDay(const Date &maintenance_day);
+	bool setMaintenanceDay(Date maintenance_day);
 
 	const Date &getMaintenanceDay() const;
 

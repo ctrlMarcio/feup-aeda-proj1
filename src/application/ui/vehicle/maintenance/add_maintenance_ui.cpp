@@ -17,7 +17,6 @@ void AddMaintenanceUI::run() {
 
 	bool has_maintenance = controller.hasMaintenanceDay(*chosen);
 
-
 	if (has_maintenance) {
 		Date maintenance_day = controller.getMaintenanceDay();
 
@@ -41,7 +40,6 @@ void AddMaintenanceUI::run() {
 				return;
 		}
 	} while (!valid);
-
 }
 
 IVehicle *AddMaintenanceUI::getVehicle(vector<IVehicle *> &vehicles) const {

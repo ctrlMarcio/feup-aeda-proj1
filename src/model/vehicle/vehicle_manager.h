@@ -7,6 +7,12 @@
 #include "vehicle_list.h"
 #include "maintained_vehicle.h"
 
+struct smaller {
+	bool operator()(const MaintainedVehicle *mv1, const MaintainedVehicle *mv2) {
+		return *mv1 < *mv2;
+	}
+};
+
 /*!
  * Manages the vehicles in a company.
  */
@@ -47,7 +53,7 @@ public:
 	 * @return the vector of vehicles
 	 * @return the vector of vehicles
 	 */
-	vector<MaintainedVehicle> getMaintainedVehicles(size_t amount);
+	vector<MaintainedVehicle *> getMaintainedVehicles(unsigned long amount);
 
 	bool addMaintainedVehicle(const MaintainedVehicle &maintained_vehicle);
 
@@ -104,7 +110,7 @@ private:
 	/*!
 	 * The priority queues that order the vehicles by closeness to their maintenance day.
 	 */
-	priority_queue<MaintainedVehicle> maintained_vehicles;
+	priority_queue<MaintainedVehicle *, std::vector<MaintainedVehicle *>, smaller> maintained_vehicles;
 
 	/*!
 	 * Gets if the maintained vehicle exists.

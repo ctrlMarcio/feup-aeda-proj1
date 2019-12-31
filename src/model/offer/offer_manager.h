@@ -55,7 +55,7 @@ public:
 	 * @param offer the offer to add
 	 * @return true if the offer was successfully added, false otherwise
 	 */
-	bool add(const Offer &offer);
+	bool add(Offer &offer);
 
 	/*!
 	 * Removes an offer from the container.
@@ -70,7 +70,7 @@ public:
 	 *
 	 * @return the container of offers.
 	 */
-	vector<Offer> &getOffers();
+	vector<Offer *> &getOffers();
 
 	/*!
 	 * Removes the day from the available schedules of the vehicle.
@@ -100,7 +100,7 @@ private:
 	/*!
 	 * The container of offers.
 	 */
-	vector<Offer> offers;
+	vector<Offer *> offers;
 
 	/*!
 	 * Verifies if an offer is valid.

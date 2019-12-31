@@ -11,7 +11,7 @@ vector<Offer *> ViewOffersPageController::getOffers(int page, int max_per_page) 
     for (int i = 0; i < max_per_page; i++) {
         int index = first_index + i;
         if (index >= company.getOfferManager().getOffers().size()) break;
-        result.push_back(&company.getOfferManager().getOffers()[index]);
+        result.push_back(company.getOfferManager().getOffers()[index]);
     }
     return result;
 }

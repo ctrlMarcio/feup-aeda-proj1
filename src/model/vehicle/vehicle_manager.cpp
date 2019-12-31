@@ -61,51 +61,52 @@ void VehicleManager::write(const std::string &directory) {
 	ofstream << std::endl;
 }
 
-vector<MaintainedVehicle> VehicleManager::getMaintainedVehicles(size_t amount) {
-	vector<MaintainedVehicle> res;
+vector<MaintainedVehicle *> VehicleManager::getMaintainedVehicles(unsigned long amount) {
+	vector<MaintainedVehicle *> res;
 
-	for (size_t count = 0; count < amount && !maintained_vehicles.empty(); count++) {
-		MaintainedVehicle vehicle = maintained_vehicles.top();
-		maintained_vehicles.pop();
+	for (unsigned long count = 0; count < amount && !maintained_vehicles.empty(); count++) {
+		MaintainedVehicle *vehicle = new MaintainedVehicle(*maintained_vehicles.top());
 		res.push_back(vehicle);
+		maintained_vehicles.pop();
 		count++;
 	}
 
-	for (MaintainedVehicle mv : res)
+	for (MaintainedVehicle *mv : res)
 		maintained_vehicles.push(mv);
 
 	return res;
 }
 
 bool VehicleManager::setMaintenanceDay(MaintainedVehicle &maintained_vehicle, const Date &day) {
+	auto *to_add = new MaintainedVehicle(maintained_vehicle);
 	Date now;
 	if (day <= now)
 		return false;
 
-	if (!hasMaintainedVehicle(maintained_vehicle)) {
+	if (!hasMaintainedVehicle(*to_add)) {
 		// adds the vehicle if it does not exist
-		maintained_vehicle.setMaintenanceDay(day);
-		maintained_vehicles.push(maintained_vehicle);
+		to_add->setMaintenanceDay(day);
+		maintained_vehicles.push(to_add);
 		return true;
 	}
 
 	list<MaintainedVehicle> aux;
 
 	while (!maintained_vehicles.empty()) {
-		MaintainedVehicle mv = maintained_vehicles.top();
+		MaintainedVehicle mv = *maintained_vehicles.top();
 		maintained_vehicles.pop();
 
-		if (mv == maintained_vehicle)
+		if (mv == *to_add)
 			break;
 
 		aux.push_back(mv);
 	}
 
-	maintained_vehicle.setMaintenanceDay(day);
-	maintained_vehicles.push(maintained_vehicle);
+	to_add->setMaintenanceDay(day);
+	maintained_vehicles.push(to_add);
 
-	for (MaintainedVehicle vehicle : aux)
-		maintained_vehicles.push(vehicle);
+	for (MaintainedVehicle &vehicle : aux)
+		maintained_vehicles.push(new MaintainedVehicle(vehicle));
 
 	return true;
 }
@@ -115,7 +116,7 @@ bool VehicleManager::hasMaintainedVehicle(const MaintainedVehicle &vehicle) {
 	list<MaintainedVehicle> aux;
 
 	while (!maintained_vehicles.empty() && !has) {
-		MaintainedVehicle mv = maintained_vehicles.top();
+		MaintainedVehicle mv = *maintained_vehicles.top();
 		aux.push_back(mv);
 		maintained_vehicles.pop();
 
@@ -123,17 +124,18 @@ bool VehicleManager::hasMaintainedVehicle(const MaintainedVehicle &vehicle) {
 			has = true;
 	}
 
-	for (MaintainedVehicle i : aux)
-		maintained_vehicles.push(i);
+	for (MaintainedVehicle &i : aux)
+		maintained_vehicles.push(new MaintainedVehicle(i));
 
 	return has;
 }
 
 bool VehicleManager::addMaintainedVehicle(const MaintainedVehicle &maintained_vehicle) {
-	if (hasMaintainedVehicle(maintained_vehicle))
+	MaintainedVehicle *to_add = new MaintainedVehicle(maintained_vehicle);
+	if (hasMaintainedVehicle(*to_add))
 		return false;
 
-	maintained_vehicles.push(maintained_vehicle);
+	maintained_vehicles.push(to_add);
 	return true;
 }
 
@@ -142,7 +144,7 @@ bool VehicleManager::hasMaintenance(const IVehicle &vehicle) {
 	list<MaintainedVehicle> aux;
 
 	while (!maintained_vehicles.empty()) {
-		MaintainedVehicle top = maintained_vehicles.top();
+		MaintainedVehicle top = *maintained_vehicles.top();
 
 		if (top.getVehicle() == vehicle) {
 			found = true;
@@ -153,8 +155,8 @@ bool VehicleManager::hasMaintenance(const IVehicle &vehicle) {
 		aux.push_back(top);
 	}
 
-	for (MaintainedVehicle mv : aux)
-		maintained_vehicles.push(mv);
+	for (MaintainedVehicle &mv : aux)
+		maintained_vehicles.push(new MaintainedVehicle(mv));
 
 	return found;
 }
@@ -166,7 +168,7 @@ Date VehicleManager::getMaintenanceDay(const IVehicle &vehicle) {
 	Date res;
 
 	while (!maintained_vehicles.empty()) {
-		MaintainedVehicle top = maintained_vehicles.top();
+		MaintainedVehicle top = *maintained_vehicles.top();
 
 		if (top.getVehicle() == vehicle) {
 			res = top.getMaintenanceDay();
@@ -182,8 +184,8 @@ Date VehicleManager::getMaintenanceDay(const IVehicle &vehicle) {
 	if (maintained_vehicles.empty())
 		empty = true;
 
-	for (MaintainedVehicle mv : aux)
-		maintained_vehicles.push(mv);
+	for (MaintainedVehicle &mv : aux)
+		maintained_vehicles.push(new MaintainedVehicle(mv));
 
 	if (empty)
 		throw NonExistentVehicleException(vehicle.getNumberPlate(), "The vehicle has no maintenance scheduled");
@@ -199,6 +201,6 @@ bool VehicleManager::setMaintenanceDay(IVehicle &vehicle, const Date &date) {
 void VehicleManager::update() {
 	Date now;
 
-	while (!maintained_vehicles.empty() && maintained_vehicles.top().getMaintenanceDay() < now)
+	while (!maintained_vehicles.empty() && maintained_vehicles.top()->getMaintenanceDay() < now)
 		maintained_vehicles.pop();
 }

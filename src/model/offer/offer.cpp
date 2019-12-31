@@ -96,7 +96,7 @@ bool Offer::operator==(const Offer &rhs) const {
 }
 
 Offer &Offer::operator=(const Offer &offer) {
-	this->vehicle = offer.vehicle; // TODO this line causes errors, assigning on interface
+	this->vehicle = offer.vehicle;
 	this->available_schedules = offer.available_schedules;
 	this->provider = offer.provider;
 	this->price = offer.price;

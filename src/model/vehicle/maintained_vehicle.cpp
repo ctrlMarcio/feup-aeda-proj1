@@ -1,12 +1,16 @@
 #include "maintained_vehicle.h"
 #include "../../exception/invalid_date_exception.h"
 
+MaintainedVehicle::MaintainedVehicle(const MaintainedVehicle &maintained_vehicle)
+		: vehicle(maintained_vehicle.getVehicle()), maintenance_day(maintained_vehicle.getMaintenanceDay()) {
+}
+
 MaintainedVehicle::MaintainedVehicle(IVehicle &vehicle, const Date &maintenanceDay) : vehicle(vehicle) {
 	if (!setMaintenanceDay(maintenanceDay))
 		throw InvalidDateException(maintenanceDay, "The maintenance date must be in the future.");
 }
 
-bool MaintainedVehicle::setMaintenanceDay(const Date &maintenance_day) {
+bool MaintainedVehicle::setMaintenanceDay(Date maintenance_day) {
 	Date now;
 
 	if (maintenance_day <= now)
@@ -30,9 +34,6 @@ bool MaintainedVehicle::operator==(const MaintainedVehicle &rhs) const {
 }
 
 MaintainedVehicle &MaintainedVehicle::operator=(const MaintainedVehicle &rhs) {
-	if (this == &rhs)
-		return *this;
-
 	this->vehicle = rhs.vehicle;
 	this->maintenance_day = rhs.maintenance_day;
 	return *this;

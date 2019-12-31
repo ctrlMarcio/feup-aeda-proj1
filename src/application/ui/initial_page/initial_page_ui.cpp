@@ -75,7 +75,7 @@ string InitialPageUI::singleOffer(int index) {
 
 	if (index >= offer_manager.getOffers().size()) return "There are not enough offers to show.";
 
-	Offer &offer = *(offer_manager.getOffers().begin() + index);
+	Offer &offer = **(offer_manager.getOffers().begin() + index);
 
 	stringstream offer_stream;
 
