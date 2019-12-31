@@ -3,6 +3,7 @@
 
 
 #include <queue>
+#include <unordered_set>
 #include "vehicle_list.h"
 #include "maintained_vehicle.h"
 

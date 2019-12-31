@@ -162,12 +162,12 @@ Date io_util::askDate(const string &question) {
 
 		vector<string> date_vector = string_util::split(date, "/");
 
-		day = stoi(date_vector[0]);
-		month = stoi(date_vector[1]);
-		year = stoi(date_vector[2]);
+		day = stoi(date_vector.at(0));
+		month = stoi(date_vector.at(1));
+		year = stoi(date_vector.at(2));
 
 		ans = Date(day, month, year, hour, minute, second);
-	} catch (const exception &e) {
+	} catch (exception &e) {
 		cout << "The value is invalid." << endl;
 		ans = askDate(question);
 	}

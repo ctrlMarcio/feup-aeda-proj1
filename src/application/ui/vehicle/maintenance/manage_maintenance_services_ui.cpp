@@ -45,7 +45,7 @@ void ManageMaintenanceServicesUI::run() {
 void ManageMaintenanceServicesUI::printVehicles(const vector<MaintainedVehicle> &to_print) const {
 	int i = 1;
 	for (const MaintainedVehicle &mv : to_print) {
-		cout << endl << to_string(i) + "." << endl;
+		cout << endl << to_string(i++) + "." << endl;
 		cout << mv.getVehicle();
 
 		cout << "Maintenance date: ";

@@ -101,7 +101,7 @@ bool VehicleManager::setMaintenanceDay(MaintainedVehicle &maintained_vehicle, co
 		aux.push_back(mv);
 	}
 
-	bool valid = maintained_vehicle.setMaintenanceDay(day);
+	maintained_vehicle.setMaintenanceDay(day);
 	maintained_vehicles.push(maintained_vehicle);
 
 	for (MaintainedVehicle vehicle : aux)
@@ -160,6 +160,8 @@ bool VehicleManager::hasMaintenance(const IVehicle &vehicle) {
 }
 
 Date VehicleManager::getMaintenanceDay(const IVehicle &vehicle) {
+	update();
+
 	list<MaintainedVehicle> aux;
 	Date res;
 
