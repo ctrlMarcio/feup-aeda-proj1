@@ -39,26 +39,33 @@ TEST(contract_manager, get_contracts_of) {
 
 	Date date1(1, 1, 2010);
 	Date date2(1, 1, 2011);
-	Date date3(1, 1, 2009);
+	Date date3(1, 1, 2019);
+	Date date4(1, 1, 2000);
 
 	IProvider *user1 = new Client("1", "1", "1");
 
 	Contract *contract1 = new Contract(date1, user1, ContractType::TRANSFER);
 	Contract *contract2 = new Contract(date2, user1, ContractType::TRANSFER);
 	Contract *contract3 = new Contract(date3, user1, ContractType::TRANSFER);
+	Contract *contract4 = new Contract(date4, user1, ContractType::TRANSFER);
 
 	manager.add(contract1);
 	manager.add(contract2);
 	manager.add(contract3);
+	manager.add(contract4);
 
 	EXPECT_TRUE(manager.getContractsOf("aksjdh").empty());
 
 	list<Contract> contracts = manager.getContractsOf("1");
 
-	ASSERT_EQ(contracts.size(), 3);
-	EXPECT_EQ(contracts.front(), *contract3);
-	contracts.pop_front();
-	EXPECT_EQ(contracts.front(), *contract1);
-	contracts.pop_front();
-	EXPECT_EQ(contracts.front(), *contract2);
+	ASSERT_EQ(contracts.size(), 4);
+
+	auto it = contracts.begin();
+	EXPECT_EQ(*it, *contract4);
+	++it;
+	EXPECT_EQ(*it, *contract1);
+	++it;
+	EXPECT_EQ(*it, *contract2);
+	++it;
+	EXPECT_EQ(*it, *contract3);
 }
