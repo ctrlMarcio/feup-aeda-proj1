@@ -2,7 +2,7 @@
 #include "../rental/rental_manager.h"
 
 ContractManager::ContractManager(RentalManager &rental_manager, OfferManager &offer_manager) : rental_manager(
-        rental_manager), offer_manager(offer_manager) {
+		rental_manager), offer_manager(offer_manager), contracts(BST<Contract *, contract_less_than>(nullptr)) {
 }
 
 RentalContract ContractManager::build(IUser *user, Rental &rental) {

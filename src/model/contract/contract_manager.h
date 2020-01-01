@@ -47,7 +47,7 @@ private:
 
     OfferManager &offer_manager;
 
-	BST<Contract *, contract_less_than> contracts = BST<Contract *, contract_less_than>(nullptr);
+	BST<Contract *, contract_less_than> contracts;
 };
 
 
