@@ -5,6 +5,7 @@
 #include "../../application/io/file_handling.h"
 #include "../../exception/invalid_file_exception.h"
 #include "../../util/string_util.h"
+#include "../contract/contract_manager.h"
 
 Client ClientManager::build(string name, string identification_number, string address) {
 	return Client(std::move(name), std::move(identification_number), std::move(address));
@@ -82,7 +83,8 @@ size_t ClientManager::readCommercialPreference(const vector<std::string> &params
 	float cargo_volume = stof(params[++i]);
 	float min_max_weight = stof(params[++i]);
 	++i;
-	bool refrigerated = params[i] == "y" || params[i] == "yes" || params[i] == "1" || params[i] == "t" || params[i] == "true";
+	bool refrigerated =
+			params[i] == "y" || params[i] == "yes" || params[i] == "1" || params[i] == "t" || params[i] == "true";
 	++i;
 	client->getPreferenceList().updatePreference(min_year, cargo_volume, min_max_weight, refrigerated);
 	return i;
@@ -119,8 +121,10 @@ void ClientManager::write(const std::string &directory) const {
 		if (client.getPreferenceList().getCommercialPreference() != nullptr) {
 			ofstream << file_handling::delimiter << "commercial_pref" << file_handling::delimiter
 					 << client.getPreferenceList().getCommercialPreference()->getMinYear() << file_handling::delimiter
-					 << client.getPreferenceList().getCommercialPreference()->getCargoVolume() << file_handling::delimiter
-					 << client.getPreferenceList().getCommercialPreference()->getMinMaxWeight() << file_handling::delimiter
+					 << client.getPreferenceList().getCommercialPreference()->getCargoVolume()
+					 << file_handling::delimiter
+					 << client.getPreferenceList().getCommercialPreference()->getMinMaxWeight()
+					 << file_handling::delimiter
 					 << client.getPreferenceList().getCommercialPreference()->isRefrigerated();
 		}
 
@@ -133,4 +137,21 @@ void ClientManager::write(const std::string &directory) const {
 	}
 
 	ofstream.close();
+}
+
+void ClientManager::update(const ContractManager &contract_manager) {
+	for (auto &client : clients) {
+		if (inactive_clients.find(&client) == inactive_clients.end() &&
+			contract_manager.daysSinceLastContract(client.getIdentificationNumber()) >= DAYS_TO_INACTIVITY)
+			inactive_clients.insert(&client);
+	}
+}
+
+vector<Client> ClientManager::getInactiveClients() const {
+	vector<Client> res;
+
+	for (const Client *client : inactive_clients)
+		res.push_back(*client);
+
+	return res;
 }

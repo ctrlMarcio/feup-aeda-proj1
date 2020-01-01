@@ -28,6 +28,10 @@ public:
 
     bool operator>=(const Contract &rhs) const;
 
+	bool operator==(const Contract &rhs) const;
+
+	bool operator!=(const Contract &rhs) const;
+
 private:
     Date date;
 

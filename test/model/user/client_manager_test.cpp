@@ -1,6 +1,9 @@
 #include <gtest/gtest.h>
 #include <model/user/client.h>
 #include <model/user/client_manager.h>
+#include <model/offer/offer_manager.h>
+#include <model/rental/rental_manager.h>
+#include <model/contract/contract_manager.h>
 
 using testing::Eq;
 
@@ -70,4 +73,28 @@ TEST(client_manager, get) {
 
 	ASSERT_EQ(*manager.get("1"), admin1);
 	ASSERT_EQ(manager.get("2"), nullptr);
+}
+
+TEST(client_manager, get_inactive_clients) {
+	ClientManager manager;
+	OfferManager om;
+	RentalManager rm;
+	ContractManager cm(rm, om);
+
+	Client *client = new Client("1", "1", "1");
+	IProvider *user = client;
+
+	Date contract_date;
+	for (unsigned long i = 0; i < ClientManager::DAYS_TO_INACTIVITY; i++)
+		contract_date = contract_date.removeDay();
+
+	Contract *contract = new Contract(contract_date, user, ContractType::TRANSFER);
+	cm.add(contract);
+
+	manager.add(*client);
+
+	manager.update(cm);
+
+	ASSERT_EQ(manager.getInactiveClients().size(), 1);
+	EXPECT_EQ(manager.getInactiveClients()[0], *client);
 }

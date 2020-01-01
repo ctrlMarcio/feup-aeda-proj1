@@ -38,3 +38,13 @@ bool Contract::operator<=(const Contract &rhs) const {
 bool Contract::operator>=(const Contract &rhs) const {
     return !(*this < rhs);
 }
+
+bool Contract::operator==(const Contract &rhs) const {
+	return date == rhs.date &&
+		   user->getIdentificationNumber() == rhs.user->getIdentificationNumber() &&
+		   contract_type == rhs.contract_type;
+}
+
+bool Contract::operator!=(const Contract &rhs) const {
+	return !(rhs == *this);
+}

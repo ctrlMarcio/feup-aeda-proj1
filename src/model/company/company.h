@@ -6,6 +6,7 @@
 #include "../offer/offer_manager.h"
 #include "user_manager.h"
 #include "../vehicle/vehicle_manager.h"
+#include "../contract/contract_manager.h"
 
 
 /*!
@@ -19,6 +20,11 @@ public:
      * @param name the company
      */
 	explicit Company(string name);
+
+	/*!
+	 * Updates the information of the company according to the current day.
+	 */
+	void update();
 
 	/*!
 	 * Reads the company information from specific files in a directory.
@@ -94,6 +100,11 @@ private:
 	 * The vehicle manager of the company.
 	 */
 	VehicleManager vehicle_manager;
+
+	/*!
+	 * The contract manager of the company.
+	 */
+	ContractManager contract_manager;
 };
 
 

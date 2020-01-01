@@ -37,7 +37,7 @@ endif()
 include_directories(../src/)
 
 # Link against gtest or gtest_main as needed
-add_executable(tests util/date_test.cpp auth/auth_user/auth_user_manager_test.cpp auth/current_session/current_session_test.cpp auth/auth_user/auth_user_test.cpp util/string_util_test.cpp model/company/user_manager_test.cpp model/offer/offer_test.cpp model/preference/preference_list_test.cpp model/user/admin_test.cpp model/rental/rental_test.cpp model/rental/rental_manager_test.cpp model/schedule/schedule_test.cpp model/user/admin_manager_test.cpp model/user/client_company_manager_test.cpp model/user/client_manager_test.cpp model/vehicle/vehicle_list_test.cpp model/offer/offer_manager_test.cpp model/vehicle/maintained_vehicle_test.cpp model/vehicle/vehicle_manager_test.cpp)
+add_executable(tests util/date_test.cpp auth/auth_user/auth_user_manager_test.cpp auth/current_session/current_session_test.cpp auth/auth_user/auth_user_test.cpp util/string_util_test.cpp model/company/user_manager_test.cpp model/offer/offer_test.cpp model/preference/preference_list_test.cpp model/user/admin_test.cpp model/rental/rental_test.cpp model/rental/rental_manager_test.cpp model/schedule/schedule_test.cpp model/user/admin_manager_test.cpp model/user/client_company_manager_test.cpp model/user/client_manager_test.cpp model/vehicle/vehicle_list_test.cpp model/offer/offer_manager_test.cpp model/vehicle/maintained_vehicle_test.cpp model/vehicle/vehicle_manager_test.cpp model/contract/contract_manager_test.cpp)
 target_link_libraries(tests PRIVATE gtest_main feup-aeda-proj1)
 
 add_test(NAME tests COMMAND tests)

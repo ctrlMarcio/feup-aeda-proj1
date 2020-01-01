@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
 		cout << "\033[1;31mInvalid parameters, initializing without data.\033[0m" << endl;
 	}
 
-	company.getVehicleManager().update();
+	company.update();
 
 	UIManager ui_manager(current_session, auth_user_manager, company, directory);
 	ui_manager.setCurrent(new InitialPageUI(ui_manager));
