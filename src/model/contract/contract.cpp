@@ -1,4 +1,6 @@
 #include "contract.h"
+#include "../../util/string_util.h"
+#include <sstream>
 
 Contract::Contract(Date &date, IUser *user, ContractType contract_type) : date(date), user(user),
                                                                           contract_type(contract_type) {}
@@ -40,11 +42,23 @@ bool Contract::operator>=(const Contract &rhs) const {
 }
 
 bool Contract::operator==(const Contract &rhs) const {
-	return date == rhs.date &&
-		   user->getIdentificationNumber() == rhs.user->getIdentificationNumber() &&
-		   contract_type == rhs.contract_type;
+    return date == rhs.date &&
+           user->getIdentificationNumber() == rhs.user->getIdentificationNumber() &&
+           contract_type == rhs.contract_type;
 }
 
 bool Contract::operator!=(const Contract &rhs) const {
-	return !(rhs == *this);
+    return !(rhs == *this);
+}
+
+string Contract::toString() const {
+    stringstream to_string_stream;
+
+    string contract_type_string = contract_type == TRANSFER ? "Transfer" : "Rental";
+
+    to_string_stream << contract_type_string << " contract" << " concluded on " << date.toString()
+                     << " by "
+                     << user->getName() << "." << endl;
+
+    return to_string_stream.str();
 }

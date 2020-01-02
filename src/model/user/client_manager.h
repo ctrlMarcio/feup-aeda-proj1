@@ -6,7 +6,8 @@
 #include <algorithm>
 #include <unordered_set>
 #include "client.h"
-#include "../contract/contract_manager.h"
+
+class ContractManager;
 
 using namespace std;
 

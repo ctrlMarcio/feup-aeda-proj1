@@ -3,25 +3,26 @@
 
 #include <string>
 #include "../../../model/contract/contract_manager.h"
+#include <vector>
 
 using namespace std;
 
 enum SortField {
-    DEFAULT, CLIENT_NAME, CONTRACT_TYPE, VEHICLE_YEAR;
+    DEFAULT, DATE, CLIENT_NAME, CONTRACT_TYPE
 };
 
 class ViewContractsPageController {
 public:
     explicit ViewContractsPageController(ContractManager &contract_manager);
 
-    string getContracts();
+    vector<Contract> getContracts() const;
 
     void sortBy(SortField field);
 
 private:
     ContractManager &contract_manager;
 
-    BST<>
+    vector<Contract> contracts;
 };
 
 

@@ -1,9 +1,9 @@
 #include "transfer_contract.h"
 
 TransferContract::TransferContract(Date date, IUser *user, ContractType contract_type, Offer &offer) : Contract(date,
-                                                                                                                 user,
-                                                                                                                 contract_type),
-                                                                                                        offer(offer) {}
+                                                                                                                user,
+                                                                                                                contract_type),
+                                                                                                       offer(offer) {}
 
 string TransferContract::getProviderName() const {
     return offer.getProvider().getName();

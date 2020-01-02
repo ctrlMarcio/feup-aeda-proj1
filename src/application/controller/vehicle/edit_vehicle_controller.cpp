@@ -1,5 +1,7 @@
 #include "edit_vehicle_controller.h"
 #include "../../../auth/current_session/current_session.h"
+#include "../../../model/contract/contract_manager.h"
+
 
 EditVehicleController::EditVehicleController(IProvider &provider, OfferManager &offer_manager,
                                              ContractManager &contract_manager,
@@ -31,9 +33,9 @@ bool EditVehicleController::createOffer(const std::list<Schedule> &schedules, fl
     }
 
     if (current_session.getUser().getRole() == AuthUser::CLIENT_ROLE) {
-        TransferContract contract = ContractManager::build(&provider, *offer);
+        TransferContract *contract = ContractManager::build(&provider, *offer);
 
-        if (!contract_manager.add(&contract))
+        if (!contract_manager.add(contract))
             return false;
     }
 

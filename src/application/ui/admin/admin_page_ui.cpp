@@ -34,9 +34,11 @@ void AdminPageUI::run() {
             case '5':
                 ui_manager.setCurrent(new ViewContractsPageUI(ui_manager));
                 ui_manager.run();
+                break;
         	case '6':
         		ui_manager.setCurrent(new ViewInactiveClientsUI(ui_manager));
         		ui_manager.run();
+        		break;
             case '0':
                 controller.logout();
                 break;

@@ -17,9 +17,9 @@ class ContractManager {
 public:
     ContractManager(RentalManager &rental_manager, OfferManager &offer_manager);
 
-    static RentalContract build(IUser *user, Rental &rental);
+    static RentalContract* build(IUser *user, Rental &rental);
 
-    static TransferContract build(IUser *user, Offer &offer);
+    static TransferContract* build(IUser *user, Offer &offer);
 
     bool add(Contract *contract);
 
@@ -41,6 +41,8 @@ public:
 	 * @return the list of contracts
 	 */
 	std::list<Contract> getContractsOf(const string &id) const;
+
+	BST<Contract *, contract_less_than> &getContracts();
 
 private:
     RentalManager &rental_manager;

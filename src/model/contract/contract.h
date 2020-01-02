@@ -32,13 +32,14 @@ public:
 
 	bool operator!=(const Contract &rhs) const;
 
+	string toString() const;
+
 private:
     Date date;
 
     IUser *user;
 
     ContractType contract_type;
-
 };
 
 

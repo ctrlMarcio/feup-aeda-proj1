@@ -53,6 +53,14 @@ namespace string_util {
 	 * @return the string
 	 */
 	std::string pad_number(int number, int n);
+
+	/*!
+	 * Capitalizes a string.
+	 *
+	 * @param string the string
+	 * @return the capitalized string
+	 */
+	std::string capitalize(std::string string);
 }
 
 

@@ -54,8 +54,16 @@ std::string string_util::trim(const std::string &string) {
 }
 
 std::string string_util::pad_number(int number, int n) {
-	std::string res = std::to_string(number);
-	while (res.length() < n)
-		res = "0" + res;
-	return res;
+    std::string res = std::to_string(number);
+    while (res.length() < n)
+        res = "0" + res;
+    return res;
+}
+
+std::string string_util::capitalize(std::string string) {
+    string[0] = toupper(string[0]);
+    for (int i = 1; i < string.size(); i++)
+        string[i] = tolower(string[i]);
+
+    return string;
 }

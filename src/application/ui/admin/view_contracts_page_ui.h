@@ -22,7 +22,7 @@ private:
 
     string getSortOption();
 
-    string getSortField();
+    SortField getSortField();
 };
 
 
