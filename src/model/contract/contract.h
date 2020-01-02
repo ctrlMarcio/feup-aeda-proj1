@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class Contract {
+class   Contract {
 public:
     Contract(Date &date, IUser *user, ContractType contract_type);
 

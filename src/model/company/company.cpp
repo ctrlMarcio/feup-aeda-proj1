@@ -50,6 +50,10 @@ VehicleManager &Company::getVehicleManager() {
 	return vehicle_manager;
 }
 
+ContractManager &Company::getContractManager() {
+    return contract_manager;
+}
+
 void Company::update() {
 	this->vehicle_manager.update();
 	this->user_manager.getClientManager().update(contract_manager);

@@ -1,7 +1,8 @@
 #include "rent_vehicle_controller.h"
 
-RentVehicleController::RentVehicleController(RentalManager &rental_manager, Offer &offer, IRenter &renter) :
-		rental_manager(rental_manager), offer(offer), renter(renter) {}
+RentVehicleController::RentVehicleController(RentalManager &rental_manager, Offer &offer, IRenter &renter,
+                                             ContractManager &contract_manager) :
+		rental_manager(rental_manager), offer(offer), renter(renter), contract_manager(contract_manager) {}
 
 Offer &RentVehicleController::getOffer() {
 	return offer;
@@ -12,7 +13,8 @@ Rental RentVehicleController::createRental(Date begin, Date end) {
 }
 
 bool RentVehicleController::confirm(Rental rental) {
-	bool valid = rental_manager.add(rental);
+    RentalContract contract = ContractManager::build(&renter, rental);
+	bool valid = rental_manager.add(rental) && contract_manager.add(&contract);
 	if (valid)
 		offer.removeScheduleAvailability(rental.getSchedule());
 	return valid;

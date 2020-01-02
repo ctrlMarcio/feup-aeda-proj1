@@ -75,6 +75,13 @@ public:
 	 */
 	VehicleManager &getVehicleManager();
 
+	/*!
+	 * Gets the contract manager of the company.
+	 *
+	 * @return the contract manager
+	 */
+	ContractManager &getContractManager();
+
 private:
     /*!
      * The name of the company.

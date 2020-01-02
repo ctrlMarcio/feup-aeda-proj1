@@ -22,8 +22,7 @@ bool ContractManager::add(Contract *contract) {
 }
 
 bool ContractManager::isValid(Contract *contract) {
-    // TODO
-    return true;
+    return contract->getUser() != nullptr;
 }
 
 unsigned long ContractManager::daysSinceLastContract(const string &id) const {
