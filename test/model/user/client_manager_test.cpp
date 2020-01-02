@@ -96,5 +96,5 @@ TEST(client_manager, get_inactive_clients) {
 	manager.update(cm);
 
 	ASSERT_EQ(manager.getInactiveClients().size(), 1);
-	EXPECT_EQ(manager.getInactiveClients()[0], *client);
+	EXPECT_EQ(*manager.getInactiveClients()[0], *client);
 }

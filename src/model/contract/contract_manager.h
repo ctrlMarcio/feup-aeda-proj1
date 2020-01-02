@@ -32,7 +32,7 @@ public:
 	 * @param id the id of the user
 	 * @return the number of days passed, or -1
 	 */
-	unsigned long daysSinceLastContract(const string &id) const;
+	long daysSinceLastContract(const string &id) const;
 
 	/*!
 	 * Gets all the past contracts of a given user ordered by date of realization.

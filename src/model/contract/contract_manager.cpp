@@ -25,9 +25,9 @@ bool ContractManager::isValid(Contract *contract) {
     return contract->getUser() != nullptr;
 }
 
-unsigned long ContractManager::daysSinceLastContract(const string &id) const {
+long ContractManager::daysSinceLastContract(const string &id) const {
 	Date now;
-	unsigned long min_day = -1;
+	long min_day = -1;
 
 	for (auto it = contracts.begin(); it != contracts.end(); it++) {
 		if ((*it)->getUser()->getIdentificationNumber() == id) {

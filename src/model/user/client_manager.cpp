@@ -141,17 +141,20 @@ void ClientManager::write(const std::string &directory) const {
 
 void ClientManager::update(const ContractManager &contract_manager) {
 	for (auto &client : clients) {
-		if (inactive_clients.find(&client) == inactive_clients.end() &&
-			contract_manager.daysSinceLastContract(client.getIdentificationNumber()) >= DAYS_TO_INACTIVITY)
-			inactive_clients.insert(&client);
+		if (inactive_clients.find(&client) == inactive_clients.end()) {
+			long days = contract_manager.daysSinceLastContract(client.getIdentificationNumber());
+
+			if (days >= DAYS_TO_INACTIVITY)
+				inactive_clients.insert(&client);
+		}
 	}
 }
 
-vector<Client> ClientManager::getInactiveClients() const {
-	vector<Client> res;
+vector<const Client *> ClientManager::getInactiveClients() const {
+	vector<const Client *> res;
 
 	for (const Client *client : inactive_clients)
-		res.push_back(*client);
+		res.push_back(client);
 
 	return res;
 }
