@@ -6,28 +6,27 @@
 #include <queue>
 using namespace std;
 
-template<class Comparable, class LessThan = std::less<Comparable>>
+template<class Comparable, class LessThan>
 class BSTItrIn;
 
-template<class Comparable, class LessThan = std::less<Comparable>>
+template<class Comparable, class LessThan>
 class BSTItrPre;
 
-template<class Comparable, class LessThan = std::less<Comparable>>
+template<class Comparable, class LessThan>
 class BSTItrPost;
 
-template<class Comparable, class LessThan = std::less<Comparable>>
+template<class Comparable, class LessThan>
 class BSTItrLevel;
 
-template<class Comparable, class LessThan = std::less<Comparable>>
+template<class Comparable, class LessThan>
 class iteratorBST;
 
-template<class Comparable, class LessThan = std::less<Comparable>>
+template<class Comparable, class LessThan = std::less<Comparable>> 
 class BST;
 
-template <class Comparable>
+template<class Comparable, class LessThan>
 class BinaryNode
 {
-public:
     Comparable element;
     BinaryNode *left;
     BinaryNode *right;
@@ -35,12 +34,17 @@ public:
     BinaryNode( const Comparable & theElement, BinaryNode *lt, BinaryNode *rt )
             : element( theElement ), left( lt ), right( rt ) { }
 
-    friend class BST<Comparable>;
-    friend class BSTItrIn<Comparable>;
-    friend class BSTItrPre<Comparable>;
-    friend class BSTItrPost<Comparable>;
-    friend class BSTItrLevel<Comparable>;
-    friend class iteratorBST<Comparable>;
+	friend class BST<Comparable, LessThan>;
+
+	friend class BSTItrIn<Comparable, LessThan>;
+
+	friend class BSTItrPre<Comparable, LessThan>;
+
+	friend class BSTItrPost<Comparable, LessThan>;
+
+	friend class BSTItrLevel<Comparable, LessThan>;
+
+	friend class iteratorBST<Comparable, LessThan>;
 };
 
 template<class Comparable, class LessThan>
@@ -68,26 +72,35 @@ public:
 	iteratorBST<Comparable, LessThan> end() const;
 
 private:
-    BinaryNode<Comparable> *root;
+	BinaryNode<Comparable, LessThan> *root;
     const Comparable ITEM_NOT_FOUND;
 	LessThan lt;
 
-    const Comparable & elementAt( BinaryNode<Comparable> *t ) const;
+	const Comparable &elementAt(BinaryNode<Comparable, LessThan> *t) const;
 
-    bool insert( const Comparable & x, BinaryNode<Comparable> * & t ) const;
-    bool remove( const Comparable & x, BinaryNode<Comparable> * & t ) const;
-    BinaryNode<Comparable> * findMin( BinaryNode<Comparable> *t ) const;
-    BinaryNode<Comparable> * findMax( BinaryNode<Comparable> *t ) const;
-    BinaryNode<Comparable> * find( const Comparable & x, BinaryNode<Comparable> *t ) const;
-    void makeEmpty( BinaryNode<Comparable> * & t ) const;
-    void printTree( BinaryNode<Comparable> *t ) const;
-    BinaryNode<Comparable> * clone( BinaryNode<Comparable> *t ) const;
+	bool insert(const Comparable &x, BinaryNode<Comparable, LessThan> *&t) const;
 
-    friend class BSTItrIn<Comparable>;
-    friend class BSTItrPre<Comparable>;
+	bool remove(const Comparable &x, BinaryNode<Comparable, LessThan> *&t) const;
+
+	BinaryNode<Comparable, LessThan> *findMin(BinaryNode<Comparable, LessThan> *t) const;
+
+	BinaryNode<Comparable, LessThan> *findMax(BinaryNode<Comparable, LessThan> *t) const;
+
+	BinaryNode<Comparable, LessThan> *find(const Comparable &x, BinaryNode<Comparable, LessThan> *t) const;
+
+	void makeEmpty(BinaryNode<Comparable, LessThan> *&t) const;
+
+	void printTree(BinaryNode<Comparable, LessThan> *t) const;
+
+	BinaryNode<Comparable, LessThan> *clone(BinaryNode<Comparable, LessThan> *t) const;
+
+	friend class BSTItrIn<Comparable, LessThan>;
+
+	friend class BSTItrPre<Comparable, LessThan>;
 
 	friend class BSTItrPost<Comparable, LessThan>;
-    friend class BSTItrLevel<Comparable>;
+
+	friend class BSTItrLevel<Comparable, LessThan>;
 
 	friend class iteratorBST<Comparable, LessThan>;
 };
@@ -198,7 +211,7 @@ iteratorBST<Comparable, LessThan> BST<Comparable, LessThan>::end() const {
 
 template<class Comparable, class LessThan>
 const Comparable &BST<Comparable, LessThan>::
-elementAt( BinaryNode<Comparable> *t ) const
+elementAt(BinaryNode<Comparable, LessThan> *t) const
 {
     if( t == NULL )
         return ITEM_NOT_FOUND;
@@ -209,9 +222,9 @@ elementAt( BinaryNode<Comparable> *t ) const
 
 template<class Comparable, class LessThan>
 bool BST<Comparable, LessThan>::
-insert( const Comparable & x, BinaryNode<Comparable> * & t ) const {
+insert(const Comparable &x, BinaryNode<Comparable, LessThan> *&t) const {
     if (t == NULL) {
-        t = new BinaryNode<Comparable>(x, NULL, NULL);
+		t = new BinaryNode<Comparable, LessThan>(x, NULL, NULL);
         return true;
     } else if (lt(x, t->element))
         return insert( x, t->left );
@@ -223,7 +236,7 @@ insert( const Comparable & x, BinaryNode<Comparable> * & t ) const {
 
 template<class Comparable, class LessThan>
 bool BST<Comparable, LessThan>::
-remove( const Comparable & x, BinaryNode<Comparable> * & t ) const
+remove(const Comparable &x, BinaryNode<Comparable, LessThan> *&t) const
 {
     if( t == NULL )
         return false;   // Item not found; do nothing
@@ -238,7 +251,7 @@ remove( const Comparable & x, BinaryNode<Comparable> * & t ) const
     }
     else
     {
-        BinaryNode<Comparable> *oldNode = t;
+		BinaryNode<Comparable, LessThan> *oldNode = t;
         t = ( t->left != NULL ) ? t->left : t->right;
         delete oldNode;
         return true;
@@ -246,8 +259,8 @@ remove( const Comparable & x, BinaryNode<Comparable> * & t ) const
 }
 
 template<class Comparable, class LessThan>
-BinaryNode<Comparable> *
-BST<Comparable, LessThan>::findMin(BinaryNode<Comparable> *t) const
+BinaryNode<Comparable, LessThan> *
+BST<Comparable, LessThan>::findMin(BinaryNode<Comparable, LessThan> *t) const
 {
     if( t == NULL )
         return NULL;
@@ -258,8 +271,8 @@ BST<Comparable, LessThan>::findMin(BinaryNode<Comparable> *t) const
 
 
 template<class Comparable, class LessThan>
-BinaryNode<Comparable> *
-BST<Comparable, LessThan>::findMax(BinaryNode<Comparable> *t) const
+BinaryNode<Comparable, LessThan> *
+BST<Comparable, LessThan>::findMax(BinaryNode<Comparable, LessThan> *t) const
 {
     if( t != NULL )
         while( t->right != NULL )
@@ -268,9 +281,9 @@ BST<Comparable, LessThan>::findMax(BinaryNode<Comparable> *t) const
 }
 
 template<class Comparable, class LessThan>
-BinaryNode<Comparable> *
+BinaryNode<Comparable, LessThan> *
 BST<Comparable, LessThan>::
-find( const Comparable & x, BinaryNode<Comparable> *t ) const
+find(const Comparable &x, BinaryNode<Comparable, LessThan> *t) const
 {
     if( t == NULL )
         return NULL;
@@ -283,9 +296,9 @@ find( const Comparable & x, BinaryNode<Comparable> *t ) const
 }
 /****** NONRECURSIVE VERSION*************************
         template <class Comparable, class LessThan>
-        BinaryNode<Comparable> *
+        BinaryNode<Comparable, LessThan> *
         BST<Comparable, LessThan>::
-        find( const Comparable & x, BinaryNode<Comparable> *t ) const
+        find( const Comparable & x, BinaryNode<Comparable, LessThan> *t ) const
         {
             while( t != NULL )
                 if( lt(x, t->element) )
@@ -304,7 +317,7 @@ find( const Comparable & x, BinaryNode<Comparable> *t ) const
  */
 template<class Comparable, class LessThan>
 void BST<Comparable, LessThan>::
-makeEmpty( BinaryNode<Comparable> * & t ) const
+makeEmpty(BinaryNode<Comparable, LessThan> *&t) const
 {
     if( t != NULL )
     {
@@ -316,7 +329,7 @@ makeEmpty( BinaryNode<Comparable> * & t ) const
 }
 
 template<class Comparable, class LessThan>
-void BST<Comparable, LessThan>::printTree(BinaryNode<Comparable> *t) const
+void BST<Comparable, LessThan>::printTree(BinaryNode<Comparable, LessThan> *t) const
 {
     if( t != NULL )
     {
@@ -327,13 +340,13 @@ void BST<Comparable, LessThan>::printTree(BinaryNode<Comparable> *t) const
 }
 
 template<class Comparable, class LessThan>
-BinaryNode<Comparable> *
-BST<Comparable, LessThan>::clone(BinaryNode<Comparable> *t) const
+BinaryNode<Comparable, LessThan> *
+BST<Comparable, LessThan>::clone(BinaryNode<Comparable, LessThan> *t) const
 {
     if( t == NULL )
         return NULL;
     else
-        return new BinaryNode<Comparable>( t->element, clone( t->left ), clone( t->right ) );
+		return new BinaryNode<Comparable, LessThan>(t->element, clone(t->left), clone(t->right));
 }
 
 
@@ -352,9 +365,10 @@ public:
     bool isAtEnd() {return itrStack.empty(); }
 
 private:
-    stack<BinaryNode<Comparable> *> itrStack;
+	stack<BinaryNode<Comparable, LessThan> *> itrStack;
     stack<bool> visitStack;
-    void slideDown(BinaryNode<Comparable> *n);
+
+	void slideDown(BinaryNode<Comparable, LessThan> *n);
 };
 
 
@@ -378,7 +392,7 @@ void BSTItrPost<Comparable, LessThan>::advance()
 }
 
 template<class Comparable, class LessThan>
-void BSTItrPost<Comparable, LessThan>::slideDown(BinaryNode<Comparable> *n)
+void BSTItrPost<Comparable, LessThan>::slideDown(BinaryNode<Comparable, LessThan> *n)
 {
     while (n) {
         itrStack.push(n);
@@ -408,7 +422,7 @@ public:
     bool isAtEnd() {return itrStack.empty(); }
 
 private:
-    stack<BinaryNode<Comparable> *> itrStack;
+	stack<BinaryNode<Comparable, LessThan> *> itrStack;
 
 };
 
@@ -422,8 +436,8 @@ BSTItrPre<Comparable, LessThan>::BSTItrPre(const BST<Comparable, LessThan> &bt)
 template<class Comparable, class LessThan>
 void BSTItrPre<Comparable, LessThan>::advance()
 {
-    BinaryNode<Comparable> * actual = itrStack.top();
-    BinaryNode<Comparable> * seguinte = actual->left;
+	BinaryNode<Comparable, LessThan> *actual = itrStack.top();
+	BinaryNode<Comparable, LessThan> *seguinte = actual->left;
     if (seguinte)
         itrStack.push(seguinte);
     else {
@@ -450,9 +464,9 @@ public:
     bool isAtEnd() {return itrStack.empty(); }
 
 private:
-    stack<BinaryNode<Comparable> *> itrStack;
+	stack<BinaryNode<Comparable, LessThan> *> itrStack;
 
-    void slideLeft(BinaryNode<Comparable> *n);
+	void slideLeft(BinaryNode<Comparable, LessThan> *n);
 };
 
 template<class Comparable, class LessThan>
@@ -463,7 +477,7 @@ BSTItrIn<Comparable, LessThan>::BSTItrIn(const BST<Comparable, LessThan> &bt)
 }
 
 template<class Comparable, class LessThan>
-void BSTItrIn<Comparable, LessThan>::slideLeft(BinaryNode<Comparable> *n)
+void BSTItrIn<Comparable, LessThan>::slideLeft(BinaryNode<Comparable, LessThan> *n)
 {
     while (n) {
         itrStack.push(n);
@@ -474,9 +488,9 @@ void BSTItrIn<Comparable, LessThan>::slideLeft(BinaryNode<Comparable> *n)
 template<class Comparable, class LessThan>
 void BSTItrIn<Comparable, LessThan>::advance()
 {
-    BinaryNode<Comparable> * actual = itrStack.top();
+	BinaryNode<Comparable, LessThan> *actual = itrStack.top();
     itrStack.pop();
-    BinaryNode<Comparable> * seguinte = actual->right;
+	BinaryNode<Comparable, LessThan> *seguinte = actual->right;
     if (seguinte)
         slideLeft(seguinte);
 }
@@ -492,7 +506,7 @@ public:
     bool isAtEnd() {return itrQueue.empty(); }
 
 private:
-    queue<BinaryNode<Comparable> *> itrQueue;
+	queue<BinaryNode<Comparable, LessThan> *> itrQueue;
 
 };
 
@@ -506,9 +520,9 @@ BSTItrLevel<Comparable, LessThan>::BSTItrLevel(const BST<Comparable, LessThan> &
 template<class Comparable, class LessThan>
 void BSTItrLevel<Comparable, LessThan>::advance()
 {
-    BinaryNode<Comparable> * actual = itrQueue.front();
+	BinaryNode<Comparable, LessThan> *actual = itrQueue.front();
     itrQueue.pop();
-    BinaryNode<Comparable> * seguinte = actual->left;
+	BinaryNode<Comparable, LessThan> *seguinte = actual->left;
     if (seguinte)
         itrQueue.push(seguinte);
     seguinte = actual->right;
@@ -520,9 +534,11 @@ void BSTItrLevel<Comparable, LessThan>::advance()
 /////  outro iterador em ordem
 template<class Comparable, class LessThan>
 class iteratorBST {
-    stack<BinaryNode<Comparable> *> itrStack;
-    void slideLeft(BinaryNode<Comparable> *n);
-    void setBST(BinaryNode<Comparable> *root);
+	stack<BinaryNode<Comparable, LessThan> *> itrStack;
+
+	void slideLeft(BinaryNode<Comparable, LessThan> *n);
+
+	void setBST(BinaryNode<Comparable, LessThan> *root);
 
 	friend class BST<Comparable, LessThan>;
 public:
@@ -535,7 +551,7 @@ public:
 };
 
 template<class Comparable, class LessThan>
-void iteratorBST<Comparable, LessThan>::slideLeft(BinaryNode<Comparable> *n)
+void iteratorBST<Comparable, LessThan>::slideLeft(BinaryNode<Comparable, LessThan> *n)
 {
     while (n) {
         itrStack.push(n);
@@ -544,16 +560,16 @@ void iteratorBST<Comparable, LessThan>::slideLeft(BinaryNode<Comparable> *n)
 }
 
 template<class Comparable, class LessThan>
-void iteratorBST<Comparable, LessThan>::setBST(BinaryNode<Comparable> *root) {
+void iteratorBST<Comparable, LessThan>::setBST(BinaryNode<Comparable, LessThan> *root) {
     if (root!=NULL)
         slideLeft(root);
 }
 
 template<class Comparable, class LessThan>
 iteratorBST<Comparable, LessThan> &iteratorBST<Comparable, LessThan>::operator++(int) {
-    BinaryNode<Comparable>* atual = itrStack.top();
+	BinaryNode<Comparable, LessThan> *atual = itrStack.top();
     itrStack.pop();
-    BinaryNode<Comparable>* seguinte = atual->right;
+	BinaryNode<Comparable, LessThan> *seguinte = atual->right;
     if (seguinte)
         slideLeft(seguinte);
     return *this;

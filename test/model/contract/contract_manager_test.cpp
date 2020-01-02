@@ -39,7 +39,7 @@ TEST(contract_manager, get_contracts_of) {
 
 	Date date1(1, 1, 2010);
 	Date date2(1, 1, 2011);
-	Date date3(1, 1, 2019);
+	Date date3(1, 1, 2009);
 	Date date4(1, 1, 2000);
 
 	IProvider *user1 = new Client("1", "1", "1");
@@ -63,9 +63,9 @@ TEST(contract_manager, get_contracts_of) {
 	auto it = contracts.begin();
 	EXPECT_EQ(*it, *contract4);
 	++it;
+	EXPECT_EQ(*it, *contract3);
+	++it;
 	EXPECT_EQ(*it, *contract1);
 	++it;
 	EXPECT_EQ(*it, *contract2);
-	++it;
-	EXPECT_EQ(*it, *contract3);
 }
