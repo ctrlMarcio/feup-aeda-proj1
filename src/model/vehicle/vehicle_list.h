@@ -26,7 +26,7 @@ public:
 	 * @param seat_number the seat number
 	 * @return the reference to the created vehicle
 	 */
-	static IVehicle &build(const std::string &number_plate, const std::string &brand, const std::string &model,
+	static IVehicle *build(const std::string &number_plate, const std::string &brand, const std::string &model,
 						   unsigned year, unsigned seat_number);
 
 	/*!
@@ -41,7 +41,7 @@ public:
 	 * @param is_refrigerated the bool that states if it is refrigerated
 	 * @return the reference to the created vehicle
 	 */
-	static IVehicle &build(const std::string &number_plate, const std::string &brand, const std::string &model,
+	static IVehicle *build(const std::string &number_plate, const std::string &brand, const std::string &model,
 						   unsigned year, double cargo_volume, double max_weight, bool is_refrigerated);
 
 	/*!

@@ -8,7 +8,7 @@ using testing::Eq;
 TEST(vehicle_list, build) {
 	IVehicle *vehicle = new PassengerVehicle("1", "1", "1", 2001, 1);
 
-	ASSERT_EQ(VehicleList::build("1", "1", "1", 2001, 1), *vehicle);
+	ASSERT_EQ(*VehicleList::build("1", "1", "1", 2001, 1), *vehicle);
 }
 
 TEST(vehicle_list, add) {

@@ -43,7 +43,7 @@ public:
 	 * I.e., if a client doesn't make a contract for this amount or more of days, it is labeled as inactive.
 	 * E.g.: if DAYS_TO_INACTIVITY == 30 and a client doesn't make contracts for 30 days, then it is inactive.
 	 */
-	static const unsigned long DAYS_TO_INACTIVITY = 30;
+	static const long DAYS_TO_INACTIVITY = 30;
 
 	/*!
 	 * Establishes a new instance of a Client given its information.
@@ -100,7 +100,7 @@ public:
 	 *
 	 * @return the vector of inactive clients
 	 */
-	vector<Client> getInactiveClients() const;
+	vector<const Client *> getInactiveClients() const;
 
 	/*!
 	 * Updates the inactive clients given the current day.
