@@ -41,12 +41,12 @@ long ContractManager::daysSinceLastContract(const string &id) const {
     return min_day;
 }
 
-std::list<Contract> ContractManager::getContractsOf(const string &id) const {
-    std::list<Contract> res;
+std::list<Contract *> ContractManager::getContractsOf(const string &id) const {
+    std::list<Contract *> res;
 
     for (auto it = contracts.begin(); it != contracts.end(); it++)
         if ((*it)->getUser()->getIdentificationNumber() == id)
-            res.push_back(**it);
+            res.push_back(*it);
 
     return res;
 }

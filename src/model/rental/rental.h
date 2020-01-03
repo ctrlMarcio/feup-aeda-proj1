@@ -42,7 +42,7 @@ public:
 	 * Gets the offer of the rental
 	 * @return the const reference to the offer
 	 */
-	const Offer &getOffer() const;
+	Offer &getOffer() const;
 
 	/*!
 	 * Gets the schedule of the rental.
@@ -89,7 +89,7 @@ private:
     /*!
      * The offer.
      */
-	const Offer &offer;
+	Offer &offer;
 
 	/*!
 	 * The schedule.

@@ -5,10 +5,11 @@
 #include "../user/i_user.h"
 #include "../../util/date.h"
 #include "contract_type.h"
+#include "../offer/offer.h"
 
 using namespace std;
 
-class   Contract {
+class Contract {
 public:
     Contract(Date date, IUser *user, ContractType contract_type);
 
@@ -20,6 +21,8 @@ public:
 
     ContractType getContractType() const;
 
+    virtual Offer &getOffer() = 0;
+
     bool operator<(const Contract &rhs) const;
 
     bool operator>(const Contract &rhs) const;
@@ -28,11 +31,11 @@ public:
 
     bool operator>=(const Contract &rhs) const;
 
-	bool operator==(const Contract &rhs) const;
+    bool operator==(const Contract &rhs) const;
 
-	bool operator!=(const Contract &rhs) const;
+    bool operator!=(const Contract &rhs) const;
 
-	string toString() const;
+    string toString();
 
 private:
     Date date;

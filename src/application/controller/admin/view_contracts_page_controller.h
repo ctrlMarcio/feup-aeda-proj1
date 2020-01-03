@@ -8,21 +8,21 @@
 using namespace std;
 
 enum SortField {
-    DEFAULT, DATE, CLIENT_NAME, CONTRACT_TYPE
+    DEFAULT, DATE, CLIENT_NAME, CONTRACT_TYPE, VEHICLE_YEAR
 };
 
 class ViewContractsPageController {
 public:
     explicit ViewContractsPageController(ContractManager &contract_manager);
 
-    vector<Contract> getContracts() const;
+    vector<Contract *> getContracts() const;
 
     void sortBy(SortField field);
 
 private:
     ContractManager &contract_manager;
 
-    vector<Contract> contracts;
+    vector<Contract *> contracts;
 };
 
 

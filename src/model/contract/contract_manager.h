@@ -40,7 +40,7 @@ public:
 	 * @param id the id of the user
 	 * @return the list of contracts
 	 */
-	std::list<Contract> getContractsOf(const string &id) const;
+	std::list<Contract *> getContractsOf(const string &id) const;
 
 	BST<Contract *, contract_less_than> &getContracts();
 

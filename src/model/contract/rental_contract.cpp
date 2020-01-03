@@ -14,3 +14,7 @@ Schedule RentalContract::getSchedule() const {
 string RentalContract::getNumberPlate() const {
     return rental.getOffer().getVehicle().getNumberPlate();
 }
+
+Offer &RentalContract::getOffer() {
+    return rental.getOffer();
+}

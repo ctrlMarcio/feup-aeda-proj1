@@ -20,3 +20,7 @@ string TransferContract::getNumberPlate() const {
 float TransferContract::getOfferPrice() const {
     return offer.getPrice();
 }
+
+Offer &TransferContract::getOffer() {
+    return offer;
+}

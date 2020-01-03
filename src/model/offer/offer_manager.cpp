@@ -130,7 +130,7 @@ void OfferManager::read(const std::string &directory, UserManager &user_manager,
 		auto *offer = new Offer(vehicle, *schedules, provider, price, celebration_Date);
 		this->add(*offer);
 
-		Contract *contract = new Contract(celebration_Date, &provider, ContractType::TRANSFER);
+		Contract *contract = new TransferContract(celebration_Date, &provider, ContractType::TRANSFER, *offer);
 		contract_manager.add(contract);
 	}
 

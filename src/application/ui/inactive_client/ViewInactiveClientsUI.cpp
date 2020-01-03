@@ -32,7 +32,7 @@ void ViewInactiveClientsUI::run() {
 		}
 	} while (!valid);
 
-	list<Contract> historic = controller.getHistoric(client);
+	list<Contract *> historic = controller.getHistoric(client);
 	if (historic.empty()) {
 		cout << "The client has no contracts." << endl;
 	}

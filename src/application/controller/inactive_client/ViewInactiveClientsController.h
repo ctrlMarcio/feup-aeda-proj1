@@ -12,7 +12,7 @@ public:
 
 	vector<const Client *> getInactiveClients() const;
 
-	list<Contract> getHistoric(const Client &client);
+	list<Contract *> getHistoric(const Client &client);
 
 private:
 	ClientManager &client_manager;

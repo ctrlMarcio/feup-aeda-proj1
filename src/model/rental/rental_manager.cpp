@@ -62,7 +62,7 @@ void RentalManager::read(const std::string &directory, OfferManager &offer_manag
 		auto *rental = new Rental(offer, *schedule, renter, *celebration_date);
 		this->add(*rental);
 
-		Contract *contract = new Contract(*celebration_date, &renter, ContractType::RENTAL);
+		Contract *contract = new RentalContract(*celebration_date, &renter, ContractType::RENTAL, *rental);
 		contract_manager.add(contract);
 	}
 

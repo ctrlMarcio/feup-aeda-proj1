@@ -18,6 +18,8 @@ public:
 
     float getOfferPrice() const;
 
+    Offer &getOffer() override;
+
 private:
     Offer &offer;
 

@@ -20,7 +20,7 @@ float Rental::calculatePrice() const {
 	return provider_price + ((float) COMPANY_PERCENTAGE / 100) * provider_price;
 }
 
-const Offer &Rental::getOffer() const {
+Offer &Rental::getOffer() const {
 	return offer;
 }
 

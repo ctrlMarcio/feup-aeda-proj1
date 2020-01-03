@@ -38,8 +38,10 @@ string ViewContractsPageUI::getContracts() {
 
     contracts_stream << endl;
 
-    for (const Contract &contract : controller.getContracts())
-        contracts_stream << contract.toString() << endl;
+    for (Contract *contract : controller.getContracts())
+        contracts_stream << contract->toString() << endl;
+
+    contracts_stream << endl;
 
     return contracts_stream.str();
 }
@@ -75,6 +77,7 @@ SortField ViewContractsPageUI::getSortField() {
     fields_stream << "1 - Concluded date" << endl;
     fields_stream << "2 - Renter/provider name" << endl;
     fields_stream << "3 - Contract type" << endl;
+    fields_stream << "4 - Vehicle year" << endl;
     fields_stream << endl << "Field: ";
 
     cout << fields_stream.str();
@@ -83,7 +86,7 @@ SortField ViewContractsPageUI::getSortField() {
 
     getline(cin, field);
 
-    while (field != "0" && field != "1" && field != "2" && field != "3") {
+    while (field != "0" && field != "1" && field != "2" && field != "3" && field != "4") {
         cout << endl << "Invalid field, try again... " << endl;
 
         cout << endl << "Field: ";
@@ -98,6 +101,8 @@ SortField ViewContractsPageUI::getSortField() {
             return CLIENT_NAME;
         case '3':
             return CONTRACT_TYPE;
+        case '4':
+            return VEHICLE_YEAR;
         default:
             return DEFAULT;
     }

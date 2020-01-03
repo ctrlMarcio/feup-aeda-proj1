@@ -15,6 +15,8 @@ public:
 
     string getNumberPlate() const;
 
+    Offer &getOffer() override;
+
 private:
     Rental &rental;
 };
