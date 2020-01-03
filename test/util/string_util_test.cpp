@@ -1,5 +1,9 @@
 #include <gtest/gtest.h>
 #include <util/string_util.h>
+#include <util/bst.h>
+#include <model/contract/contract.h>
+#include <model/user/i_provider.h>
+#include <model/user/client.h>
 
 
 using namespace std;

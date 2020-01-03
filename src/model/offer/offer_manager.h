@@ -85,9 +85,10 @@ public:
 	 * Should only be implemented after all the IProvider's read.
 	 *
 	 * @param directory the directory of the file. The file name is stored in the file_handling namespace
-	 * @param the user manager to get access to the offer's users
+	 * @param user_manager the user manager to get access to the offer's users
+	 * @param contract_manager the contract manager to read contracts as well
 	 */
-	void read(const std::string &directory, UserManager &user_manager);
+	void read(const std::string &directory, UserManager &user_manager, ContractManager &contract_manager);
 
 	/*!
 	 * Writes the users to a file.

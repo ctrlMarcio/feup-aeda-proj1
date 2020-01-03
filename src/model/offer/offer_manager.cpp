@@ -5,6 +5,7 @@
 #include "../../util/string_util.h"
 #include "../vehicle/passenger_vehicle.h"
 #include "../vehicle/commercial_vehicle.h"
+#include "../contract/contract_manager.h"
 #include <algorithm>
 #include <fstream>
 
@@ -94,7 +95,7 @@ bool OfferManager::isValid(const Offer &offer) const {
 	return it == offers.end();
 }
 
-void OfferManager::read(const std::string &directory, UserManager &user_manager) {
+void OfferManager::read(const std::string &directory, UserManager &user_manager, ContractManager &contract_manager) {
 	std::string file_path = directory + "/" + file_handling::offer;
 
 	ifstream ifstream;
@@ -115,8 +116,10 @@ void OfferManager::read(const std::string &directory, UserManager &user_manager)
 
 		float price = stof(params[2]);
 
+		Date celebration_Date = *Date::getDate(params[3]);
+
 		auto *schedules = new std::list<Schedule>;
-		for (unsigned long i = 3; i < params.size(); ++i) {
+		for (unsigned long i = 4; i < params.size(); ++i) {
 			Date *begin = Date::getDate(params[i]);
 			Date *end = Date::getDate(params[++i]);
 
@@ -124,8 +127,11 @@ void OfferManager::read(const std::string &directory, UserManager &user_manager)
 			schedules->push_back(*schedule);
 		}
 
-		auto *offer = new Offer(vehicle, *schedules, provider, price);
+		auto *offer = new Offer(vehicle, *schedules, provider, price, celebration_Date);
 		this->add(*offer);
+
+		Contract *contract = new Contract(celebration_Date, &provider, ContractType::TRANSFER);
+		contract_manager.add(contract);
 	}
 
 	ifstream.close();
@@ -141,8 +147,10 @@ void OfferManager::write(const std::string &directory) const {
 		throw InvalidFileException(file_path);
 
 	for (Offer *offer : offers) {
-		ofstream << offer->getProvider().getIdentificationNumber() << file_handling::delimiter << offer->getVehicle().getNumberPlate() << file_handling::delimiter <<
-				 to_string(offer->getPrice());
+		ofstream << offer->getProvider().getIdentificationNumber() << file_handling::delimiter
+				 << offer->getVehicle().getNumberPlate() << file_handling::delimiter <<
+				 to_string(offer->getPrice()) << file_handling::delimiter;
+		Date::printDateToFile(ofstream, offer->getCelebrationDate());
 
 		for (const Schedule &schedule : offer->getAvailableSchedules()) {
 			const Date &begin = schedule.getBegin();

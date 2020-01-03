@@ -23,8 +23,10 @@ public:
 	 * @param available_schedules the available schedules
 	 * @param provider the user who provides the vehicle
 	 * @param price the price in €/h
+	 * @param celebration_date the celebration date
 	 */
-	Offer(IVehicle &vehicle, std::list<Schedule> available_schedules, IProvider &provider, float price = 0);
+	Offer(IVehicle &vehicle, std::list<Schedule> available_schedules, IProvider &provider, float price = 0,
+		  Date celebration_date = Date());
 
 	/*!
 	 * Removes a schedule availability.
@@ -96,6 +98,8 @@ public:
 	 */
 	IProvider &getProvider() const;
 
+	const Date &getCelebrationDate() const;
+
 	/*!
 	 * Verifies if another offer is equal to this one.
 	 * Two offers are equal if the vehicle and the schedules are equal.
@@ -130,6 +134,11 @@ private:
 	 * The price is in €/h.
 	 */
 	float price;
+
+	/*!
+	 * The celebration date of the offer.
+	 */
+	Date celebration_date;
 
 	/*!
 	 * Sets the vehicle of the offer.

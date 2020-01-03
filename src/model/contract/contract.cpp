@@ -2,8 +2,8 @@
 #include "../../util/string_util.h"
 #include <sstream>
 
-Contract::Contract(Date &date, IUser *user, ContractType contract_type) : date(date), user(user),
-                                                                          contract_type(contract_type) {}
+Contract::Contract(Date date, IUser *user, ContractType contract_type) : date(date), user(user),
+																		 contract_type(contract_type) {}
 
 Contract::~Contract() {
     delete user;

@@ -6,8 +6,10 @@
 #include "../vehicle/passenger_vehicle.h"
 #include "../vehicle/commercial_vehicle.h"
 
-Offer::Offer(IVehicle &vehicle, std::list<Schedule> available_schedules, IProvider &provider, float price) :
-		vehicle(vehicle), available_schedules(std::move(available_schedules)), provider(provider), price(price) {}
+Offer::Offer(IVehicle &vehicle, std::list<Schedule> available_schedules, IProvider &provider, float price,
+			 Date celebration_date) :
+		vehicle(vehicle), available_schedules(std::move(available_schedules)), provider(provider), price(price),
+		celebration_date(celebration_date) {}
 
 void Offer::removeScheduleAvailability(const Schedule &to_remove) {
 	for (auto it = available_schedules.begin(); it != available_schedules.end(); ++it) {
@@ -118,4 +120,8 @@ IProvider &Offer::getProvider() const {
 
 bool Offer::isPriceValid(float price) {
 	return price > 0;
+}
+
+const Date &Offer::getCelebrationDate() const {
+	return celebration_date;
 }

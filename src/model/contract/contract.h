@@ -10,7 +10,7 @@ using namespace std;
 
 class   Contract {
 public:
-    Contract(Date &date, IUser *user, ContractType contract_type);
+    Contract(Date date, IUser *user, ContractType contract_type);
 
     ~Contract();
 

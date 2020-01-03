@@ -3,6 +3,7 @@
 #include "../../exception/invalid_file_exception.h"
 #include "../../application/io/file_handling.h"
 #include "../../util/string_util.h"
+#include "../contract/contract_manager.h"
 
 Rental RentalManager::build(Offer &offer, const Schedule &schedule, IRenter &renter) {
 	return Rental{offer, schedule, renter};
@@ -30,7 +31,8 @@ bool RentalManager::add(Rental rental) {
 	return true;
 }
 
-void RentalManager::read(const std::string &directory, OfferManager &offer_manager, UserManager &user_manager) {
+void RentalManager::read(const std::string &directory, OfferManager &offer_manager, UserManager &user_manager,
+						 ContractManager &contract_manager) {
 	std::string file_path = directory + "/" + file_handling::rental;
 
 	ifstream ifstream;
@@ -46,18 +48,22 @@ void RentalManager::read(const std::string &directory, OfferManager &offer_manag
 		std::string provider_id = params[0];
 		std::string renter_id = params[1];
 		std::string number_plate = params[2];
+		Date *celebration_date = Date::getDate(params[3]);
 
 		IProvider &provider = *user_manager.getProvider(provider_id);
 		IRenter &renter = *user_manager.getRenter(renter_id);
 		IVehicle &vehicle = provider.getVehicleList().get(number_plate);
 		Offer &offer = offer_manager.getOfferOf(vehicle);
 
-		Date *begin = Date::getDate(params[3]);
-		Date *end = Date::getDate(params[4]);
+		Date *begin = Date::getDate(params[4]);
+		Date *end = Date::getDate(params[5]);
 		auto *schedule = new Schedule(*begin, *end);
 
-		auto *rental = new Rental(offer, *schedule, renter);
+		auto *rental = new Rental(offer, *schedule, renter, *celebration_date);
 		this->add(*rental);
+
+		Contract *contract = new Contract(*celebration_date, &renter, ContractType::RENTAL);
+		contract_manager.add(contract);
 	}
 
 	ifstream.close();
@@ -77,6 +83,8 @@ void RentalManager::write(const std::string &directory) const {
 				 << rental.getRenter().getIdentificationNumber() << file_handling::delimiter
 				 << rental.getOffer().getVehicle().getNumberPlate() << file_handling::delimiter;
 
+		Date::printDateToFile(ofstream, rental.getCelebrationDate());
+		ofstream << file_handling::delimiter;
 		Date::printDateToFile(ofstream, rental.getSchedule().getBegin());
 		ofstream << file_handling::delimiter;
 		Date::printDateToFile(ofstream, rental.getSchedule().getEnd());

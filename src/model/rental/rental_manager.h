@@ -48,8 +48,10 @@ public:
 	 * @param directory the directory of the file. The file name is stored in the file_handling namespace
 	 * @param offer_manager the offer manager to get the offers of
 	 * @param user_manager the user manager to get the author of the rentals
+	 * @param contract_manager the contract manager to read the contracts as well
 	 */
-	void read(const std::string &directory, OfferManager &offer_manager, UserManager &user_Manager);
+	void read(const std::string &directory, OfferManager &offer_manager, UserManager &user_Manager,
+			  ContractManager &contract_manager);
 
 	/*!
 	 * Writes the rentals to a file.

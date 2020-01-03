@@ -74,7 +74,6 @@ public:
 private:
 	BinaryNode<Comparable, LessThan> *root;
     const Comparable ITEM_NOT_FOUND;
-	LessThan lt;
 
 	const Comparable &elementAt(BinaryNode<Comparable, LessThan> *t) const;
 
@@ -223,15 +222,16 @@ elementAt(BinaryNode<Comparable, LessThan> *t) const
 template<class Comparable, class LessThan>
 bool BST<Comparable, LessThan>::
 insert(const Comparable &x, BinaryNode<Comparable, LessThan> *&t) const {
-    if (t == NULL) {
+	LessThan lt;
+	if (t == NULL) {
 		t = new BinaryNode<Comparable, LessThan>(x, NULL, NULL);
-        return true;
-    } else if (lt(x, t->element))
-        return insert( x, t->left );
+		return true;
+	} else if (lt(x, t->element))
+		return insert(x, t->left);
 	else if (lt(t->element, x))
-        return insert( x, t->right );
-    else
-        return false;  // Duplicate; do nothing
+		return insert(x, t->right);
+	else
+		return false;  // Duplicate; do nothing
 }
 
 template<class Comparable, class LessThan>

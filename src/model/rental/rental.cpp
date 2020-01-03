@@ -4,12 +4,13 @@
 #include <sstream>
 #include <iomanip>
 
-Rental::Rental(Offer &offer, Schedule schedule, IRenter &renter) : offer(offer), schedule(schedule), renter(renter) {
+Rental::Rental(Offer &offer, Schedule schedule, IRenter &renter, Date celebration_date) :
+		offer(offer), schedule(schedule), renter(renter), celebration_date(celebration_date) {
 	this->price = this->calculatePrice();
 }
 
-Rental::Rental(Offer &offer, Date begin, Date end, IRenter &renter) :
-		offer(offer), schedule(Schedule(begin, end)), renter(renter) {
+Rental::Rental(Offer &offer, Date begin, Date end, IRenter &renter, Date celebration_date) :
+		offer(offer), schedule(Schedule(begin, end)), renter(renter), celebration_date(celebration_date) {
 	this->price = this->calculatePrice();
 }
 
@@ -54,4 +55,8 @@ ostream &operator<<(ostream &ostream, const Rental &rental) {
 
 IRenter &Rental::getRenter() const {
 	return renter;
+}
+
+const Date &Rental::getCelebrationDate() const {
+	return celebration_date;
 }

@@ -10,9 +10,8 @@ void Company::read(const std::string &directory) {
 	try {
 		user_manager.read(directory, &this->getVehicleManager().getVehicleList());
 		vehicle_manager.read(directory);
-		offer_manager.read(directory, user_manager);
-		rental_manager.read(directory, offer_manager, user_manager);
-		// TODO contract_manager.read(directory)
+		offer_manager.read(directory, user_manager, contract_manager);
+		rental_manager.read(directory, offer_manager, user_manager, contract_manager);
 	} catch (const InvalidFileException &e) {
 		// TODO
 	}
@@ -24,7 +23,6 @@ void Company::write(const std::string &directory) {
 		vehicle_manager.write(directory);
 		offer_manager.write(directory);
 		rental_manager.write(directory);
-		// TODO contract_manager.read(directory)
 	} catch (const InvalidFileException &e) {
 		// TODO
 	}
