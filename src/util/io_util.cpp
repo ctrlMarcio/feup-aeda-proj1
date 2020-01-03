@@ -121,7 +121,7 @@ Date io_util::askDate(const string &question) {
 	Date ans;
 	string option;
 
-	cout << question << " (dd/MM/yyyy hh:mm:ss, time is optional) ";
+	cout << question << " (dd/MM/yyyy hh:mm.ss, time is optional) ";
 
 	try {
 		int day, month, year, hour, minute, second;
@@ -139,8 +139,8 @@ Date io_util::askDate(const string &question) {
 			try {
 				string min_secs = hour_vector.at(1);
 
-				vector<string> min_secs_vector = string_util::split(time, ".");
-				minute = stoi(hour_vector.at(0));
+				vector<string> min_secs_vector = string_util::split(min_secs, ".");
+				minute = stoi(min_secs_vector.at(0));
 
 				try {
 					second = stoi(min_secs_vector.at(1));

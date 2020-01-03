@@ -43,11 +43,8 @@ void RentVehicleUI::showAvailableSchedules() {
 }
 
 Rental RentVehicleUI::requestRental() {
-	cout << "Insert the start date and time." << endl;
-	cout << "Starting when?" << endl;
-	Date begin = requestDate();
-	cout << endl << "Finishing when?" << endl;
-	Date end = requestDate();
+	Date begin = io_util::askDate("Starting when?");
+	Date end = io_util::askDate("Ending when?");
 
 	try {
 		Schedule(begin, end);

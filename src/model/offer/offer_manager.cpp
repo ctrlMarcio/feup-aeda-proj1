@@ -118,10 +118,16 @@ void OfferManager::read(const std::string &directory, UserManager &user_manager,
 
 		Date celebration_Date = *Date::getDate(params[3]);
 
+		Date now;
 		auto *schedules = new std::list<Schedule>;
 		for (unsigned long i = 4; i < params.size(); ++i) {
 			Date *begin = Date::getDate(params[i]);
 			Date *end = Date::getDate(params[++i]);
+
+			if (*end < now) // ignores past offers
+				continue;
+			if (*begin < now) // if the beginning of the schedule already past, the current date is the actual beginning
+				*begin = now;
 
 			auto *schedule = new Schedule(*begin, *end);
 			schedules->push_back(*schedule);
