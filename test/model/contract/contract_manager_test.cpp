@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <model/contract/contract_manager.h>
+#include <model/vehicle/passenger_vehicle.h>
 
 using testing::Eq;
 
@@ -14,9 +15,15 @@ TEST(contract_manager, days_since_last_contract) {
 
 	IProvider *user1 = new Client("1", "1", "1");
 
-	Contract *contract1 = new Contract(date1, user1, ContractType::TRANSFER);
-	Contract *contract2 = new Contract(date2, user1, ContractType::TRANSFER);
-	Contract *contract3 = new Contract(date3, user1, ContractType::TRANSFER);
+    PassengerVehicle vehicle("ab-ab-12", "Opel", "Corsa", 2012, 5);
+    std::list<Schedule> schedules;
+    Client provider("Client", "123", "Porto");
+
+    Offer offer(vehicle, schedules, provider);
+
+	Contract *contract1 = new TransferContract(date1, user1, ContractType::TRANSFER, offer);
+	Contract *contract2 = new TransferContract(date2, user1, ContractType::TRANSFER, offer);
+	Contract *contract3 = new TransferContract(date3, user1, ContractType::TRANSFER, offer);
 
 	manager.add(contract1);
 
