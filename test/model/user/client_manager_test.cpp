@@ -85,7 +85,7 @@ TEST(client_manager, get_inactive_clients) {
 	IProvider *user = client;
 
 	Date contract_date;
-	for (unsigned long i = 0; i < ClientManager::DAYS_TO_INACTIVITY; i++)
+	for (long i = 0; i < ClientManager::DAYS_TO_INACTIVITY; i++)
 		contract_date = contract_date.removeDay();
 
 	Contract *contract = new Contract(contract_date, user, ContractType::TRANSFER);
@@ -97,4 +97,41 @@ TEST(client_manager, get_inactive_clients) {
 
 	ASSERT_EQ(manager.getInactiveClients().size(), 1);
 	EXPECT_EQ(*manager.getInactiveClients()[0], *client);
+}
+
+TEST(client_manager, update) {
+	ClientManager manager;
+	OfferManager om;
+	RentalManager rm;
+	ContractManager cm(rm, om);
+
+	Client *client1 = new Client("1", "1", "1");
+	IProvider *user1 = client1;
+
+	Client *client2 = new Client("2", "2", "2");
+	IProvider *user2 = client2;
+
+	Date contract_date1(1, 1, 2000);
+	Date contract_date2;
+	contract_date2 = contract_date2.removeDay();
+
+	Contract *contract1 = new Contract(contract_date1, user1, ContractType::TRANSFER);
+	cm.add(contract1);
+
+	Contract *contract2 = new Contract(contract_date1, user2, ContractType::TRANSFER);
+	cm.add(contract2);
+
+	manager.add(*client1);
+	manager.add(*client2);
+
+	manager.update(cm);
+
+	EXPECT_EQ(manager.getInactiveClients().size(), 2);
+
+	Contract *contract3 = new Contract(contract_date2, user2, ContractType::TRANSFER);
+	cm.add(contract3);
+
+	manager.update(cm);
+
+	EXPECT_EQ(manager.getInactiveClients().size(), 1);
 }

@@ -4,10 +4,11 @@
 
 
 EditVehicleController::EditVehicleController(IProvider &provider, OfferManager &offer_manager,
-                                             ContractManager &contract_manager,
+                                             ContractManager &contract_manager, ClientManager &client_manager,
                                              CurrentSession &current_session) :
         provider(provider), offer_manager(offer_manager), vehicle_list(provider.getVehicleList()),
         contract_manager(contract_manager),
+        client_manager(client_manager),
         current_session(current_session) {
 }
 
@@ -37,6 +38,8 @@ bool EditVehicleController::createOffer(const std::list<Schedule> &schedules, fl
 
         if (!contract_manager.add(contract))
             return false;
+        else
+        	client_manager.update(contract_manager);
     }
 
     return offer_manager.add(*offer);

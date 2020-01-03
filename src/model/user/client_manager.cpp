@@ -146,6 +146,11 @@ void ClientManager::update(const ContractManager &contract_manager) {
 
 			if (days >= DAYS_TO_INACTIVITY)
 				inactive_clients.insert(&client);
+		} else {
+			long days = contract_manager.daysSinceLastContract(client.getIdentificationNumber());
+
+			if (days < DAYS_TO_INACTIVITY)
+				inactive_clients.erase(&client);
 		}
 	}
 }

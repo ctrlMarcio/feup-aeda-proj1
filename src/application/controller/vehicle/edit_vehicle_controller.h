@@ -8,39 +8,42 @@
 
 class EditVehicleController {
 public:
-    EditVehicleController(IProvider &provider, OfferManager &offer_manager, ContractManager &contract_manager,
-                          CurrentSession &current_session);
+	EditVehicleController(IProvider &provider, OfferManager &offer_manager, ContractManager &contract_manager,
+						  ClientManager &client_manager,
+						  CurrentSession &current_session);
 
-    const vector<IVehicle *> &getVehicles() const;
+	const vector<IVehicle *> &getVehicles() const;
 
-    void setVehicle(IVehicle *vehicle);
+	void setVehicle(IVehicle *vehicle);
 
-    bool isUpToRent();
+	bool isUpToRent();
 
-    bool createOffer(const std::list<Schedule> &schedules, float price);
+	bool createOffer(const std::list<Schedule> &schedules, float price);
 
-    bool removeOffer();
+	bool removeOffer();
 
-    bool changePrice(float price);
+	bool changePrice(float price);
 
-    void setOffer();
+	void setOffer();
 
-    bool addSchedule(Schedule schedule);
+	bool addSchedule(Schedule schedule);
 
 private:
-    VehicleList &vehicle_list;
+	VehicleList &vehicle_list;
 
-    OfferManager &offer_manager;
+	OfferManager &offer_manager;
 
-    IProvider &provider;
+	IProvider &provider;
 
-    IVehicle *vehicle = nullptr;
+	IVehicle *vehicle = nullptr;
 
-    Offer *offer = nullptr;
+	Offer *offer = nullptr;
 
-    ContractManager &contract_manager;
+	ContractManager &contract_manager;
 
-    CurrentSession &current_session;
+	ClientManager &client_manager;
+
+	CurrentSession &current_session;
 };
 
 

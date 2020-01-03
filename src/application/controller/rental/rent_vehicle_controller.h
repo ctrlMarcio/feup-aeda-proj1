@@ -8,7 +8,7 @@
 class RentVehicleController {
 public:
 	RentVehicleController(RentalManager &rental_manager, Offer &offer, IRenter &renter,
-                          ContractManager &contract_manager);
+                          ContractManager &contract_manager, ClientManager &client_manager);
 
 	Offer &getOffer();
 
@@ -26,6 +26,8 @@ private:
 	IRenter &renter;
 
 	ContractManager &contract_manager;
+
+	ClientManager &client_manager;
 };
 
 

@@ -2,8 +2,9 @@
 #include "../../../model/contract/contract_manager.h"
 
 RentVehicleController::RentVehicleController(RentalManager &rental_manager, Offer &offer, IRenter &renter,
-                                             ContractManager &contract_manager) :
-		rental_manager(rental_manager), offer(offer), renter(renter), contract_manager(contract_manager) {}
+											 ContractManager &contract_manager, ClientManager &client_manager) :
+		rental_manager(rental_manager), offer(offer), renter(renter), contract_manager(contract_manager),
+		client_manager(client_manager) {}
 
 Offer &RentVehicleController::getOffer() {
 	return offer;
@@ -14,10 +15,12 @@ Rental RentVehicleController::createRental(Date begin, Date end) {
 }
 
 bool RentVehicleController::confirm(Rental rental) {
-    RentalContract *contract = ContractManager::build(&renter, rental);
+	RentalContract *contract = ContractManager::build(&renter, rental);
 	bool valid = rental_manager.add(rental) && contract_manager.add(contract);
-	if (valid)
+	if (valid) {
 		offer.removeScheduleAvailability(rental.getSchedule());
+		client_manager.update(contract_manager);
+	}
 	return valid;
 }
 
