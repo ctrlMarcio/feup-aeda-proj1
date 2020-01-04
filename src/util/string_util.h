@@ -61,6 +61,14 @@ namespace string_util {
 	 * @return the capitalized string
 	 */
 	std::string capitalize(std::string string);
+
+	/*!
+	 * Removes the \r at the end of a string.
+	 *
+	 * @param string the string
+	 * @return the new string
+	 */
+	std::string removeCarriageReturn(std::string string);
 }
 
 

@@ -62,6 +62,8 @@ void AuthUserManager::read(const std::string &directory) {
 
     std::string line;
     while (getline(ifstream, line)) {
+		line = string_util::removeCarriageReturn(line);
+
         std::vector<std::string> params = string_util::split(line, file_handling::delimiter);
         std::string identification_number = params[0];
         std::string password = params[1];

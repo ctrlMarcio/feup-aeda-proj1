@@ -287,6 +287,20 @@ public:
 	bool isStartingOfDay() const;
 
 	/*!
+	 * Verifies if this date is at the same day, as the real day.
+	 *
+	 * @return true if the date is today, false otherwise
+	 */
+	bool isToday() const;
+
+	/*!
+	 * Verifies if this date is past.
+	 *
+	 * @return true if the date is past, false otherwise
+	 */
+	bool isPast() const;
+
+	/*!
 	 * Verifies if another date is equal to this one.
 	 *
 	 * @param rhs the other date

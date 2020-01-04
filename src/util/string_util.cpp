@@ -67,3 +67,10 @@ std::string string_util::capitalize(std::string string) {
 
     return string;
 }
+
+std::string string_util::removeCarriageReturn(std::string string) {
+	if (!string.empty() && string.back() == '\r')
+		string.erase(string.size() - 1);
+
+	return string;
+}

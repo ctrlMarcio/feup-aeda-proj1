@@ -15,7 +15,7 @@ public:
 private:
 	ManageMaintenanceServicesController controller;
 
-	void printVehicles(const vector<MaintainedVehicle *> &to_print) const;
+	void printVehicles(const vector<MaintainedVehicle> &to_print) const;
 };
 
 

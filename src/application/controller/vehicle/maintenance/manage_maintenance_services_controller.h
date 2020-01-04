@@ -9,7 +9,7 @@ class ManageMaintenanceServicesController {
 public:
 	ManageMaintenanceServicesController(VehicleManager &vehicleManager, OfferManager &offerManager);
 
-	vector<MaintainedVehicle *> getVehicles(unsigned vehicle_amount) const;
+	vector<MaintainedVehicle> getVehicles(unsigned vehicle_amount) const;
 
 	void setVehicle(MaintainedVehicle *vehicle);
 

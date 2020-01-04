@@ -106,6 +106,8 @@ void OfferManager::read(const std::string &directory, UserManager &user_manager,
 
 	std::string line;
 	while (getline(ifstream, line)) {
+		line = string_util::removeCarriageReturn(line);
+
 		std::vector<std::string> params = string_util::split(line, file_handling::delimiter);
 
 		std::string provider_id = params[0];

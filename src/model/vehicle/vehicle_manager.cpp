@@ -4,6 +4,7 @@
 #include "../../exception/invalid_file_exception.h"
 #include "../../util/string_util.h"
 #include "../../exception/non_existent_vehicle_exception.h"
+#include "../../exception/invalid_date_exception.h"
 
 const VehicleList &VehicleManager::getVehicleList() const {
 	return vehicle_list;
@@ -24,6 +25,8 @@ void VehicleManager::read(const std::string &directory) {
 
 	std::string line;
 	while (getline(ifstream, line)) {
+		line = string_util::removeCarriageReturn(line);
+
 		std::vector<std::string> params = string_util::split(line, file_handling::delimiter);
 		unsigned first_element = 1;
 		this->vehicle_list.read(params, first_element);
@@ -61,18 +64,18 @@ void VehicleManager::write(const std::string &directory) {
 	ofstream << std::endl;
 }
 
-vector<MaintainedVehicle *> VehicleManager::getMaintainedVehicles(unsigned long amount) {
-	vector<MaintainedVehicle *> res;
+vector<MaintainedVehicle> VehicleManager::getMaintainedVehicles(unsigned long amount) {
+	vector<MaintainedVehicle> res;
 
 	for (unsigned long count = 0; count < amount && !maintained_vehicles.empty(); count++) {
-		MaintainedVehicle *vehicle = new MaintainedVehicle(*maintained_vehicles.top());
+		MaintainedVehicle vehicle = *maintained_vehicles.top();
 		res.push_back(vehicle);
+		delete maintained_vehicles.top();
 		maintained_vehicles.pop();
-		count++;
 	}
 
-	for (MaintainedVehicle *mv : res)
-		maintained_vehicles.push(mv);
+	for (MaintainedVehicle &mv : res)
+		maintained_vehicles.push(new MaintainedVehicle(mv));
 
 	return res;
 }
@@ -94,6 +97,7 @@ bool VehicleManager::setMaintenanceDay(MaintainedVehicle &maintained_vehicle, co
 
 	while (!maintained_vehicles.empty()) {
 		MaintainedVehicle mv = *maintained_vehicles.top();
+		delete maintained_vehicles.top();
 		maintained_vehicles.pop();
 
 		if (mv == *to_add)
@@ -118,6 +122,7 @@ bool VehicleManager::hasMaintainedVehicle(const MaintainedVehicle &vehicle) {
 	while (!maintained_vehicles.empty() && !has) {
 		MaintainedVehicle mv = *maintained_vehicles.top();
 		aux.push_back(mv);
+		delete maintained_vehicles.top();
 		maintained_vehicles.pop();
 
 		if (mv == vehicle)
@@ -151,6 +156,7 @@ bool VehicleManager::hasMaintenance(const IVehicle &vehicle) {
 			break;
 		}
 
+		delete maintained_vehicles.top();
 		maintained_vehicles.pop();
 		aux.push_back(top);
 	}
@@ -175,6 +181,7 @@ Date VehicleManager::getMaintenanceDay(const IVehicle &vehicle) {
 			break;
 		}
 
+		delete maintained_vehicles.top();
 		maintained_vehicles.pop();
 		aux.push_back(top);
 	}
@@ -194,8 +201,12 @@ Date VehicleManager::getMaintenanceDay(const IVehicle &vehicle) {
 }
 
 bool VehicleManager::setMaintenanceDay(IVehicle &vehicle, const Date &date) {
-	MaintainedVehicle maintained_vehicle(vehicle, date);
-	return setMaintenanceDay(maintained_vehicle, date);
+	try {
+		MaintainedVehicle maintained_vehicle(vehicle, date);
+		return setMaintenanceDay(maintained_vehicle, date);
+	} catch (InvalidDateException &e) {
+		return false;
+	}
 }
 
 void VehicleManager::update() {

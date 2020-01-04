@@ -80,7 +80,7 @@ string InitialPageUI::singleOffer(int index) {
 	stringstream offer_stream;
 
 	offer_stream << offer.getVehicle().getYear() << " " << offer.getVehicle().getBrand() << " "
-				 << offer.getVehicle().getModel() << ", " << fixed << setprecision(2) << offer.getPrice() << " gbp/day";
+				 << offer.getVehicle().getModel() << ", " << fixed << setprecision(2) << offer.getPrice() << " €/h";
 
 	return offer_stream.str();
 }

@@ -53,7 +53,7 @@ public:
 	 * @return the vector of vehicles
 	 * @return the vector of vehicles
 	 */
-	vector<MaintainedVehicle *> getMaintainedVehicles(unsigned long amount);
+	vector<MaintainedVehicle> getMaintainedVehicles(unsigned long amount);
 
 	bool addMaintainedVehicle(const MaintainedVehicle &maintained_vehicle);
 

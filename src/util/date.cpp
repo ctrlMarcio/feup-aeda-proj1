@@ -444,3 +444,15 @@ unsigned long Date::hourDifferenceInOrder(const Date &sooner, const Date &later)
 
 	return hour_difference + 24 * day_difference;
 }
+
+bool Date::isToday() const {
+	Date now;
+
+	return day == now.day && month == now.month && year == now.year;
+}
+
+bool Date::isPast() const {
+	Date now;
+
+	return *this > now;
+}
