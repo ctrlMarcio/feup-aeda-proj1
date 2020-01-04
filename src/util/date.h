@@ -36,7 +36,7 @@ public:
 	 * @param date_vector the string of the date
 	 * @return the pointer of the date
 	 */
-	static Date *getDate(const std::string &date_vector);
+	static Date getDate(const std::string &date_vector);
 
 	/*!
 	 * Prints a date to external files.

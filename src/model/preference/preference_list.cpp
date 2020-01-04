@@ -93,9 +93,29 @@ CommercialPreference *PreferenceList::getCommercialPreference() const {
 }
 
 void PreferenceList::removePassengerPreference() {
+	delete passenger_preference;
 	this->passenger_preference = nullptr;
 }
 
 void PreferenceList::removeCommercialPreference() {
+	delete commercial_preference;
 	this->commercial_preference = nullptr;
+}
+
+PreferenceList &PreferenceList::operator=(const PreferenceList &rhs) {
+	if (passenger_preference) {
+		delete passenger_preference;
+		if (rhs.passenger_preference)
+			passenger_preference = new PassengerPreference(rhs.passenger_preference->getMinYear(),
+														   rhs.passenger_preference->getSeatNumber());
+	}
+	if (commercial_preference) {
+		delete commercial_preference;
+		if (rhs.commercial_preference)
+			commercial_preference = new CommercialPreference(rhs.commercial_preference->getMinYear(),
+															 rhs.commercial_preference->getCargoVolume(),
+															 rhs.commercial_preference->getMinMaxWeight(),
+															 rhs.commercial_preference->isRefrigerated());
+	}
+	return *this;
 }

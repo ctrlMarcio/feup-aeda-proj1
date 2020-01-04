@@ -4,11 +4,6 @@
 #include "../../exception/non_existent_vehicle_exception.h"
 #include "../user/client.h"
 
-VehicleList::~VehicleList() {
-	for (IVehicle *v : vehicles)
-		delete v;
-}
-
 IVehicle *VehicleList::build(const std::string &number_plate, const std::string &brand, const std::string &model,
 							 unsigned year, unsigned seat_number) {
 	return new PassengerVehicle(number_plate, brand, model, year, seat_number);
@@ -17,7 +12,7 @@ IVehicle *VehicleList::build(const std::string &number_plate, const std::string 
 IVehicle *VehicleList::build(const std::string &number_plate, const std::string &brand, const std::string &model,
 							 unsigned year, double cargo_volume, double max_weight, bool is_refrigerated) {
 	return new CommercialVehicle(number_plate, brand, model, year, cargo_volume, max_weight,
-											  is_refrigerated);
+								 is_refrigerated);
 }
 
 void VehicleList::read(const std::vector<std::string> &params, size_t first_element) {

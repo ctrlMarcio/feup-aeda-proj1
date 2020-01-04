@@ -15,6 +15,6 @@ string RentalContract::getNumberPlate() const {
     return rental.getOffer().getVehicle().getNumberPlate();
 }
 
-Offer &RentalContract::getOffer() {
+const Offer &RentalContract::getOffer() const {
     return rental.getOffer();
 }

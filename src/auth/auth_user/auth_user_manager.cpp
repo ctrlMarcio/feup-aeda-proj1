@@ -73,8 +73,8 @@ void AuthUserManager::read(const std::string &directory) {
         std::string password = params[1];
         std::string role = params[2];
 
-        AuthUser *user = new AuthUser(identification_number, password, role);
-        this->add(*user);
+		AuthUser user(identification_number, password, role);
+		this->add(user);
     }
 
     ifstream.close();

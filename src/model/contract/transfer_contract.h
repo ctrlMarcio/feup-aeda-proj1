@@ -18,7 +18,7 @@ public:
 
     float getOfferPrice() const;
 
-    Offer &getOffer() override;
+	const Offer &getOffer() const override;
 
 private:
     Offer &offer;

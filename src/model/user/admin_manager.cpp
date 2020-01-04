@@ -69,8 +69,8 @@ void AdminManager::read(const std::string &directory) {
 		std::string identification_number = params[1];
 		std::string address = params[2];
 
-		Admin *admin = new Admin(name, identification_number, address);
-		this->add(*admin);
+		Admin admin(name, identification_number, address);
+		this->add(admin);
 	}
 
 	ifstream.close();

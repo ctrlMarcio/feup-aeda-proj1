@@ -25,6 +25,6 @@ int ViewRecommendedOffersController::getPageCount(int max_per_page) {
 	return size / max_per_page + (size % max_per_page == 0 ? 0 : 1);
 }
 
-Offer *ViewRecommendedOffersController::getOffer(int current_page, const int MAX_PER_PAGE, int index) {
-	return &getOffers(current_page, MAX_PER_PAGE)[index];
+Offer ViewRecommendedOffersController::getOffer(int current_page, const int MAX_PER_PAGE, int index) {
+	return getOffers(current_page, MAX_PER_PAGE)[index];
 }

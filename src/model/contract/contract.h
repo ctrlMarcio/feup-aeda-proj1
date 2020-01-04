@@ -13,15 +13,13 @@ class Contract {
 public:
     Contract(Date date, IUser *user, ContractType contract_type);
 
-    ~Contract();
-
     const Date &getDate() const;
 
     IUser *getUser() const;
 
     ContractType getContractType() const;
 
-    virtual Offer &getOffer() = 0;
+	virtual const Offer &getOffer() const = 0;
 
     bool operator<(const Contract &rhs) const;
 

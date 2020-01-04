@@ -22,3 +22,7 @@ bool AddVehicleController::isValid() const {
 bool AddVehicleController::confirm() const {
 	return vehicle_list.add(vehicle);
 }
+
+AddVehicleController::~AddVehicleController() {
+	delete vehicle;
+}

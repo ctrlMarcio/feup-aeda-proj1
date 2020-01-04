@@ -6,6 +6,8 @@
 
 class AddVehicleController {
 public:
+	virtual ~AddVehicleController();
+
 	explicit AddVehicleController(VehicleList &vehicle_list);
 
 	void createVehicle(const std::string &number_plate, const std::string &brand, const std::string &model, unsigned year, unsigned seat_number);

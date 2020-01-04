@@ -52,3 +52,13 @@ void Client::print(std::ostream &ostream) const {
 bool Client::operator!=(const Client &rhs) const {
     return !(rhs == *this);
 }
+
+Client &Client::operator=(const Client &client) {
+	name = client.name;
+	identification_number = client.identification_number;
+	address = client.address;
+	vehicle_list = client.vehicle_list;
+	preference_list = client.preference_list;
+
+	return *this;
+}

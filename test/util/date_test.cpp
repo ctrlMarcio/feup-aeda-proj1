@@ -40,7 +40,7 @@ TEST(date, get_date) {
 
 	Date res(12, 11, 2019, 12, 21, 43);
 
-	EXPECT_EQ(*Date::getDate(date), res);
+	EXPECT_EQ(Date::getDate(date), res);
 	EXPECT_THROW(Date::getDate(wrong), InvalidDateException);
 }
 

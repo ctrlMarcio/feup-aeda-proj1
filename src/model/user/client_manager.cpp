@@ -11,7 +11,7 @@ Client ClientManager::build(string name, string identification_number, string ad
 	return Client(std::move(name), std::move(identification_number), std::move(address));
 }
 
-bool ClientManager::add(Client &client) {
+bool ClientManager::add(const Client &client) {
 	if (has(client) || has(client.getIdentificationNumber())) return false;
 	clients.push_back(client);
 	return true;
@@ -23,7 +23,7 @@ bool ClientManager::remove(Client &client) {
 	return true;
 }
 
-bool ClientManager::has(Client &client) const {
+bool ClientManager::has(const Client &client) const {
 	return find(clients.begin(), clients.end(), client) != clients.end();
 }
 
@@ -67,7 +67,7 @@ void ClientManager::read(const std::string &directory) {
 		std::string identification_number = params[1];
 		std::string address = params[2];
 
-		auto *client = new Client(name, identification_number, address);
+		Client client(name, identification_number, address);
 
 		size_t i = 3;
 		if (params.size() > i && params[i] == "passenger_pref")
@@ -76,14 +76,14 @@ void ClientManager::read(const std::string &directory) {
 		if (params.size() > i && params[i] == "commercial_pref")
 			i = readCommercialPreference(params, client, i);
 
-		client->getVehicleList().read(params, i);
-		this->add(*client);
+		client.getVehicleList().read(params, i);
+		this->add(client);
 	}
 
 	ifstream.close();
 }
 
-size_t ClientManager::readCommercialPreference(const vector<std::string> &params, Client *client, size_t i) const {
+size_t ClientManager::readCommercialPreference(const vector<std::string> &params, Client &client, size_t i) const {
 	unsigned min_year = stoul(params[++i]);
 	float cargo_volume = stof(params[++i]);
 	float min_max_weight = stof(params[++i]);
@@ -91,16 +91,16 @@ size_t ClientManager::readCommercialPreference(const vector<std::string> &params
 	bool refrigerated =
 			params[i] == "y" || params[i] == "yes" || params[i] == "1" || params[i] == "t" || params[i] == "true";
 	++i;
-	client->getPreferenceList().updatePreference(min_year, cargo_volume, min_max_weight, refrigerated);
+	client.getPreferenceList().updatePreference(min_year, cargo_volume, min_max_weight, refrigerated);
 	return i;
 }
 
-size_t ClientManager::readPassengerPreference(const vector<std::string> &params, Client *client, size_t i) const {
+size_t ClientManager::readPassengerPreference(const vector<std::string> &params, Client &client, size_t i) const {
 	unsigned min_year = stoul(params[++i]);
 	unsigned seat_number = stoul(params[++i]);
 	++i;
 
-	client->getPreferenceList().updatePreference(min_year, seat_number);
+	client.getPreferenceList().updatePreference(min_year, seat_number);
 	return i;
 }
 

@@ -21,6 +21,6 @@ float TransferContract::getOfferPrice() const {
     return offer.getPrice();
 }
 
-Offer &TransferContract::getOffer() {
+const Offer &TransferContract::getOffer() const {
     return offer;
 }

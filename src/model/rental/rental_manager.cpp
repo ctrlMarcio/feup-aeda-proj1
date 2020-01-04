@@ -6,11 +6,11 @@
 #include "../contract/contract_manager.h"
 
 Rental RentalManager::build(Offer &offer, const Schedule &schedule, IRenter &renter) {
-	return Rental{offer, schedule, renter};
+	return Rental(offer, schedule, renter);
 }
 
 Rental RentalManager::build(Offer &offer, const Date &begin, const Date &end, IRenter &renter) {
-	return Rental{offer, begin, end, renter};
+	return Rental(offer, begin, end, renter);
 }
 
 bool RentalManager::isValid(Rental &rental) {
@@ -53,21 +53,21 @@ void RentalManager::read(const std::string &directory, OfferManager &offer_manag
 		std::string provider_id = params[0];
 		std::string renter_id = params[1];
 		std::string number_plate = params[2];
-		Date *celebration_date = Date::getDate(params[3]);
+		Date celebration_date = Date::getDate(params[3]);
 
 		IProvider &provider = *user_manager.getProvider(provider_id);
-		IRenter &renter = *user_manager.getRenter(renter_id);
+		IRenter *renter = user_manager.getRenter(renter_id);
 		IVehicle &vehicle = provider.getVehicleList().get(number_plate);
 		Offer &offer = offer_manager.getOfferOf(vehicle);
 
-		Date *begin = Date::getDate(params[4]);
-		Date *end = Date::getDate(params[5]);
-		auto *schedule = new Schedule(*begin, *end);
+		Date begin = Date::getDate(params[4]);
+		Date end = Date::getDate(params[5]);
+		Schedule schedule(begin, end);
 
-		auto *rental = new Rental(offer, *schedule, renter, *celebration_date);
-		this->add(*rental);
+		Rental rental(offer, schedule, *renter, celebration_date);
+		this->add(rental);
 
-		Contract *contract = new RentalContract(*celebration_date, &renter, ContractType::RENTAL, *rental);
+		Contract *contract = new RentalContract(celebration_date, renter, ContractType::RENTAL, rentals.back());
 		contract_manager.add(contract);
 	}
 
@@ -100,6 +100,10 @@ void RentalManager::write(const std::string &directory) const {
 }
 
 const std::list<Rental> &RentalManager::getAllRentals() const {
+	return rentals;
+}
+
+std::list<Rental> &RentalManager::getAllRentals() {
 	return rentals;
 }
 

@@ -81,6 +81,8 @@ public:
 	 */
 	void print(std::ostream &ostream) const override;
 
+	Client &operator=(const Client &rhs);
+
 	/*!
 	 * Equality operator.
 	 *

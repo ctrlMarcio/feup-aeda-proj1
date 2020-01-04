@@ -67,6 +67,8 @@ public:
 	 */
 	const std::list<Rental> &getAllRentals() const;
 
+	std::list<Rental> &getAllRentals();
+
 	/*!
 	 * Gets the rentals for a specific user.
 	 *

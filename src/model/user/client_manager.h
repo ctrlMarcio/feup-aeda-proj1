@@ -61,7 +61,7 @@ public:
 	 * @param client the client
 	 * @return true, if the client is added successfully. false, otherwise
 	 */
-	bool add(Client &client);
+	bool add(const Client &client);
 
 	/*!
 	 * Removes a client from the list.
@@ -77,7 +77,7 @@ public:
 	 * @param client the client
 	 * @return true, if the client is in the list. false, otherwise
 	 */
-	bool has(Client &client) const;
+	bool has(const Client &client) const;
 
 	/*!
 	 * Verifies if a client is in the list or not.
@@ -134,9 +134,9 @@ private:
 	 */
 	unordered_set<Client *, client_hash, client_eq> inactive_clients;
 
-	size_t readPassengerPreference(const vector<std::string> &params, Client *client, size_t i) const;
+	size_t readPassengerPreference(const vector<std::string> &params, Client &client, size_t i) const;
 
-	size_t readCommercialPreference(const vector<std::string> &params, Client *client, size_t i) const;
+	size_t readCommercialPreference(const vector<std::string> &params, Client &client, size_t i) const;
 };
 
 

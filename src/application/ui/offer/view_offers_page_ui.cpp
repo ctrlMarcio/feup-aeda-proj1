@@ -138,7 +138,7 @@ void ViewOffersPageUI::selectOffer(Offer &offer) {
     complete_offer_stream << endl;
     complete_offer_stream << "Available on..." << endl;
 
-    for (Schedule schedule : offer.getAvailableSchedules()) {
+	for (const Schedule &schedule : offer.getAvailableSchedules()) {
         complete_offer_stream << " - " << schedule << endl;
     }
 

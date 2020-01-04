@@ -48,7 +48,7 @@ Date::Date(int day, int month, int year, int hour, int minute, int second) {
 	}
 }
 
-Date *Date::getDate(const std::string &date_string) {
+Date Date::getDate(const std::string &date_string) {
 	vector<string> date_vector = string_util::split(date_string, file_handling::time_delimiter);
 	int day = stoi(date_vector[0]);
 	int month = stoi(date_vector[1]);
@@ -57,7 +57,7 @@ Date *Date::getDate(const std::string &date_string) {
 	int minute = stoi(date_vector[4]);
 	int second = stoi(date_vector[5]);
 
-	return new Date(day, month, year, hour, minute, second);
+	return Date(day, month, year, hour, minute, second);
 }
 
 void Date::printDateToFile(std::ofstream &ofstream, const Date &date) {

@@ -23,9 +23,9 @@ void ViewRecommendedOffersUI::run() {
 
 		if (is_number(to_string(option)) && stoi(to_string(option)) - 48 >= 1 &&
 			stoi(to_string(option)) - 48 <= controller.getOffers(current_page, MAX_PER_PAGE).size()) {
-			Offer *offer = controller.getOffer(current_page, MAX_PER_PAGE, stoi(to_string(option)) - 48 - 1);
+			Offer offer = controller.getOffer(current_page, MAX_PER_PAGE, stoi(to_string(option)) - 48 - 1);
 
-			selectOffer(*offer);
+			selectOffer(offer);
 		} else {
 			switch (option) {
 				case 'A':
@@ -120,7 +120,7 @@ void ViewRecommendedOffersUI::selectOffer(Offer &offer) {
 	complete_offer_stream << endl;
 	complete_offer_stream << "Available on..." << endl;
 
-	for (Schedule schedule : offer.getAvailableSchedules()) {
+	for (const Schedule &schedule : offer.getAvailableSchedules()) {
 		complete_offer_stream << " - " << schedule << endl;
 	}
 

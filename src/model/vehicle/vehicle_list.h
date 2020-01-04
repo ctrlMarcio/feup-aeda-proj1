@@ -10,11 +10,6 @@
  */
 class VehicleList {
 public:
-	/*!
-	 * The destructor.
-	 * Destructs every pointer in the container.
-	 */
-	~VehicleList();
 
 	/*!
 	 * Creates a passenger vehicle with a given seat number.

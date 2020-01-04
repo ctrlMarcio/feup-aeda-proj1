@@ -56,6 +56,8 @@ public:
 	 */
 	void removeCommercialPreference();
 
+	PreferenceList &operator=(const PreferenceList &rhs);
+
 	/*!
 	 * Equality operator.
 	 *

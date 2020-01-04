@@ -67,7 +67,7 @@ void ClientCompanyManager::read(const std::string &directory) {
 		std::string identification_number = params[1];
 		std::string address = params[2];
 
-		auto *client_company = new ClientCompany(name, identification_number, address);
+		ClientCompany client_company(name, identification_number, address);
 
 		for (unsigned i = 3; i < params.size(); ++i) {
 			std::string type = params[i];
@@ -75,7 +75,7 @@ void ClientCompanyManager::read(const std::string &directory) {
 				unsigned min_year = stoul(params[++i]);
 				unsigned seat_number = stoul(params[++i]);
 
-				client_company->getPreferenceList().updatePreference(min_year, seat_number);
+				client_company.getPreferenceList().updatePreference(min_year, seat_number);
 			} else if (type == "commercial_pref") {
 				unsigned min_year = stoul(params[++i]);
 				float cargo_volume = stof(params[++i]);
@@ -83,13 +83,14 @@ void ClientCompanyManager::read(const std::string &directory) {
 				++i;
 				bool refrigerated = params[i] == "y" || params[i] == "yes" || params[i] == "1" || params[i] == "t" || params[i] == "true";
 
-				client_company->getPreferenceList().updatePreference(min_year, cargo_volume, min_max_weight, refrigerated);
+				client_company.getPreferenceList().updatePreference(min_year, cargo_volume, min_max_weight,
+																	refrigerated);
 			} else {
 				break;
 			}
 		}
 
-		this->add(*client_company);
+		this->add(client_company);
 	}
 
 	ifstream.close();

@@ -16,7 +16,7 @@ public:
 
 	int getPageCount(int max_per_page);
 
-	Offer *getOffer(int current_page, int MAX_PER_PAGE, int index);
+	Offer getOffer(int current_page, int MAX_PER_PAGE, int index);
 
 private:
 	PreferenceList &preference_list;

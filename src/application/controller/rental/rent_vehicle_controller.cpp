@@ -15,8 +15,14 @@ Rental RentVehicleController::createRental(Date begin, Date end) {
 }
 
 bool RentVehicleController::confirm(Rental rental) {
-	RentalContract *contract = ContractManager::build(&renter, rental);
-	bool valid = rental_manager.add(rental) && contract_manager.add(contract);
+	bool valid = rental_manager.add(rental);
+
+	if (!valid)
+		return false;
+
+	RentalContract *contract = ContractManager::build(&renter, rental_manager.getAllRentals().back());
+	valid = contract_manager.add(contract);
+
 	if (valid) {
 		offer.removeScheduleAvailability(rental.getSchedule());
 		client_manager.update(contract_manager);

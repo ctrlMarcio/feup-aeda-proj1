@@ -5,10 +5,6 @@
 Contract::Contract(Date date, IUser *user, ContractType contract_type) : date(date), user(user),
                                                                          contract_type(contract_type) {}
 
-Contract::~Contract() {
-    delete user;
-}
-
 const Date &Contract::getDate() const {
     return date;
 }

@@ -121,18 +121,18 @@ void OfferManager::read(const std::string &directory, UserManager &user_manager,
 
 		float price = stof(params[2]);
 
-		Date celebration_Date = *Date::getDate(params[3]);
+		Date celebration_Date = Date::getDate(params[3]);
 
-		auto *schedules = new std::list<Schedule>;
+		std::list<Schedule> schedules;
 		for (unsigned long i = 4; i < params.size(); ++i) {
-			Date *begin = Date::getDate(params[i]);
-			Date *end = Date::getDate(params[++i]);
+			Date begin = Date::getDate(params[i]);
+			Date end = Date::getDate(params[++i]);
 
-			auto *schedule = new Schedule(*begin, *end);
-			schedules->push_back(*schedule);
+			Schedule schedule(begin, end);
+			schedules.push_back(schedule);
 		}
 
-		auto *offer = new Offer(vehicle, *schedules, provider, price, celebration_Date);
+		auto *offer = new Offer(vehicle, schedules, provider, price, celebration_Date);
 		this->add(*offer);
 
 		Contract *contract = new TransferContract(celebration_Date, &provider, ContractType::TRANSFER, *offer);
@@ -198,7 +198,7 @@ vector<Offer> OfferManager::getPossibleOffers() const {
 				continue;
 			}
 
-			if ((*it).getBegin() < now)
+			if ((*it).getBegin() <= now)
 				(*it).setBegin(now);
 
 			++it;
