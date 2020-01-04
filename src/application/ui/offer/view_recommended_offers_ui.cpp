@@ -90,7 +90,7 @@ string ViewRecommendedOffersUI::singleOffer(Offer &offer) {
 	stringstream offer_stream;
 
 	offer_stream << offer.getVehicle().getYear() << " " << offer.getVehicle().getBrand() << " "
-				 << offer.getVehicle().getModel() << ", " << fixed << setprecision(2) << offer.getPrice() << " gbp/day";
+				 << offer.getVehicle().getModel() << ", " << fixed << setprecision(2) << offer.getPrice() << " €/h";
 
 	return offer_stream.str();
 }
@@ -102,7 +102,7 @@ void ViewRecommendedOffersUI::selectOffer(Offer &offer) {
 						  << " " << offer.getVehicle().getModel() << " [" << offer.getVehicle().getNumberPlate() << "]"
 						  << endl;
 	complete_offer_stream << endl;
-	complete_offer_stream << "Price: " << fixed << setprecision(2) << offer.getPrice() << " gbp/day" << endl;
+	complete_offer_stream << "Price: " << fixed << setprecision(2) << offer.getPrice() << " €/h" << endl;
 	complete_offer_stream << endl;
 	complete_offer_stream << "Type: " << offer.getVehicle().getType() << endl;
 

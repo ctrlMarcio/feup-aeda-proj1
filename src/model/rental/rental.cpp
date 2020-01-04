@@ -15,7 +15,12 @@ Rental::Rental(Offer &offer, Date begin, Date end, IRenter &renter, Date celebra
 }
 
 float Rental::calculatePrice() const {
-	float provider_price = offer.getPrice() * (float) Date::dayDifference(schedule.getEnd(), schedule.getBegin());
+	unsigned long n_hours = Date::hourDifference(schedule.getEnd(), schedule.getBegin());
+
+	if (!n_hours) // if the number of hours is 0, counts as 1
+		n_hours++;
+
+	float provider_price = offer.getPrice() * (float) n_hours;
 
 	return provider_price + ((float) COMPANY_PERCENTAGE / 100) * provider_price;
 }
@@ -43,13 +48,13 @@ std::string Rental::toOneLineDescription() const {
 	res_stream << " | " << this->schedule.getBegin().toString();
 	res_stream << " to " << this->schedule.getEnd().toString();
 	res_stream << " | id: " << this->offer.getProvider().getIdentificationNumber();
-	res_stream << " | " << std::fixed << std::setprecision(2) << price << " gbp";
+	res_stream << " | " << std::fixed << std::setprecision(2) << price << " €";
 
 	return res_stream.str();
 }
 
 ostream &operator<<(ostream &ostream, const Rental &rental) {
-	ostream << rental.offer << endl << rental.schedule << endl << "Price: " << rental.price << "gbp" << endl;
+	ostream << rental.offer << endl << rental.schedule << endl << "Price: " << rental.price << "€" << endl;
 	return ostream;
 }
 

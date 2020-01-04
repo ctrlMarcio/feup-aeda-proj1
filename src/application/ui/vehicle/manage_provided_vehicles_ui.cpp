@@ -43,7 +43,7 @@ char ManageProvidedVehiclesUI::getOption() {
 	options_stream << endl;
 	options_stream << "2 - Add vehicle" << endl;
 	options_stream << "3 - Remove vehicle" << endl;
-	options_stream << "4 - Edit vehicle preferences" << endl;
+	options_stream << "4 - Edit offers" << endl;
 	options_stream << endl;
 	options_stream << "0 - Return" << endl;
 

@@ -68,3 +68,10 @@ void EditVehicleController::setOffer() {
 bool EditVehicleController::addSchedule(Schedule schedule) {
     return this->offer->addSchedule(schedule);
 }
+
+float EditVehicleController::getOfferPrice() {
+	if (offer)
+		return offer->getPrice();
+
+	return -1;
+}

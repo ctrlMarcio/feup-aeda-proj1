@@ -65,10 +65,10 @@ void ClientManager::read(const std::string &directory) {
 		auto *client = new Client(name, identification_number, address);
 
 		size_t i = 3;
-		if (params[i] == "passenger_pref")
+		if (params.size() > i && params[i] == "passenger_pref")
 			i = readPassengerPreference(params, client, i);
 
-		if (params[i] == "commercial_pref")
+		if (params.size() > i && params[i] == "commercial_pref")
 			i = readCommercialPreference(params, client, i);
 
 		client->getVehicleList().read(params, i);

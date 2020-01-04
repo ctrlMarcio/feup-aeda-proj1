@@ -76,7 +76,7 @@ void EditVehicleUI::createOffer() {
 
 void EditVehicleUI::addOffer() {
 	list<Schedule> schedules = requestSchedules();
-	float price = io_util::askFloat("Price per hour:");
+	float price = io_util::askFloat("Price per hour (€):");
 	bool valid = controller.createOffer(schedules, price);
 
 	if (!valid) {
@@ -111,10 +111,13 @@ std::list<Schedule> EditVehicleUI::requestSchedules() {
 
 Schedule EditVehicleUI::askSchedule() {
 	cout << endl << "Insert a schedule." << endl;
-	cout << "Starting when?" << endl;
-	Date begin = requestDate();
-	cout << endl << "Finishing when?" << endl;
-	Date end = requestDate();
+	Date begin = io_util::askDate("Starting when?");
+	Date end = io_util::askDate("Finishing when?");
+
+	if (end.isStartingOfDay() && io_util::askBool("Include the last day?")) {
+		end = end.addDay();
+		end = end.removeSecond();
+	}
 
 	try {
 		Schedule schedule(begin, end);
@@ -183,6 +186,10 @@ void EditVehicleUI::editOffer() {
 }
 
 void EditVehicleUI::changePrice() {
+	float old_price = controller.getOfferPrice();
+	if (old_price != -1)
+		cout << "The price is of " << old_price << "€/h." << endl;
+
 	float new_price = io_util::askFloat("What's the new price?");
 	bool done = controller.changePrice(new_price);
 

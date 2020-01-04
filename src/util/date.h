@@ -30,6 +30,7 @@ public:
 	/*!
 	 * Reads a date from a string.
 	 * Used to read the files.
+	 *
 	 * E.g.: "12.11.2019.12.21.43" should describe 12/12/2019 at 12H21m43s.
 	 *
 	 * @param date_vector the string of the date
@@ -48,6 +49,7 @@ public:
 	/*!
 	 * Calculates the difference in days from two dates.
 	 * The calculation is made using julian days, using the "toJulianDay" function.
+	 *
 	 * E.g.: 21-dez-2019 23h59 to 22-dez-2019 00h02 would return 1 day of difference.
 	 *
 	 * @param date1
@@ -57,14 +59,29 @@ public:
 	static unsigned long dayDifference(const Date &date1, const Date &date2);
 
 	/*!
+	 * Calculates the difference in hours from two dates.
+	 * The calculation uses "dayDifference" to get the difference in days.
+	 * If the difference is lower than one hour, returns 0.
+	 *
+	 * E.g.: 	05/05/2020 12:25.0 to 05/05/2020 13:24.59 would return 0
+	 * 			05/05/2020 12:25.0 to 05/05/2020 13:25.00 would return 1
+	 *
+	 * @param date1
+	 * @param date2
+	 * @return the difference in hours
+	 */
+	static unsigned long hourDifference(const Date &date1, const Date &date2);
+
+	/*!
 	 * Calculates the difference in days to another date.
 	 * The calculation is made using julian days, using the "toJulianDay" function.
+	 *
 	 * E.g.: 21-dez-2019 23h59 to 22-dez-2019 00h02 would return 1 day of difference.
 	 *
 	 * @param date the other date
 	 * @return the difference in days
 	 */
-	unsigned long dayDifference(const Date &date);
+	unsigned long dayDifference(const Date &date) const;
 
 	/*!
 	 * Returns whether the the year is a leap or not.
@@ -263,6 +280,13 @@ public:
     std::string toString() const;
 
 	/*!
+	 * Verifies if the date has no time, this is, if the time parcels, such as hours, minutes, etc, are empty.
+	 *
+	 * @return true if this date is the starting moment of a day
+	 */
+	bool isStartingOfDay() const;
+
+	/*!
 	 * Verifies if another date is equal to this one.
 	 *
 	 * @param rhs the other date
@@ -324,7 +348,21 @@ private:
 	 * @param date2 the sooner date
 	 * @return the difference in days
 	 */
-	static unsigned long dayDifferenceInOrder(const Date &later, const Date &sooner);
+	static unsigned long dayDifferenceInOrder(const Date &sooner, const Date &later);
+
+	/*!
+	 * Calculates the difference in hours from two dates.
+	 * The calculation uses "dayDifference" to get the difference in days.
+	 * If the difference is lower than one hour, returns 0.
+	 *
+	 * E.g.: 	05/05/2020 12:25.0 to 05/05/2020 13:24.59 would return 0
+	 * 			05/05/2020 12:25.0 to 05/05/2020 13:25.00 would return 1
+	 *
+	 * @param date1 the sooner date
+	 * @param date2 the later date
+	 * @return the difference in hours
+	 */
+	static unsigned long hourDifferenceInOrder(const Date &sooner, const Date &later);
 
 	/*!
 	 * Returns whether a date is after another.

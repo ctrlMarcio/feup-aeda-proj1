@@ -239,11 +239,11 @@ unsigned long Date::dayDifference(const Date &date1, const Date &date2) {
 	return later.toJulianDay() - sooner.toJulianDay();
 }
 
-unsigned long Date::dayDifference(const Date &date) {
+unsigned long Date::dayDifference(const Date &date) const {
 	return dayDifference(*this, date);
 }
 
-unsigned long Date::dayDifferenceInOrder(const Date &later, const Date &sooner) {
+unsigned long Date::dayDifferenceInOrder(const Date &sooner, const Date &later) {
 	return later.toJulianDay() - sooner.toJulianDay();
 }
 
@@ -403,4 +403,44 @@ Date Date::removeYear() const {
 
 void Date::printToFile(std::ofstream &ofstream) {
 	Date::printDateToFile(ofstream, *this);
+}
+
+bool Date::isStartingOfDay() const {
+	return hour == 0 && minute == 0 && second == 0;
+}
+
+unsigned long Date::hourDifference(const Date &date1, const Date &date2) {
+	Date sooner, later;
+
+	if (date1 < date2) {
+		sooner = date1;
+		later = date2;
+	} else {
+		sooner = date2;
+		later = date1;
+	}
+
+	return hourDifferenceInOrder(sooner, later);
+}
+
+unsigned long Date::hourDifferenceInOrder(const Date &sooner, const Date &later) {
+	long day_difference = dayDifferenceInOrder(sooner, later);
+
+	long hour_difference = 0;
+
+	if (later.hour >= sooner.hour) {
+		hour_difference = later.hour - sooner.hour;
+
+		if (later.minute < sooner.minute || (later.minute == sooner.minute && later.second < sooner.second))
+			hour_difference--;
+	} else {
+		hour_difference = 24 - (sooner.hour - later.hour);
+
+		if (later.minute < sooner.minute || (later.minute == sooner.minute && later.second < sooner.second))
+			hour_difference--;
+
+		day_difference--;
+	}
+
+	return hour_difference + 24 * day_difference;
 }

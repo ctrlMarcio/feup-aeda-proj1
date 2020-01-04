@@ -201,3 +201,23 @@ TEST(date, misc) {
 
     ASSERT_EQ("December", date1.getMonthName());
 }
+
+TEST(date, hour_difference) {
+	Date date1(1, 1, 1, 1);
+	Date date2(1, 1, 1, 2);
+	Date date3(1, 1, 1, 1, 0, 1);
+	Date date4(2, 1, 1, 1);
+	Date date5(2, 1, 1, 2);
+	Date date6(3, 1, 1, 1);
+	Date date7(1, 1, 1, 23, 59);
+	Date date8(2, 1, 1);
+	Date date9(1, 1, 1, 23);
+
+	EXPECT_EQ(Date::hourDifference(date1, date2), 1);
+	EXPECT_EQ(Date::hourDifference(date2, date3), 0);
+	EXPECT_EQ(Date::hourDifference(date1, date4), 24);
+	EXPECT_EQ(Date::hourDifference(date1, date5), 25);
+	EXPECT_EQ(Date::hourDifference(date5, date6), 23);
+	EXPECT_EQ(Date::hourDifference(date7, date8), 0);
+	EXPECT_EQ(Date::hourDifference(date8, date9), 1);
+}

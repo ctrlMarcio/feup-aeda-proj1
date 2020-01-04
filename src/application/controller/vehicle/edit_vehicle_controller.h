@@ -28,6 +28,8 @@ public:
 
 	bool addSchedule(Schedule schedule);
 
+	float getOfferPrice();
+
 private:
 	VehicleList &vehicle_list;
 
