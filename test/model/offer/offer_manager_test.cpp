@@ -23,7 +23,7 @@ TEST(offer_manager, get_recommended_offers) {
 
 	PassengerVehicle vehicle1("plate1", "brand1", "model1", 2010, 5);
 	CommercialVehicle vehicle2("plate2", "brand2", "model2", 2015, 10, 10, true);
-	Schedule schedule(Date(5, 5, 2010), Date());
+	Schedule schedule(Date(5, 5, 2010), Date(30, 1, 3030));
 	list<Schedule> schedules{schedule};
 	Client client("name", "id", "address");
 
@@ -184,4 +184,29 @@ TEST(offer_manager, remove) {
 	EXPECT_FALSE(manager.hasOfferOf(vehicle2));
 	EXPECT_EQ(manager.getOffers().size(), 0);
 	EXPECT_FALSE(manager.remove(offer2));
+}
+
+TEST(offer_manager, get_possible_offers) {
+	OfferManager manager;
+
+	PassengerVehicle vehicle1("plate1", "brand1", "model1", 2010, 5);
+	CommercialVehicle vehicle2("plate2", "brand2", "model2", 2015, 10, 10, true);
+	Schedule schedule(Date(5, 5, 2010), Date());
+	list<Schedule> schedules{schedule};
+	Client client("name", "id", "address");
+
+	Offer offer1(vehicle1, schedules, client);
+
+	schedules.emplace_back(Date(1, 1, 1), Date(20, 2, 3000));
+	Offer offer2(vehicle2, schedules, client);
+
+	manager.add(offer1);
+	manager.add(offer2);
+
+	ASSERT_TRUE(manager.hasOfferOf(vehicle1));
+	ASSERT_TRUE(manager.hasOfferOf(vehicle2));
+
+	Date now;
+	ASSERT_EQ(manager.getPossibleOffers().size(), 1);
+	ASSERT_GE(manager.getPossibleOffers()[0].getAvailableSchedules().front().getBegin(), now);
 }

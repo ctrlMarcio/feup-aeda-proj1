@@ -10,9 +10,9 @@ class ViewRecommendedOffersController {
 public:
 	ViewRecommendedOffersController(PreferenceList &preference_list, OfferManager &offer_manager);
 
-	vector<Offer *> getRecommendedOffers();
+	vector<Offer> getRecommendedOffers();
 
-	vector<Offer *> getOffers(int page, int max_per_page);
+	vector<Offer> getOffers(int page, int max_per_page);
 
 	int getPageCount(int max_per_page);
 
@@ -23,7 +23,7 @@ private:
 
 	OfferManager &offer_manager;
 
-	vector<Offer *> offers;
+	vector<Offer> offers;
 };
 
 

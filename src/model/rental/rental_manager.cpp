@@ -38,8 +38,11 @@ void RentalManager::read(const std::string &directory, OfferManager &offer_manag
 	ifstream ifstream;
 	ifstream.open(file_path);
 
-	if (!ifstream.is_open())
-		throw InvalidFileException(file_path);
+	if (!ifstream.is_open()) {
+		std::cout << file_path << " not found! Creating an empty one." << endl;
+		std::ofstream file{file_path};
+		ifstream.open(file_path);
+	}
 
 	std::string line;
 	while (getline(ifstream, line)) {

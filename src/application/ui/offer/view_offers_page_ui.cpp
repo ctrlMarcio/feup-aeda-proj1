@@ -50,12 +50,12 @@ string ViewOffersPageUI::offers() {
     options_stream << "A/D - Previous/next page" << endl;
     options_stream << endl;
 
-    vector<Offer *> page_offers = controller.getOffers(current_page, MAX_PER_PAGE);
+	vector<Offer> page_offers = controller.getOffers(current_page, MAX_PER_PAGE);
 
     int number = 1;
 
-    for (Offer *offer : page_offers) {
-        options_stream << number++ << " - " << singleOffer(*offer) << endl;
+	for (Offer &offer : page_offers) {
+		options_stream << number++ << " - " << singleOffer(offer) << endl;
     }
 
     if (page_offers.empty()) {

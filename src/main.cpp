@@ -15,14 +15,13 @@ int main(int argc, char *argv[]) {
 
 	if (argc == 2) {
 		directory = argv[1];
-		auth_user_manager.read(directory);
-		company.read(directory);
 	} else {
 		directory = ".";
-        auth_user_manager.read(directory);
-		company.read(directory);
-		cout << "\033[1;31mInvalid parameters, initializing without data.\033[0m" << endl;
+		cout << "\033[1;31mInvalid parameters, initializing save files in the current directory.\033[0m" << endl;
 	}
+
+	auth_user_manager.read(directory);
+	company.read(directory);
 
 	company.update();
 

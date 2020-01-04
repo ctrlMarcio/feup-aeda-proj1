@@ -11,7 +11,7 @@ class ViewOffersPageController {
 public:
     ViewOffersPageController(CurrentSession &current_session, AuthUserManager &auth_user_manager, Company &company);
 
-    vector<Offer *> getOffers(int page, int max_per_page);
+	vector<Offer> getOffers(int page, int max_per_page);
 
     int getPageCount(int max_per_page);
 

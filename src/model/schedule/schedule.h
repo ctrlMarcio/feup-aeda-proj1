@@ -90,6 +90,13 @@ public:
     void setEnd(const Date &end);
 
 	/*!
+	 * Sets the start date.
+	 *
+	 * @param begin the start date
+	 */
+	void setBegin(const Date &begin);
+
+	/*!
 	 * Prints a schedule in an ostream.
 	 *
 	 * @param ostream the ostream
@@ -108,13 +115,6 @@ private:
 	 * The end date.
 	 */
 	Date end;
-
-	/*!
-	 * Sets the start date.
-	 *
-	 * @param begin the start date
-	 */
-	void setBegin(const Date &begin);
 };
 
 

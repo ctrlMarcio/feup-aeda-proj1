@@ -89,7 +89,7 @@ public:
 	 *
 	 * @return the const reference to the list of schedules
 	 */
-	const list<Schedule> &getAvailableSchedules() const;
+	list<Schedule> &getAvailableSchedules();
 
 	/*!
 	 * Gets the user who provided the offer.

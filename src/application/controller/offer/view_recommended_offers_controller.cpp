@@ -4,13 +4,13 @@ ViewRecommendedOffersController::ViewRecommendedOffersController(PreferenceList 
 																 OfferManager &offer_manager) :
 		preference_list(preference_list), offer_manager(offer_manager) {}
 
-vector<Offer *> ViewRecommendedOffersController::getRecommendedOffers() {
+vector<Offer> ViewRecommendedOffersController::getRecommendedOffers() {
 	this->offers = offer_manager.getRecommendedOffers(preference_list);
 	return offers;
 }
 
-vector<Offer *> ViewRecommendedOffersController::getOffers(int page, int max_per_page) {
-	vector<Offer *> result;
+vector<Offer> ViewRecommendedOffersController::getOffers(int page, int max_per_page) {
+	vector<Offer> result;
 	int first_index = (page - 1) * max_per_page;
 	for (int i = 0; i < max_per_page; i++) {
 		int index = first_index + i;
@@ -26,5 +26,5 @@ int ViewRecommendedOffersController::getPageCount(int max_per_page) {
 }
 
 Offer *ViewRecommendedOffersController::getOffer(int current_page, const int MAX_PER_PAGE, int index) {
-	return getOffers(current_page, MAX_PER_PAGE)[index];
+	return &getOffers(current_page, MAX_PER_PAGE)[index];
 }

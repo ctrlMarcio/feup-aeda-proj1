@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <fstream>
 #include <vector>
+#include <iostream>
 
 AuthUser AuthUserManager::build(string identification_number, string user_role) {
     return AuthUser(std::move(identification_number), random_password(8), std::move(user_role));
@@ -57,8 +58,11 @@ void AuthUserManager::read(const std::string &directory) {
     ifstream ifstream;
     ifstream.open(file_path);
 
-    if (!ifstream.is_open())
-        throw InvalidFileException(file_path);
+	if (!ifstream.is_open()) {
+		std::cout << file_path << " not found! Creating an empty one." << endl;
+		std::ofstream file{file_path};
+		ifstream.open(file_path);
+	}
 
     std::string line;
     while (getline(ifstream, line)) {

@@ -110,7 +110,7 @@ float Offer::getPrice() const {
 	return price;
 }
 
-const list<Schedule> &Offer::getAvailableSchedules() const {
+list<Schedule> &Offer::getAvailableSchedules() {
 	return available_schedules;
 }
 

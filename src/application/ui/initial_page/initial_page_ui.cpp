@@ -73,9 +73,9 @@ char InitialPageUI::getOption() {
 string InitialPageUI::singleOffer(int index) {
 	OfferManager offer_manager = ui_manager.getCompany().getOfferManager();
 
-	if (index >= offer_manager.getOffers().size()) return "There are not enough offers to show.";
+	if (index >= offer_manager.getPossibleOffers().size()) return "There are not enough offers to show.";
 
-	Offer &offer = **(offer_manager.getOffers().begin() + index);
+	Offer offer = *(offer_manager.getPossibleOffers().begin() + index);
 
 	stringstream offer_stream;
 

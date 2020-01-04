@@ -31,7 +31,7 @@ public:
 	 * @param preference_list the list of preferences
 	 * @return the container of recommended offers
 	 */
-	vector<Offer *> getRecommendedOffers(const PreferenceList &preference_list);
+	vector<Offer> getRecommendedOffers(const PreferenceList &preference_list);
 
 	/*!
 	 * Verifies if already exists offers for a given vehicle.
@@ -66,9 +66,16 @@ public:
 	bool remove(const Offer &offer);
 
 	/*!
-	 * Returns the container of offers.
+	 * Returns a container of possible future offers.
 	 *
 	 * @return the container of offers.
+	 */
+	vector<Offer> getPossibleOffers() const;
+
+	/*!
+	 * Returns the container of offers.
+	 *
+	 * @return the container of offers
 	 */
 	vector<Offer *> &getOffers();
 

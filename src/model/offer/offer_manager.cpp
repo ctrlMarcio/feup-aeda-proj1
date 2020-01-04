@@ -13,14 +13,14 @@ Offer *OfferManager::build(IVehicle &vehicle, const std::list<Schedule> &availab
 	return new Offer(vehicle, available_schedules, provider, price);
 }
 
-std::vector<Offer *> OfferManager::getRecommendedOffers(const PreferenceList &preference_list) {
-	std::vector<Offer *> rec_offers;
+std::vector<Offer> OfferManager::getRecommendedOffers(const PreferenceList &preference_list) {
+	std::vector<Offer> rec_offers;
 
 	PassengerPreference *pp = preference_list.getPassengerPreference();
 	CommercialPreference *cp = preference_list.getCommercialPreference();
 
-	for (Offer *offer : offers) {
-		IVehicle &vehicle = offer->getVehicle();
+	for (Offer &offer : getPossibleOffers()) {
+		IVehicle &vehicle = offer.getVehicle();
 
 		const string &type = vehicle.getType();
 		if (type == PassengerVehicle::TYPE && pp != nullptr) {
@@ -101,8 +101,11 @@ void OfferManager::read(const std::string &directory, UserManager &user_manager,
 	ifstream ifstream;
 	ifstream.open(file_path);
 
-	if (!ifstream.is_open())
-		throw InvalidFileException(file_path);
+	if (!ifstream.is_open()) {
+		std::cout << file_path << " not found! Creating an empty one." << endl;
+		std::ofstream file{file_path};
+		ifstream.open(file_path);
+	}
 
 	std::string line;
 	while (getline(ifstream, line)) {
@@ -120,16 +123,10 @@ void OfferManager::read(const std::string &directory, UserManager &user_manager,
 
 		Date celebration_Date = *Date::getDate(params[3]);
 
-		Date now;
 		auto *schedules = new std::list<Schedule>;
 		for (unsigned long i = 4; i < params.size(); ++i) {
 			Date *begin = Date::getDate(params[i]);
 			Date *end = Date::getDate(params[++i]);
-
-			if (*end < now) // ignores past offers
-				continue;
-			if (*begin < now) // if the beginning of the schedule already past, the current date is the actual beginning
-				*begin = now;
 
 			auto *schedule = new Schedule(*begin, *end);
 			schedules->push_back(*schedule);
@@ -186,4 +183,30 @@ void OfferManager::removeDay(const IVehicle &vehicle, const Date &date) {
 			offer->removeScheduleAvailability(to_remove);
 		}
 	}
+}
+
+vector<Offer> OfferManager::getPossibleOffers() const {
+	vector<Offer> res;
+	Date now;
+
+	for (const Offer *offer : offers) {
+		Offer mod(*offer);
+
+		for (auto it = mod.getAvailableSchedules().begin(); it != mod.getAvailableSchedules().end();) {
+			if ((*it).getEnd() <= now) {
+				it = mod.getAvailableSchedules().erase(it);
+				continue;
+			}
+
+			if ((*it).getBegin() < now)
+				(*it).setBegin(now);
+
+			++it;
+		}
+
+		if (!mod.getAvailableSchedules().empty())
+			res.push_back(mod);
+	}
+
+	return res;
 }
