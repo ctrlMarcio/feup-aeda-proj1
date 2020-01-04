@@ -19,6 +19,8 @@ public:
 
     void sortBy(SortField field);
 
+	void invert();
+
 private:
     ContractManager &contract_manager;
 

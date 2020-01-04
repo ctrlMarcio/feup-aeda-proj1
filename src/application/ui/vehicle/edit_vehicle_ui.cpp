@@ -91,19 +91,23 @@ std::list<Schedule> EditVehicleUI::requestSchedules() {
 	bool add_more;
 
 	do {
-		Schedule schedule = askSchedule();
-		for (auto it = schedules.begin(); it != schedules.end(); ++it)
-			if (schedule.interferesWith(*it)) {
-				cout << "The schedule conflicts with another one. Merging ..." << endl;
+		try {
+			Schedule schedule = askSchedule();
+			for (auto it = schedules.begin(); it != schedules.end(); ++it)
+				if (schedule.interferesWith(*it)) {
+					cout << "The schedule conflicts with another one. Merging ..." << endl;
 
-				Schedule to_merge = *it;
-				it = schedules.erase(it);
+					Schedule to_merge = *it;
+					it = schedules.erase(it);
 
-				schedule = schedule.mergeWith(to_merge);
-			}
+					schedule = schedule.mergeWith(to_merge);
+				}
 
-		schedules.push_back(schedule);
-		add_more = io_util::askBool("Do you want to add another schedule?");
+			schedules.push_back(schedule);
+			add_more = io_util::askBool("Do you want to add another schedule?");
+		} catch (InvalidScheduleException &e) {
+			add_more = io_util::askBool("Add another schedule?");
+		}
 	} while (add_more);
 
 	return schedules;
@@ -117,6 +121,16 @@ Schedule EditVehicleUI::askSchedule() {
 	if (end.isStartingOfDay() && io_util::askBool("Include the last day?")) {
 		end = end.addDay();
 		end = end.removeSecond();
+	}
+
+	if (end.isPast()) {
+		cout << "That offer is incorrect. Offers can only be set in the future." << endl;
+		throw InvalidScheduleException("The schedule is in the past.");
+	}
+
+	if (begin.isPast()) {
+		cout << "The beginning of the schedule is in the past. Setting it as this exact moment." << endl;
+		begin = Date();
 	}
 
 	try {
@@ -200,9 +214,12 @@ void EditVehicleUI::changePrice() {
 }
 
 void EditVehicleUI::addSchedule() {
-	Schedule schedule = askSchedule();
-
-	if (!controller.addSchedule(schedule))
-		cout << "The schedule conflicts with an existing one. Aborting ..." << endl;
+	try {
+		Schedule schedule = askSchedule();
+		controller.addSchedule(schedule);
+	} catch (InvalidScheduleException &e) {
+		if (io_util::askBool("Add another schedule?"))
+			addSchedule();
+	}
 }
 

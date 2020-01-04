@@ -13,7 +13,7 @@ void ViewContractsPageUI::run() {
     do {
         option = getSortOption();
 
-        if (option != "0"){
+		if (option == "1") {
             SortField field = getSortField();
 
             if (field != DEFAULT) {
@@ -22,6 +22,11 @@ void ViewContractsPageUI::run() {
                 cout << getContracts();
             }
         }
+		if (option == "2") {
+			controller.invert();
+
+			cout << getContracts();
+		}
     } while (option != "0");
 }
 
@@ -49,7 +54,8 @@ string ViewContractsPageUI::getContracts() {
 string ViewContractsPageUI::getSortOption() {
     stringstream options_stream;
 
-    options_stream << "1 - Sort contracts" << endl << endl;
+	options_stream << "1 - Sort contracts" << endl;
+	options_stream << "2 - Invert order" << endl << endl;
     options_stream << "0 - Exit" << endl;
     options_stream << endl << "Option: ";
 
@@ -59,7 +65,7 @@ string ViewContractsPageUI::getSortOption() {
 
     getline(cin, option);
 
-    while (option != "0" && option != "1") {
+	while (option != "0" && option != "1" && option != "2") {
         cout << endl << "Invalid option, try again..." << endl;
 
         cout << endl << "Option: ";

@@ -16,6 +16,8 @@ private:
 	ViewInactiveClientsController controller;
 
 	void printClients(const vector<const Client *> &clients) const;
+
+	void printHistoric(const Client &client) const;
 };
 
 

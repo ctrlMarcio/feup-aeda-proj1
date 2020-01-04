@@ -454,5 +454,5 @@ bool Date::isToday() const {
 bool Date::isPast() const {
 	Date now;
 
-	return *this > now;
+	return *this < now;
 }

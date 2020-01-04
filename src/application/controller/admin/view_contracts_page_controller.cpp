@@ -1,4 +1,5 @@
 #include "view_contracts_page_controller.h"
+#include "../../../util/string_util.h"
 #include <sstream>
 #include <algorithm>
 
@@ -23,7 +24,8 @@ void ViewContractsPageController::sortBy(SortField field) {
             break;
         case CLIENT_NAME:
             sort(contracts.begin(), contracts.end(), [](const Contract *c1, const Contract *c2) {
-                return c1->getUser()->getName() < c2->getUser()->getName();
+				return string_util::capitalize(c1->getUser()->getName()) <
+					   string_util::capitalize(c2->getUser()->getName());
             });
             break;
         case CONTRACT_TYPE:
@@ -37,4 +39,8 @@ void ViewContractsPageController::sortBy(SortField field) {
             });
             break;
     }
+}
+
+void ViewContractsPageController::invert() {
+	std::reverse(contracts.begin(), contracts.end());
 }

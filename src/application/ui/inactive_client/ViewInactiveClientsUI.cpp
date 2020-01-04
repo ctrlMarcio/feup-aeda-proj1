@@ -32,13 +32,24 @@ void ViewInactiveClientsUI::run() {
 		}
 	} while (!valid);
 
-	list<Contract *> historic = controller.getHistoric(client);
-	if (historic.empty()) {
-		cout << "The client has no contracts." << endl;
-	}
+	printHistoric(client);
 
 	if (io_util::askBool("See the inactive clients again?"))
 		run();
+}
+
+void ViewInactiveClientsUI::printHistoric(const Client &client) const {
+	list<Contract *> historic = controller.getHistoric(client);
+	if (historic.empty()) {
+		cout << "The client has no contracts." << endl;
+	} else {
+
+		cout << endl << client.getName() + "'s contract history" << endl;
+		for (Contract *c: historic) {
+			cout << "\t- " + c->toString() << endl;
+		}
+		cout << endl;
+	}
 }
 
 void ViewInactiveClientsUI::printClients(const vector<const Client *> &clients) const {

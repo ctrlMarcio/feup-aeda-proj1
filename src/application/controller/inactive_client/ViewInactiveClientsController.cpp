@@ -8,6 +8,6 @@ vector<const Client *> ViewInactiveClientsController::getInactiveClients() const
 	return client_manager.getInactiveClients();
 }
 
-list<Contract *> ViewInactiveClientsController::getHistoric(const Client &client) {
+list<Contract *> ViewInactiveClientsController::getHistoric(const Client &client) const {
 	return contract_manager.getContractsOf(client.getIdentificationNumber());
 }
